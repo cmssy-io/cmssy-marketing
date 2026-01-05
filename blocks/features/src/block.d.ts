@@ -3,5 +3,13 @@
 
 export interface BlockContent {
   heading: string;
+  headingHighlight?: string;
   description?: string;
+  features?: Array<{
+    title: string;
+    description: string;
+    color?: string;
+    hoverColor?: string;
+    icon?: "ZapIcon" | "SparklesIcon" | "GlobeAltIcon" | "LayersIcon" | "PaintBrushIcon" | "LightningBoltIcon" | "CloudIcon" | "LockClosedIcon" | "CogIcon" | "ChartBarIcon" | "DeviceMobileIcon" | "UsersIcon" | "ShieldCheckIcon" | "BlocksIcon";
+  }>;
 }
