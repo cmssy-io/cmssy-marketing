@@ -7,7 +7,9 @@
     "build": "cmssy build"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "cmssy-cli": "file:../cmssy-cli",
+    "lucide-react": "^0.562.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
@@ -17,6 +19,7 @@
     "@types/react-dom": "^19",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.2"
   }

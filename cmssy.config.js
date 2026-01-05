@@ -1,5 +1,6 @@
 export default {
   "framework": "react",
+  "projectName": "cmssy-marketing",
   "author": {
     "name": "",
     "email": ""
