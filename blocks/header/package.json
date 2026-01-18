@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.header",
+  "version": "1.0.2",
+  "description": "Responsive header navigation block with logo, menu, and CTAs",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

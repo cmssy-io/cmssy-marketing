@@ -1,0 +1,25 @@
+{
+  "logoText": "Brand",
+  "navigation": [
+    {
+      "label": "Features",
+      "url": "/features"
+    },
+    {
+      "label": "Pricing",
+      "url": "/pricing"
+    },
+    {
+      "label": "About",
+      "url": "/about"
+    }
+  ],
+  "showCta": true,
+  "ctaLabel": "Get Started",
+  "ctaUrl": "/signup",
+  "showSecondaryCta": true,
+  "logoSize": "md",
+  "transparent": false,
+  "showAnnouncement": false,
+  "announcementText": ""
+}
