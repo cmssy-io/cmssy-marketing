@@ -1,40 +1,11 @@
 {
-  "badgeText": "About",
-  "heading": "Building the Future of",
-  "headingHighlight": "CMS",
-  "subtitle": "We're on a mission to make professional website creation accessible to everyone, powered by AI and modern technology.",
-  "missionText": "We believe that creating beautiful, professional websites shouldn't require a team of developers or expensive agencies. Cmssy empowers creators, businesses, and developers to build stunning websites with AI-powered tools, intuitive drag-and-drop editing, and enterprise-grade performance.",
+  "heading": "Preview Heading",
+  "description": "This is how your block will look in the preview.",
   "values": [
     {
       "icon": "sparkles",
-      "title": "Innovation First",
-      "description": "We leverage AI and modern technology to make website creation effortless and accessible to everyone."
-    },
-    {
-      "icon": "heart",
-      "title": "User-Centric",
-      "description": "Every feature we build starts with understanding our users' needs and pain points."
-    },
-    {
-      "icon": "users",
-      "title": "Community Driven",
-      "description": "We believe in building together. Your feedback shapes our roadmap and priorities."
-    },
-    {
-      "icon": "zap",
-      "title": "Performance Obsessed",
-      "description": "We're committed to building the fastest, most reliable CMS on the market."
+      "title": "",
+      "description": ""
     }
-  ],
-  "showTechStack": true,
-  "techStack": [
-    { "name": "Next.js 15", "category": "Frontend" },
-    { "name": "React 19", "category": "Frontend" },
-    { "name": "TypeScript", "category": "Language" },
-    { "name": "Tailwind CSS", "category": "Styling" },
-    { "name": "FastAPI", "category": "Backend" },
-    { "name": "GraphQL", "category": "API" },
-    { "name": "MongoDB", "category": "Database" },
-    { "name": "Vercel", "category": "Hosting" }
   ]
 }

@@ -7,7 +7,14 @@ export interface BlockContent {
   headingHighlight?: string;
   subtitle?: string;
   missionText?: string;
-  values?: any[];
+  values?: Array<{
+    icon?: "sparkles" | "heart" | "users" | "zap" | "globe" | "code" | "shield" | "rocket";
+    title: string;
+    description?: string;
+  }>;
   showTechStack?: boolean;
-  techStack?: any[];
+  techStack?: Array<{
+    name: string;
+    category?: string;
+  }>;
 }
