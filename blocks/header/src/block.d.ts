@@ -2,7 +2,7 @@
 // DO NOT EDIT - This file is automatically regenerated
 
 export interface BlockContent {
-  logo?: { url: string; alt?: string; width?: number; height?: number };
+  logo?: string;
   logoText?: string;
   logoSize?: "sm" | "md" | "lg";
   navigation?: Array<{

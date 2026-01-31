@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.roadmap",
+  "version": "1.0.1",
+  "description": "Product roadmap with kanban-style columns",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

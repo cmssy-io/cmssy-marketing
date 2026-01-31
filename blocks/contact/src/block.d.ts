@@ -3,7 +3,7 @@
 
 export interface BlockContent {
   badgeText?: string;
-  heading: string;
+  heading?: string;
   headingHighlight?: string;
   description?: string;
   emailTitle?: string;
@@ -15,7 +15,11 @@ export interface BlockContent {
   showQuote?: boolean;
   quoteText?: string;
   quoteAuthor?: string;
-  formActionUrl?: string;
+  /** Select which email configuration to use for notifications */
+  emailConfigurationId?: string;
   submitButtonText?: string;
   successMessage?: string;
+  enableAutoResponse?: boolean;
+  /** Enter the ID of a published email template for automatic responses */
+  autoResponseTemplateId?: string;
 }

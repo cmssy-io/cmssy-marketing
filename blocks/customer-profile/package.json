@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.customer-profile",
+  "version": "1.0.0",
+  "description": "Profile editing form for logged-in customers",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.legal",
+  "version": "1.0.5",
+  "description": "Legal page with accordion sections for privacy, terms, cookies",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

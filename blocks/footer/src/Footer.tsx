@@ -1,0 +1,112 @@
+import { Github, Linkedin, Twitter } from "lucide-react";
+import { BlockContent } from "./block";
+
+export default function Footer({ content }: { content: BlockContent }) {
+  const {
+    logo,
+    logoText = "cmssy",
+    tagline = "The modern CMS that makes website creation effortless.",
+    linkColumns = [],
+    showSocial = true,
+    twitterUrl,
+    githubUrl,
+    linkedinUrl,
+    copyrightText = "cmssy. All rights reserved.",
+  } = content;
+
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="border-t bg-slate-50/50 dark:bg-slate-900/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div
+          className="grid gap-8"
+          style={{
+            gridTemplateColumns: `2fr repeat(${linkColumns.length || 1}, 1fr)`,
+          }}
+        >
+          {/* Brand column */}
+          <div className="col-span-1 md:col-span-1">
+            <a href="/" className="flex items-center gap-2 mb-4">
+              {logo ? (
+                <img src={logo.url} alt={logoText} className="h-8 w-auto" />
+              ) : (
+                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">
+                    {logoText.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              )}
+              <span className="font-bold text-xl">{logoText}</span>
+            </a>
+            <p className="text-sm text-muted-foreground mb-6 max-w-xs">
+              {tagline}
+            </p>
+
+            {/* Social links */}
+            {showSocial && (twitterUrl || githubUrl || linkedinUrl) && (
+              <div className="flex gap-4">
+                {twitterUrl && (
+                  <a
+                    href={twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Twitter className="w-5 h-5" />
+                  </a>
+                )}
+                {githubUrl && (
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                )}
+                {linkedinUrl && (
+                  <a
+                    href={linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Link columns */}
+          {linkColumns.map((column, index) => (
+            <div key={index}>
+              <h3 className="font-semibold mb-4">{column.title}</h3>
+              <ul className="space-y-3">
+                {(column.links || []).map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-12 pt-8 border-t">
+          <p className="text-sm text-muted-foreground text-center">
+            © {currentYear} {copyrightText}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,142 @@
+import {
+  ArrowRight,
+  CheckCircle2,
+  Clock,
+  HelpCircle,
+  Lightbulb,
+  MessageSquare,
+} from "lucide-react";
+import { BlockContent } from "./block";
+
+const statusConfig = {
+  completed: {
+    icon: CheckCircle2,
+    color: "text-emerald-600 dark:text-emerald-400",
+    bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
+    borderColor: "border-emerald-200 dark:border-emerald-800",
+  },
+  in_progress: {
+    icon: Clock,
+    color: "text-violet-600 dark:text-violet-400",
+    bgColor: "bg-violet-50 dark:bg-violet-900/20",
+    borderColor: "border-violet-200 dark:border-violet-800",
+  },
+  planned: {
+    icon: Lightbulb,
+    color: "text-amber-600 dark:text-amber-400",
+    bgColor: "bg-amber-50 dark:bg-amber-900/20",
+    borderColor: "border-amber-200 dark:border-amber-800",
+  },
+  considering: {
+    icon: HelpCircle,
+    color: "text-slate-600 dark:text-slate-400",
+    bgColor: "bg-slate-50 dark:bg-slate-900/20",
+    borderColor: "border-slate-200 dark:border-slate-800",
+  },
+};
+
+export default function Roadmap({ content }: { content: BlockContent }) {
+  const {
+    badge = "Roadmap",
+    heading = "Product",
+    headingHighlight = "Roadmap",
+    description = "Transparency is one of our core values.",
+    columns = [],
+    showCta = true,
+    ctaTitle = "Shape Our Roadmap",
+    ctaDescription = "Have a feature request or idea? We'd love to hear from you.",
+    ctaButtonText = "Submit Feedback",
+    ctaButtonUrl = "/contact",
+  } = content;
+
+  return (
+    <section className="py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          {badge && (
+            <span className="inline-block px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium mb-4">
+              {badge}
+            </span>
+          )}
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            {heading}{" "}
+            <span className="bg-linear-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+              {headingHighlight}
+            </span>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {description}
+          </p>
+        </div>
+
+        {/* Kanban Board */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+          {columns.map((column, colIndex) => {
+            const config =
+              statusConfig[column.status as keyof typeof statusConfig] ||
+              statusConfig.planned;
+            const Icon = config.icon;
+
+            return (
+              <div key={colIndex} className="space-y-4">
+                {/* Column Header */}
+                <div
+                  className={`flex items-center gap-2 px-4 py-3 rounded-lg ${config.bgColor} ${config.borderColor} border`}
+                >
+                  <Icon className={`w-5 h-5 ${config.color}`} />
+                  <h3 className="font-semibold">{column.title}</h3>
+                  <span className="ml-auto text-sm text-muted-foreground">
+                    {(column.items || []).length}
+                  </span>
+                </div>
+
+                {/* Items */}
+                <div className="space-y-3">
+                  {(column.items || []).map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className="bg-card/50 backdrop-blur-sm rounded-xl border shadow-sm p-4 hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h4 className="font-medium text-sm">{item.title}</h4>
+                        {item.badge && (
+                          <span className="px-2 py-0.5 text-xs font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full whitespace-nowrap">
+                            {item.badge}
+                          </span>
+                        )}
+                      </div>
+                      {item.description && (
+                        <p className="text-xs text-muted-foreground">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Feedback CTA */}
+        {showCta && (
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-linear-to-br from-violet-500 to-purple-600 rounded-2xl shadow-xl shadow-violet-500/25 p-8 text-center text-white">
+              <MessageSquare className="w-10 h-10 mx-auto mb-4 opacity-90" />
+              <h3 className="text-2xl font-bold mb-3">{ctaTitle}</h3>
+              <p className="text-violet-100 mb-6">{ctaDescription}</p>
+              <a
+                href={ctaButtonUrl}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-violet-600 font-medium rounded-lg hover:bg-violet-50 transition-colors"
+              >
+                {ctaButtonText}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

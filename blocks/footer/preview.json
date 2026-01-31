@@ -1,0 +1,46 @@
+{
+  "logoText": "cmssy",
+  "tagline": "The modern CMS that makes website creation effortless. Build beautiful websites with AI-powered tools.",
+  "linkColumns": [
+    {
+      "title": "Product",
+      "links": [
+        { "name": "Features", "href": "/features" },
+        { "name": "Pricing", "href": "/pricing" },
+        { "name": "Changelog", "href": "/changelog" },
+        { "name": "Roadmap", "href": "/roadmap" }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        { "name": "About", "href": "/about" },
+        { "name": "Blog", "href": "/blog" },
+        { "name": "Careers", "href": "/careers" },
+        { "name": "Contact", "href": "/contact" }
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        { "name": "Documentation", "href": "/docs" },
+        { "name": "Help Center", "href": "/help" },
+        { "name": "Templates", "href": "/templates" },
+        { "name": "API", "href": "/api" }
+      ]
+    },
+    {
+      "title": "Legal",
+      "links": [
+        { "name": "Privacy", "href": "/privacy" },
+        { "name": "Terms", "href": "/terms" },
+        { "name": "Security", "href": "/security" },
+        { "name": "Cookies", "href": "/cookies" }
+      ]
+    }
+  ],
+  "showSocial": true,
+  "twitterUrl": "https://twitter.com/cmssy",
+  "githubUrl": "https://github.com/cmssy",
+  "copyrightText": "cmssy. All rights reserved."
+}

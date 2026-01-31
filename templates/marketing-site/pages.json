@@ -1,0 +1,955 @@
+{
+  "layoutSlots": {
+    "header": {
+      "type": "@cmssy-marketing/blocks.header",
+      "content": {
+        "logoText": "Brand",
+        "logoSize": "md",
+        "navigation": [
+          { "label": "Features", "url": "/features" },
+          { "label": "Pricing", "url": "/pricing" },
+          { "label": "About", "url": "/about" },
+          { "label": "Contact", "url": "/contact" }
+        ],
+        "showCta": true,
+        "ctaLabel": "Get Started",
+        "ctaUrl": "/signup",
+        "ctaStyle": "primary",
+        "showSecondaryCta": true,
+        "secondaryCtaLabel": "Login",
+        "secondaryCtaUrl": "/login",
+        "secondaryCtaStyle": "ghost",
+        "sticky": true,
+        "transparent": false
+      }
+    },
+    "footer": {
+      "type": "@cmssy-marketing/blocks.footer",
+      "content": {
+        "logoText": "Brand",
+        "tagline": "Build beautiful websites with modern tools.",
+        "linkColumns": [
+          {
+            "title": "Product",
+            "links": [
+              { "name": "Features", "href": "/features" },
+              { "name": "Pricing", "href": "/pricing" },
+              { "name": "Templates", "href": "/templates" },
+              { "name": "Roadmap", "href": "/roadmap" }
+            ]
+          },
+          {
+            "title": "Company",
+            "links": [
+              { "name": "About", "href": "/about" },
+              { "name": "Careers", "href": "/careers" },
+              { "name": "Blog", "href": "/blog" },
+              { "name": "Contact", "href": "/contact" }
+            ]
+          },
+          {
+            "title": "Resources",
+            "links": [
+              { "name": "Documentation", "href": "/docs" },
+              { "name": "Help Center", "href": "/help" },
+              { "name": "API", "href": "/api" },
+              { "name": "Changelog", "href": "/changelog" }
+            ]
+          },
+          {
+            "title": "Legal",
+            "links": [
+              { "name": "Privacy", "href": "/privacy" },
+              { "name": "Terms", "href": "/terms" },
+              { "name": "Cookies", "href": "/cookies" },
+              { "name": "Security", "href": "/security" }
+            ]
+          }
+        ],
+        "showSocial": true,
+        "copyrightText": "Your Company. All rights reserved."
+      }
+    }
+  },
+  "pages": [
+    {
+      "name": "Homepage",
+      "slug": "/",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Welcome",
+            "heading": "Build something",
+            "headingHighlight": "amazing",
+            "subheading": "The modern platform that makes creation effortless. Start building today.",
+            "primaryButtonText": "Get Started Free",
+            "primaryButtonUrl": "/signup",
+            "secondaryButtonText": "Learn More",
+            "secondaryButtonUrl": "/features",
+            "socialProofCount": "10,000+",
+            "socialProofText": "happy customers"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "Everything you need to",
+            "headingHighlight": "succeed",
+            "description": "Powerful features designed to help you achieve your goals faster.",
+            "features": [
+              {
+                "title": "Easy to Use",
+                "description": "Intuitive interface that anyone can master in minutes.",
+                "icon": "SparklesIcon"
+              },
+              {
+                "title": "Lightning Fast",
+                "description": "Optimized performance for the best user experience.",
+                "icon": "ZapIcon"
+              },
+              {
+                "title": "Secure by Default",
+                "description": "Enterprise-grade security to protect your data.",
+                "icon": "ShieldCheckIcon"
+              },
+              {
+                "title": "24/7 Support",
+                "description": "Our team is here to help you whenever you need it.",
+                "icon": "UsersIcon"
+              }
+            ]
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.cta",
+          "content": {
+            "badgeText": "Start today",
+            "heading": "Ready to get",
+            "headingLine2": "started?",
+            "description": "Join thousands of satisfied customers. Start free, no credit card required.",
+            "primaryButtonText": "Get Started Free",
+            "primaryButtonUrl": "/signup",
+            "secondaryButtonText": "Contact Sales",
+            "secondaryButtonUrl": "/contact"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Home",
+        "description": "Welcome to our platform - build something amazing today."
+      }
+    },
+    {
+      "name": "About",
+      "slug": "/about",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.about",
+          "content": {
+            "badgeText": "About Us",
+            "heading": "Building the future of",
+            "headingHighlight": "innovation",
+            "subtitle": "We're on a mission to make professional tools accessible to everyone.",
+            "missionText": "We believe that creating amazing products shouldn't require a huge team. Our platform empowers creators, businesses, and developers to build stunning solutions with intuitive tools and enterprise-grade performance.",
+            "values": [
+              {
+                "icon": "sparkles",
+                "title": "Innovation First",
+                "description": "We constantly push boundaries to deliver cutting-edge solutions."
+              },
+              {
+                "icon": "heart",
+                "title": "Customer Obsessed",
+                "description": "Your success is our success. We're here to help you grow."
+              },
+              {
+                "icon": "users",
+                "title": "Community Driven",
+                "description": "We build with and for our community of users."
+              },
+              {
+                "icon": "shield",
+                "title": "Trust & Security",
+                "description": "Your data and privacy are always our top priority."
+              }
+            ],
+            "showTechStack": false
+          }
+        }
+      ],
+      "metadata": {
+        "title": "About Us",
+        "description": "Learn about our mission, values, and the team behind the product."
+      }
+    },
+    {
+      "name": "Features",
+      "slug": "/features",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Features",
+            "heading": "Powerful features for",
+            "headingHighlight": "everyone",
+            "subheading": "Discover all the tools and features that make our platform stand out.",
+            "primaryButtonText": "Get Started",
+            "primaryButtonUrl": "/signup",
+            "secondaryButtonText": "View Pricing",
+            "secondaryButtonUrl": "/pricing"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "Built for",
+            "headingHighlight": "productivity",
+            "description": "Every feature is designed to help you work smarter, not harder.",
+            "features": [
+              {
+                "title": "Drag & Drop Builder",
+                "description": "Create beautiful layouts without writing a single line of code.",
+                "icon": "BlocksIcon"
+              },
+              {
+                "title": "Real-time Collaboration",
+                "description": "Work together with your team in real-time, anywhere in the world.",
+                "icon": "UsersIcon"
+              },
+              {
+                "title": "Analytics Dashboard",
+                "description": "Track your performance with detailed insights and reports.",
+                "icon": "ChartBarIcon"
+              },
+              {
+                "title": "API Access",
+                "description": "Integrate with your existing tools using our powerful API.",
+                "icon": "CogIcon"
+              },
+              {
+                "title": "Mobile Responsive",
+                "description": "Your content looks perfect on every device, automatically.",
+                "icon": "DeviceMobileIcon"
+              },
+              {
+                "title": "Cloud Storage",
+                "description": "All your files securely stored and accessible from anywhere.",
+                "icon": "CloudIcon"
+              }
+            ]
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.cta",
+          "content": {
+            "badgeText": "Get started",
+            "heading": "Start using these features",
+            "headingLine2": "today",
+            "description": "Sign up for free and experience all our features firsthand.",
+            "primaryButtonText": "Start Free Trial",
+            "primaryButtonUrl": "/signup",
+            "secondaryButtonText": "Compare Plans",
+            "secondaryButtonUrl": "/pricing"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Features",
+        "description": "Explore all the powerful features that make our platform unique."
+      }
+    },
+    {
+      "name": "Pricing",
+      "slug": "/pricing",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.pricing",
+          "content": {
+            "heading": "Simple,",
+            "headingHighlight": "transparent pricing",
+            "description": "Choose the plan that fits your needs. All plans include a 14-day free trial.",
+            "trialNotice": "14-day free trial on all paid plans. No credit card required.",
+            "plans": [
+              {
+                "name": "Starter",
+                "description": "Perfect for individuals and small projects.",
+                "price": "$0",
+                "period": "forever free",
+                "popular": false,
+                "features": [
+                  { "feature": "Up to 3 projects" },
+                  { "feature": "Basic analytics" },
+                  { "feature": "Community support" },
+                  { "feature": "1GB storage" }
+                ],
+                "cta": "Get Started",
+                "href": "/signup"
+              },
+              {
+                "name": "Pro",
+                "description": "For growing teams and businesses.",
+                "price": "$29",
+                "period": "per month",
+                "popular": true,
+                "features": [
+                  { "feature": "Unlimited projects" },
+                  { "feature": "Advanced analytics" },
+                  { "feature": "Priority support" },
+                  { "feature": "50GB storage" },
+                  { "feature": "Team collaboration" },
+                  { "feature": "API access" }
+                ],
+                "cta": "Start Free Trial",
+                "href": "/signup?plan=pro"
+              },
+              {
+                "name": "Enterprise",
+                "description": "For large organizations with custom needs.",
+                "price": "Custom",
+                "period": "contact us",
+                "popular": false,
+                "features": [
+                  { "feature": "Everything in Pro" },
+                  { "feature": "Unlimited storage" },
+                  { "feature": "Dedicated support" },
+                  { "feature": "Custom integrations" },
+                  { "feature": "SLA guarantee" },
+                  { "feature": "On-premise option" }
+                ],
+                "cta": "Contact Sales",
+                "href": "/contact"
+              }
+            ]
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.faq",
+          "content": {
+            "heading": "Frequently asked",
+            "headingHighlight": "questions",
+            "description": "Have questions? We have answers.",
+            "faqs": [
+              {
+                "question": "Can I change my plan later?",
+                "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing."
+              },
+              {
+                "question": "What payment methods do you accept?",
+                "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for annual plans."
+              },
+              {
+                "question": "Is there a free trial?",
+                "answer": "Yes! All paid plans include a 14-day free trial. No credit card required to start."
+              },
+              {
+                "question": "What happens when my trial ends?",
+                "answer": "At the end of your trial, you can choose to subscribe to a paid plan or continue with our free Starter plan."
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Pricing",
+        "description": "Simple, transparent pricing for teams of all sizes."
+      }
+    },
+    {
+      "name": "Contact",
+      "slug": "/contact",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.contact",
+          "content": {
+            "badgeText": "Contact Us",
+            "heading": "Get in",
+            "headingHighlight": "touch",
+            "description": "Have a question or want to learn more? We'd love to hear from you.",
+            "emailTitle": "Email Us",
+            "emailDescription": "Drop us a line anytime. We typically respond within 24 hours.",
+            "responseTitle": "Response Time",
+            "responseDescription": "We aim to respond to all inquiries within 24-48 hours during business days.",
+            "locationTitle": "Location",
+            "locationDescription": "We're a global team working remotely.",
+            "showQuote": true,
+            "quoteText": "Building the future, one step at a time.",
+            "quoteAuthor": "The Team",
+            "submitButtonText": "Send Message",
+            "successMessage": "Thank you for reaching out! We'll get back to you soon."
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Contact",
+        "description": "Get in touch with our team."
+      }
+    },
+    {
+      "name": "Privacy Policy",
+      "slug": "/privacy",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.legal",
+          "content": {
+            "badge": "Legal",
+            "heading": "Privacy",
+            "headingHighlight": "Policy",
+            "description": "Learn how we collect, use, and protect your personal information.",
+            "showSummary": true,
+            "summaryTitle": "TL;DR",
+            "summaryContent": "We respect your privacy and only collect data necessary to provide our services. We never sell your data.",
+            "sections": [
+              {
+                "title": "Information We Collect",
+                "content": "<p>We collect information you provide directly to us, such as when you create an account, make a purchase, or contact us for support.</p>"
+              },
+              {
+                "title": "How We Use Your Information",
+                "content": "<p>We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>"
+              },
+              {
+                "title": "Information Sharing",
+                "content": "<p>We do not sell, trade, or rent your personal information to third parties. We may share information with service providers who assist us in operating our platform.</p>"
+              },
+              {
+                "title": "Data Security",
+                "content": "<p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>"
+              },
+              {
+                "title": "Your Rights",
+                "content": "<p>You have the right to access, update, or delete your personal information at any time. Contact us to exercise these rights.</p>"
+              }
+            ],
+            "showFooterLinks": true,
+            "footerText": "This policy is part of our",
+            "footerLinks": [
+              { "text": "Terms of Service", "url": "/terms" },
+              { "text": "Cookie Policy", "url": "/cookies" }
+            ],
+            "lastUpdated": "January 2025"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Privacy Policy",
+        "description": "Our privacy policy explains how we collect, use, and protect your data."
+      }
+    },
+    {
+      "name": "Terms of Service",
+      "slug": "/terms",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.legal",
+          "content": {
+            "badge": "Legal",
+            "heading": "Terms of",
+            "headingHighlight": "Service",
+            "description": "Please read these terms carefully before using our services.",
+            "showSummary": true,
+            "summaryTitle": "TL;DR",
+            "summaryContent": "Use our services responsibly. We provide them as-is and reserve the right to modify or terminate them.",
+            "sections": [
+              {
+                "title": "Acceptance of Terms",
+                "content": "<p>By accessing or using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>"
+              },
+              {
+                "title": "Use of Services",
+                "content": "<p>You may use our services only for lawful purposes and in accordance with these Terms. You agree not to use our services in any way that violates any applicable law or regulation.</p>"
+              },
+              {
+                "title": "User Accounts",
+                "content": "<p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>"
+              },
+              {
+                "title": "Intellectual Property",
+                "content": "<p>The content, features, and functionality of our services are owned by us and are protected by international copyright, trademark, and other intellectual property laws.</p>"
+              },
+              {
+                "title": "Limitation of Liability",
+                "content": "<p>To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.</p>"
+              }
+            ],
+            "showFooterLinks": true,
+            "footerText": "This policy is part of our",
+            "footerLinks": [
+              { "text": "Privacy Policy", "url": "/privacy" },
+              { "text": "Cookie Policy", "url": "/cookies" }
+            ],
+            "lastUpdated": "January 2025"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Terms of Service",
+        "description": "Terms and conditions for using our services."
+      }
+    },
+    {
+      "name": "Cookie Policy",
+      "slug": "/cookies",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.legal",
+          "content": {
+            "badge": "Legal",
+            "heading": "Cookie",
+            "headingHighlight": "Policy",
+            "description": "This policy explains how we use cookies and similar technologies.",
+            "showSummary": true,
+            "summaryTitle": "TL;DR",
+            "summaryContent": "We use essential cookies to make our site work and analytics cookies to understand how you use it. You can control your preferences.",
+            "sections": [
+              {
+                "title": "What Are Cookies",
+                "content": "<p>Cookies are small text files that are placed on your device when you visit a website. They help the website remember your preferences and improve your experience.</p>"
+              },
+              {
+                "title": "How We Use Cookies",
+                "content": "<p>We use cookies to keep you signed in, remember your preferences, understand how you use our site, and improve our services.</p>"
+              },
+              {
+                "title": "Types of Cookies We Use",
+                "content": "<p><strong>Essential cookies:</strong> Required for the site to function properly.<br/><strong>Analytics cookies:</strong> Help us understand how visitors interact with our site.<br/><strong>Preference cookies:</strong> Remember your settings and preferences.</p>"
+              },
+              {
+                "title": "Managing Cookies",
+                "content": "<p>Most browsers allow you to control cookies through their settings. However, disabling certain cookies may affect your experience on our site.</p>"
+              }
+            ],
+            "showFooterLinks": true,
+            "footerText": "This policy is part of our",
+            "footerLinks": [
+              { "text": "Privacy Policy", "url": "/privacy" },
+              { "text": "Terms of Service", "url": "/terms" }
+            ],
+            "lastUpdated": "January 2025"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Cookie Policy",
+        "description": "Information about how we use cookies on our website."
+      }
+    },
+    {
+      "name": "Roadmap",
+      "slug": "/roadmap",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.roadmap",
+          "content": {
+            "badge": "Roadmap",
+            "heading": "Product",
+            "headingHighlight": "Roadmap",
+            "description": "Transparency is one of our core values. Here's what we're working on and what's coming next.",
+            "columns": [
+              {
+                "title": "Completed",
+                "status": "completed",
+                "items": [
+                  { "title": "User authentication", "description": "Secure login and signup" },
+                  { "title": "Dashboard v1", "description": "Initial dashboard release" },
+                  { "title": "API v1", "description": "RESTful API endpoints" }
+                ]
+              },
+              {
+                "title": "In Progress",
+                "status": "in_progress",
+                "items": [
+                  { "title": "Mobile app", "description": "iOS and Android apps", "badge": "Q1 2025" },
+                  { "title": "Team collaboration", "description": "Real-time editing" }
+                ]
+              },
+              {
+                "title": "Planned",
+                "status": "planned",
+                "items": [
+                  { "title": "AI features", "description": "Smart suggestions and automation" },
+                  { "title": "Integrations", "description": "Connect with popular tools" },
+                  { "title": "Advanced analytics", "description": "Deeper insights and reports" }
+                ]
+              }
+            ],
+            "showCta": true,
+            "ctaTitle": "Shape Our Roadmap",
+            "ctaDescription": "Have a feature request or idea? We'd love to hear from you.",
+            "ctaButtonText": "Submit Feedback",
+            "ctaButtonUrl": "/contact"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Roadmap",
+        "description": "See what we're building and what's coming next."
+      }
+    },
+    {
+      "name": "Changelog",
+      "slug": "/changelog",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.changelog",
+          "content": {
+            "badge": "Updates",
+            "heading": "What's",
+            "headingHighlight": "New",
+            "description": "Stay up to date with the latest features, improvements, and fixes.",
+            "entries": [
+              {
+                "version": "2.0.0",
+                "date": "January 15, 2025",
+                "title": "Major Platform Update",
+                "type": "feature",
+                "changes": [
+                  { "text": "Completely redesigned dashboard interface" },
+                  { "text": "New drag-and-drop editor" },
+                  { "text": "Performance improvements across the board" }
+                ]
+              },
+              {
+                "version": "1.5.0",
+                "date": "December 1, 2024",
+                "title": "Collaboration Features",
+                "type": "feature",
+                "changes": [
+                  { "text": "Real-time collaboration for teams" },
+                  { "text": "Commenting and annotations" },
+                  { "text": "Activity feed and notifications" }
+                ]
+              },
+              {
+                "version": "1.4.2",
+                "date": "November 15, 2024",
+                "title": "Bug Fixes",
+                "type": "bugfix",
+                "changes": [
+                  { "text": "Fixed login issues on Safari" },
+                  { "text": "Resolved file upload errors" },
+                  { "text": "Improved error messages" }
+                ]
+              }
+            ],
+            "showSubscribe": true,
+            "subscribeText": "Subscribe to get notified about new releases",
+            "subscribeButtonText": "Subscribe",
+            "subscribeButtonUrl": "/blog"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Changelog",
+        "description": "Latest updates, features, and improvements."
+      }
+    },
+    {
+      "name": "Blog",
+      "slug": "/blog",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Blog",
+            "heading": "Insights &",
+            "headingHighlight": "Updates",
+            "subheading": "Stories, guides, and insights from our team.",
+            "primaryButtonText": "Subscribe",
+            "primaryButtonUrl": "#subscribe",
+            "secondaryButtonText": "View Changelog",
+            "secondaryButtonUrl": "/changelog"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Blog",
+        "description": "Insights, guides, and updates from our team."
+      }
+    },
+    {
+      "name": "Careers",
+      "slug": "/careers",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Careers",
+            "heading": "Join our",
+            "headingHighlight": "team",
+            "subheading": "Help us build the future. We're always looking for talented people to join our mission.",
+            "primaryButtonText": "View Open Positions",
+            "primaryButtonUrl": "#positions",
+            "secondaryButtonText": "Learn About Us",
+            "secondaryButtonUrl": "/about"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "Why work",
+            "headingHighlight": "with us",
+            "description": "We offer more than just a job - we offer a career.",
+            "features": [
+              {
+                "title": "Remote First",
+                "description": "Work from anywhere in the world with flexible hours.",
+                "icon": "GlobeAltIcon"
+              },
+              {
+                "title": "Growth Opportunities",
+                "description": "Continuous learning and career development programs.",
+                "icon": "SparklesIcon"
+              },
+              {
+                "title": "Competitive Benefits",
+                "description": "Health insurance, equity, and generous time off.",
+                "icon": "ShieldCheckIcon"
+              },
+              {
+                "title": "Great Team",
+                "description": "Work with talented, passionate people from around the world.",
+                "icon": "UsersIcon"
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Careers",
+        "description": "Join our team and help us build the future."
+      }
+    },
+    {
+      "name": "Help Center",
+      "slug": "/help",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Help Center",
+            "heading": "How can we",
+            "headingHighlight": "help?",
+            "subheading": "Find answers to common questions or reach out to our support team.",
+            "primaryButtonText": "Contact Support",
+            "primaryButtonUrl": "/contact",
+            "secondaryButtonText": "View Documentation",
+            "secondaryButtonUrl": "/docs"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.faq",
+          "content": {
+            "heading": "Frequently asked",
+            "headingHighlight": "questions",
+            "description": "Quick answers to common questions.",
+            "faqs": [
+              {
+                "question": "How do I get started?",
+                "answer": "Sign up for a free account and follow our getting started guide in the documentation."
+              },
+              {
+                "question": "How do I reset my password?",
+                "answer": "Click 'Forgot Password' on the login page and follow the instructions sent to your email."
+              },
+              {
+                "question": "Can I upgrade or downgrade my plan?",
+                "answer": "Yes, you can change your plan at any time from your account settings. Changes take effect immediately."
+              },
+              {
+                "question": "How do I contact support?",
+                "answer": "You can reach our support team through the contact page or email us directly at support@example.com."
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Help Center",
+        "description": "Get help and find answers to common questions."
+      }
+    },
+    {
+      "name": "API Documentation",
+      "slug": "/api",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "API",
+            "heading": "Build with our",
+            "headingHighlight": "API",
+            "subheading": "Integrate our platform into your applications with our powerful and well-documented API.",
+            "primaryButtonText": "View API Reference",
+            "primaryButtonUrl": "/docs/api",
+            "secondaryButtonText": "Get API Key",
+            "secondaryButtonUrl": "/settings/api"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "API",
+            "headingHighlight": "Features",
+            "description": "Everything you need to build powerful integrations.",
+            "features": [
+              {
+                "title": "RESTful Design",
+                "description": "Clean, predictable REST API following best practices.",
+                "icon": "CogIcon"
+              },
+              {
+                "title": "Webhooks",
+                "description": "Real-time notifications for events in your account.",
+                "icon": "ZapIcon"
+              },
+              {
+                "title": "Rate Limiting",
+                "description": "Generous rate limits to support your applications.",
+                "icon": "ShieldCheckIcon"
+              },
+              {
+                "title": "SDKs",
+                "description": "Official libraries for popular programming languages.",
+                "icon": "LayersIcon"
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "API Documentation",
+        "description": "Build powerful integrations with our API."
+      }
+    },
+    {
+      "name": "Documentation",
+      "slug": "/docs",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Documentation",
+            "heading": "Learn how to use",
+            "headingHighlight": "our platform",
+            "subheading": "Comprehensive guides and documentation to help you get the most out of our platform.",
+            "primaryButtonText": "Getting Started",
+            "primaryButtonUrl": "/docs/getting-started",
+            "secondaryButtonText": "API Reference",
+            "secondaryButtonUrl": "/api"
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Documentation",
+        "description": "Guides and documentation to help you succeed."
+      }
+    },
+    {
+      "name": "Security",
+      "slug": "/security",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Security",
+            "heading": "Your data is",
+            "headingHighlight": "secure",
+            "subheading": "We take security seriously. Learn about the measures we take to protect your data.",
+            "primaryButtonText": "View Security Policy",
+            "primaryButtonUrl": "#security-policy",
+            "secondaryButtonText": "Contact Security Team",
+            "secondaryButtonUrl": "/contact"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "Security",
+            "headingHighlight": "Features",
+            "description": "Enterprise-grade security for all users.",
+            "features": [
+              {
+                "title": "Encryption",
+                "description": "All data is encrypted in transit and at rest using industry-standard encryption.",
+                "icon": "LockClosedIcon"
+              },
+              {
+                "title": "SOC 2 Compliance",
+                "description": "We maintain SOC 2 Type II compliance for enterprise customers.",
+                "icon": "ShieldCheckIcon"
+              },
+              {
+                "title": "Regular Audits",
+                "description": "Independent security audits and penetration testing.",
+                "icon": "ChartBarIcon"
+              },
+              {
+                "title": "Two-Factor Auth",
+                "description": "Protect your account with two-factor authentication.",
+                "icon": "DeviceMobileIcon"
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Security",
+        "description": "Learn about our security practices and how we protect your data."
+      }
+    },
+    {
+      "name": "Templates",
+      "slug": "/templates",
+      "blocks": [
+        {
+          "type": "@cmssy-marketing/blocks.hero",
+          "content": {
+            "badgeText": "Templates",
+            "heading": "Start with",
+            "headingHighlight": "templates",
+            "subheading": "Beautiful, professionally designed templates to kickstart your project.",
+            "primaryButtonText": "Browse Templates",
+            "primaryButtonUrl": "#templates",
+            "secondaryButtonText": "Get Started",
+            "secondaryButtonUrl": "/signup"
+          }
+        },
+        {
+          "type": "@cmssy-marketing/blocks.features",
+          "content": {
+            "heading": "Why use",
+            "headingHighlight": "templates",
+            "description": "Save time and get professional results from day one.",
+            "features": [
+              {
+                "title": "Professional Design",
+                "description": "Created by professional designers for stunning results.",
+                "icon": "PaintBrushIcon"
+              },
+              {
+                "title": "Fully Customizable",
+                "description": "Every template is fully customizable to match your brand.",
+                "icon": "SparklesIcon"
+              },
+              {
+                "title": "Mobile Responsive",
+                "description": "All templates work perfectly on every device.",
+                "icon": "DeviceMobileIcon"
+              },
+              {
+                "title": "Regular Updates",
+                "description": "New templates and updates added regularly.",
+                "icon": "ZapIcon"
+              }
+            ]
+          }
+        }
+      ],
+      "metadata": {
+        "title": "Templates",
+        "description": "Beautiful templates to start your project."
+      }
+    }
+  ]
+}

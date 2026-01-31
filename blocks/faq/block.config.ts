@@ -6,6 +6,9 @@ export default defineBlock({
   category: "marketing",
   tags: ["marketing", "faq"],
 
+  // Mark as interactive to skip SSR (uses Radix Accordion with createContext)
+  interactive: true,
+
   schema: {
     heading: {
       type: "singleLine",

@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.forgot-password-form",
+  "version": "1.0.0",
+  "description": "Password reset request form for customers",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

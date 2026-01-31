@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.login-form",
+  "version": "1.0.0",
+  "description": "Customer login form with email and password authentication",
+  "author": {
+    "name": "",
+    "email": ""
+  }
+}

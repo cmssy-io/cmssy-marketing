@@ -5,6 +5,7 @@ export default defineBlock({
   description: "Contact section with form and info cards",
   category: "marketing",
   tags: ["contact", "form"],
+  interactive: true,
 
   schema: {
     // Header section
@@ -16,7 +17,6 @@ export default defineBlock({
     heading: {
       type: "singleLine",
       label: "Heading",
-      required: true,
       defaultValue: "Let's",
     },
     headingHighlight: {
@@ -93,11 +93,11 @@ export default defineBlock({
     },
 
     // Form settings
-    formActionUrl: {
-      type: "link",
-      label: "Form Action URL",
-      placeholder: "https://formspree.io/f/xxxxx",
+    emailConfigurationId: {
+      type: "emailConfiguration",
+      label: "Email Configuration",
       group: "Form Settings",
+      helpText: "Select which email configuration to use for notifications",
     },
     submitButtonText: {
       type: "singleLine",
@@ -111,6 +111,21 @@ export default defineBlock({
       defaultValue:
         "Thank you for reaching out! We'll get back to you as soon as possible.",
       group: "Form Settings",
+    },
+
+    // Auto-response settings
+    enableAutoResponse: {
+      type: "boolean",
+      label: "Enable Auto-Response",
+      defaultValue: false,
+      group: "Auto-Response",
+    },
+    autoResponseTemplateId: {
+      type: "singleLine",
+      label: "Auto-Response Template ID",
+      helpText: "Enter the ID of a published email template for automatic responses",
+      group: "Auto-Response",
+      showWhen: { field: "enableAutoResponse", equals: true },
     },
   },
 

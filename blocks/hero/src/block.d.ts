@@ -12,6 +12,6 @@ export interface BlockContent {
   secondaryButtonUrl?: string;
   socialProofCount?: string;
   socialProofText?: string;
-  media?: { url: string; alt?: string; width?: number; height?: number };
+  media?: string;
   test?: string;
 }

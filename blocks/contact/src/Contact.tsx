@@ -1,5 +1,28 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useCallback } from "react";
 import { BlockContent } from "./block";
+
+interface BlockContext {
+  auth?: {
+    isAuthenticated: boolean;
+    customer: {
+      id: string;
+      email: string;
+      profile: {
+        firstName?: string | null;
+        lastName?: string | null;
+        displayName?: string | null;
+        avatarUrl?: string | null;
+      };
+    } | null;
+    logout: () => Promise<void>;
+  };
+  language: string;
+  isPreview?: boolean;
+  workspace?: {
+    id: string;
+    name?: string;
+  };
+}
 
 // Icons as inline SVG components
 function MailIcon({ className }: { className?: string }) {
@@ -79,7 +102,33 @@ function SendIcon({ className }: { className?: string }) {
   );
 }
 
-export default function Contact({ content }: { content: BlockContent }) {
+// GraphQL mutation for contact form
+const SUBMIT_CONTACT_FORM_MUTATION = `
+  mutation SubmitContactForm($input: WorkspaceContactInput!, $workspaceId: String!, $autoResponseTemplateId: String) {
+    submitContactForm(input: $input, workspaceId: $workspaceId, autoResponseTemplateId: $autoResponseTemplateId) {
+      success
+      message
+    }
+  }
+`;
+
+interface GraphQLResponse {
+  data?: {
+    submitContactForm?: {
+      success: boolean;
+      message: string;
+    };
+  };
+  errors?: Array<{ message: string }>;
+}
+
+export default function Contact({
+  content,
+  context,
+}: {
+  content: BlockContent;
+  context?: BlockContext;
+}) {
   const {
     badgeText = "Contact Us",
     heading = "Let's",
@@ -94,57 +143,86 @@ export default function Contact({ content }: { content: BlockContent }) {
     showQuote = true,
     quoteText = "Building the future of content management, one pixel at a time.",
     quoteAuthor = "The Cmssy Team",
-    formActionUrl,
+    emailConfigurationId,
     submitButtonText = "Send Message",
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
+    // Auto-response settings
+    enableAutoResponse = false,
+    autoResponseTemplateId,
   } = content;
+
+  const workspaceId = context?.workspace?.id;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
+  const handleSubmit = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      setError(null);
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+      const form = e.currentTarget;
+      const formData = new FormData(form);
 
-    // Check honeypot
-    if (formData.get("website")) {
-      setIsSubmitting(false);
-      return;
-    }
+      const name = formData.get("name") as string;
+      const email = formData.get("email") as string;
+      const message = formData.get("message") as string;
+      const website = formData.get("website") as string;
 
-    if (formActionUrl) {
+      // If no workspace or email configuration - demo mode
+      if (!workspaceId || !emailConfigurationId) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setIsSuccess(true);
+        form.reset();
+        setIsSubmitting(false);
+        return;
+      }
+
       try {
-        const response = await fetch(formActionUrl, {
+        const response = await fetch("/api/graphql", {
           method: "POST",
-          body: formData,
           headers: {
-            Accept: "application/json",
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            query: SUBMIT_CONTACT_FORM_MUTATION,
+            variables: {
+              workspaceId,
+              input: {
+                name,
+                email,
+                message,
+                emailConfigurationId,
+                website: website || null,
+              },
+              autoResponseTemplateId: enableAutoResponse && autoResponseTemplateId ? autoResponseTemplateId : null,
+            },
+          }),
         });
 
-        if (response.ok) {
+        const result: GraphQLResponse = await response.json();
+
+        if (result.errors && result.errors.length > 0) {
+          setError(result.errors[0].message);
+        } else if (result.data?.submitContactForm?.success) {
           setIsSuccess(true);
           form.reset();
         } else {
-          setError("Something went wrong. Please try again.");
+          setError(
+            result.data?.submitContactForm?.message ||
+              "Something went wrong. Please try again."
+          );
         }
       } catch {
         setError("Failed to send message. Please try again.");
       }
-    } else {
-      // Demo mode - simulate success
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setIsSuccess(true);
-      form.reset();
-    }
 
-    setIsSubmitting(false);
-  };
+      setIsSubmitting(false);
+    },
+    [workspaceId, emailConfigurationId, enableAutoResponse, autoResponseTemplateId]
+  );
 
   return (
     <section className="relative min-h-screen py-24 lg:py-32">

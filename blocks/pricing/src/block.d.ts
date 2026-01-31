@@ -13,8 +13,8 @@ export interface BlockContent {
     popular?: boolean;
     period?: string;
     features?: Array<{
-    feature: string;
-  }>;
+      feature: string;
+    }>;
     cta: string;
     href: string;
   }>;
