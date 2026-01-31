@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.docs-card-grid",
+  "version": "1.0.0",
+  "description": "Grid of cards linking to documentation sections",
+  "author": {
+    "name": "Cmssy Team",
+    "email": "hello@cmssy.io"
+  }
+}

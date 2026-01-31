@@ -1,0 +1,5 @@
+{
+  "type": "tip",
+  "title": "Pro Tip",
+  "content": "<p>You can use <code>npx cmssy</code> instead of installing globally. This ensures you're always using the latest version.</p>"
+}

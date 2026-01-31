@@ -1,0 +1,38 @@
+{
+  "logoText": "Cmssy Docs",
+  "logoUrl": "/docs",
+  "sections": [
+    {
+      "title": "Getting Started",
+      "items": [
+        { "label": "Introduction", "url": "/docs", "isNew": false },
+        { "label": "Quick Start", "url": "/docs/quick-start", "isNew": false },
+        { "label": "Installation", "url": "/docs/installation", "isNew": false }
+      ]
+    },
+    {
+      "title": "CLI Reference",
+      "items": [
+        { "label": "Overview", "url": "/docs/cli", "isNew": false },
+        { "label": "cmssy init", "url": "/docs/cli/init", "isNew": false },
+        { "label": "cmssy dev", "url": "/docs/cli/dev", "isNew": false },
+        { "label": "cmssy build", "url": "/docs/cli/build", "isNew": false },
+        { "label": "cmssy publish", "url": "/docs/cli/publish", "isNew": true }
+      ]
+    },
+    {
+      "title": "Blocks",
+      "items": [
+        { "label": "Creating Blocks", "url": "/docs/blocks/creating", "isNew": false },
+        { "label": "Block Schema", "url": "/docs/blocks/schema", "isNew": false },
+        { "label": "Field Types", "url": "/docs/blocks/field-types", "isNew": false }
+      ]
+    }
+  ],
+  "showSearch": true,
+  "searchPlaceholder": "Search documentation...",
+  "showVersionSelector": true,
+  "currentVersion": "v0.24",
+  "githubUrl": "https://github.com/cmssy-io/cmssy-cli",
+  "discordUrl": "https://discord.gg/cmssy"
+}

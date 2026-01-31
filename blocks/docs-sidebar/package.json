@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.docs-sidebar",
+  "version": "1.0.0",
+  "description": "Documentation sidebar navigation with categories and nested pages",
+  "author": {
+    "name": "Cmssy Team",
+    "email": "hello@cmssy.io"
+  }
+}

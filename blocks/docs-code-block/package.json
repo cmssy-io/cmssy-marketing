@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.docs-code-block",
+  "version": "1.0.0",
+  "description": "Code block with syntax highlighting, copy button, and optional filename",
+  "author": {
+    "name": "Cmssy Team",
+    "email": "hello@cmssy.io"
+  }
+}

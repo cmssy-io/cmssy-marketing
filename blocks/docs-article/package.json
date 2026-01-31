@@ -1,0 +1,9 @@
+{
+  "name": "@cmssy-marketing/blocks.docs-article",
+  "version": "1.0.0",
+  "description": "Documentation article with rich text content, table of contents, and navigation",
+  "author": {
+    "name": "Cmssy Team",
+    "email": "hello@cmssy.io"
+  }
+}
