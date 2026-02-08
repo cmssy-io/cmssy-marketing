@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Changelog",
@@ -105,6 +105,4 @@ export default defineBlock({
       showWhen: { field: "showSubscribe", equals: true },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

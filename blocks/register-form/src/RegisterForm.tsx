@@ -18,12 +18,12 @@ interface BlockContext {
   };
 }
 
-const SITE_CUSTOMER_REGISTER_MUTATION = `
-  mutation SiteCustomerRegister($workspaceId: String!, $input: SiteCustomerRegisterInput!) {
-    siteCustomerRegister(workspaceId: $workspaceId, input: $input) {
+const SITE_MEMBER_REGISTER_MUTATION = `
+  mutation SiteMemberRegister($workspaceId: ID!, $input: SiteMemberRegisterInput!) {
+    siteMemberRegister(workspaceId: $workspaceId, input: $input) {
       success
       message
-      customer {
+      member {
         id
         email
       }
@@ -33,10 +33,10 @@ const SITE_CUSTOMER_REGISTER_MUTATION = `
 
 interface GraphQLResponse {
   data?: {
-    siteCustomerRegister?: {
+    siteMemberRegister?: {
       success: boolean;
       message: string;
-      customer?: {
+      member?: {
         id: string;
         email: string;
       };
@@ -246,7 +246,7 @@ export default function RegisterForm({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query: SITE_CUSTOMER_REGISTER_MUTATION,
+            query: SITE_MEMBER_REGISTER_MUTATION,
             variables: {
               workspaceId,
               input: {
@@ -267,7 +267,7 @@ export default function RegisterForm({
 
         if (result.errors && result.errors.length > 0) {
           setError(result.errors[0].message);
-        } else if (result.data?.siteCustomerRegister?.success) {
+        } else if (result.data?.siteMemberRegister?.success) {
           setIsSuccess(true);
           if (redirectAfterRegister && redirectAfterRegister !== "/verify-email-pending") {
             setTimeout(() => {
@@ -275,7 +275,7 @@ export default function RegisterForm({
             }, 2000);
           }
         } else {
-          setError(result.data?.siteCustomerRegister?.message || errorMessage);
+          setError(result.data?.siteMemberRegister?.message || errorMessage);
         }
       } catch {
         setError(errorMessage);

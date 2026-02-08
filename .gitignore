@@ -4,4 +4,6 @@ public/
 .env
 .DS_Store
 *.log
-.cmssy
+.cmssy/
+.next/
+.claude

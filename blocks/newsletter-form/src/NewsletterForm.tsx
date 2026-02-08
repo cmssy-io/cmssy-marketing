@@ -20,7 +20,7 @@ interface BlockContext {
 
 // GraphQL mutation for newsletter subscription
 const SUBSCRIBE_NEWSLETTER_MUTATION = `
-  mutation SubscribeToNewsletter($workspaceId: String!, $input: NewsletterSubscribeInput!) {
+  mutation SubscribeToNewsletter($workspaceId: ID!, $input: NewsletterSubscribeInput!) {
     subscribeToNewsletter(workspaceId: $workspaceId, input: $input) {
       success
       message

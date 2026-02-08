@@ -1,13 +1,13 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Sidebar",
-  description: "Documentation sidebar navigation with categories and nested pages",
+  description:
+    "Documentation sidebar navigation with categories and nested pages",
   category: "documentation",
   tags: ["docs", "navigation", "sidebar", "documentation"],
 
-  interactive: true,
-  layoutSlot: "header",
+  layoutPosition: "sidebar_left",
 
   schema: {
     logo: {
@@ -38,26 +38,9 @@ export default defineBlock({
           label: "Section Title",
           required: true,
         },
-        items: {
-          type: "repeater",
+        pages: {
+          type: "pageSelector",
           label: "Pages",
-          schema: {
-            label: {
-              type: "singleLine",
-              label: "Page Label",
-              required: true,
-            },
-            url: {
-              type: "link",
-              label: "Page URL",
-              required: true,
-            },
-            isNew: {
-              type: "boolean",
-              label: "Show 'New' Badge",
-              defaultValue: false,
-            },
-          },
         },
       },
     },
@@ -101,6 +84,4 @@ export default defineBlock({
       group: "links",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

@@ -84,7 +84,8 @@ export default function DocsCodeBlock({ content }: { content: BlockContent }) {
   const highlightedLines = parseHighlightLines(highlightLines);
 
   return (
-    <div className="my-6 rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950">
+    <div className="container my-6">
+    <div className="rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-zinc-900 border-b border-zinc-800">
         <div className="flex items-center gap-2 text-sm text-zinc-400">
@@ -143,6 +144,7 @@ export default function DocsCodeBlock({ content }: { content: BlockContent }) {
           </code>
         </pre>
       </div>
+    </div>
     </div>
   );
 }

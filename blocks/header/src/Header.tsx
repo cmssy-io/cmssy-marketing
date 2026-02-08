@@ -1,6 +1,8 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BlockContent } from "./block";
-
 interface NavItem {
   label: string;
   url: string;
@@ -134,9 +136,9 @@ export default function Header({ content, context }: HeaderProps) {
           }}
         >
           {announcementLink ? (
-            <a href={announcementLink} className="hover:underline">
+            <Link href={announcementLink} className="hover:underline">
               {announcementText}
-            </a>
+            </Link>
           ) : (
             <span>{announcementText}</span>
           )}
@@ -171,13 +173,14 @@ export default function Header({ content, context }: HeaderProps) {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2">
-              {/* Handle both string URL and object with url property */}
-              {(typeof logo === "string" ? logo : logo?.url) ? (
-                <img
-                  src={typeof logo === "string" ? logo : logo?.url}
-                  alt={(typeof logo === "object" && logo?.alt) || logoText}
-                  className={logoSizeClasses[logoSize]}
+            <Link href="/" className="flex items-center gap-2">
+              {logo ? (
+                <Image
+                  src={logo}
+                  alt={logoText}
+                  className={`${logoSizeClasses[logoSize]} object-contain`}
+                  width={120}
+                  height={40}
                 />
               ) : (
                 <div
@@ -191,12 +194,12 @@ export default function Header({ content, context }: HeaderProps) {
               <span className={`font-bold ${logoTextSizeClasses[logoSize]}`}>
                 {logoText}
               </span>
-            </a>
+            </Link>
 
             {/* Desktop navigation */}
             <div className="hidden md:flex items-center gap-8">
               {(navigation as NavItem[]).map((item, index) => (
-                <a
+                <Link
                   key={index}
                   href={item.url}
                   target={item.openInNewTab ? "_blank" : undefined}
@@ -204,7 +207,7 @@ export default function Header({ content, context }: HeaderProps) {
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -214,10 +217,12 @@ export default function Header({ content, context }: HeaderProps) {
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
                     {customer.profile?.avatarUrl ? (
-                      <img
+                      <Image
                         src={customer.profile.avatarUrl}
                         alt={getUserDisplayName()}
                         className="w-8 h-8 rounded-full object-cover"
+                        width={32}
+                        height={32}
                       />
                     ) : (
                       <span className="text-sm font-medium">
@@ -235,20 +240,20 @@ export default function Header({ content, context }: HeaderProps) {
               ) : (
                 <>
                   {showSecondaryCta && (
-                    <a
+                    <Link
                       href={secondaryCtaUrl}
                       className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       {secondaryCtaLabel}
-                    </a>
+                    </Link>
                   )}
                   {showCta && (
-                    <a
+                    <Link
                       href={ctaUrl}
                       className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white transition-colors"
                     >
                       {ctaLabel}
-                    </a>
+                    </Link>
                   )}
                 </>
               )}
@@ -301,7 +306,7 @@ export default function Header({ content, context }: HeaderProps) {
           <div className="px-4 pb-6 pt-2 border-t bg-background/95 backdrop-blur-lg">
             <div className="flex flex-col gap-1">
               {(navigation as NavItem[]).map((item, index) => (
-                <a
+                <Link
                   key={index}
                   href={item.url}
                   target={item.openInNewTab ? "_blank" : undefined}
@@ -310,7 +315,7 @@ export default function Header({ content, context }: HeaderProps) {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
             <div className="flex flex-col gap-3 pt-4 mt-4 border-t">
@@ -319,9 +324,11 @@ export default function Header({ content, context }: HeaderProps) {
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
                       {customer.profile?.avatarUrl ? (
-                        <img
+                        <Image
                           src={customer.profile.avatarUrl}
                           alt={getUserDisplayName()}
+                          width={32}
+                          height={32}
                           className="w-8 h-8 rounded-full object-cover"
                         />
                       ) : (
@@ -344,20 +351,20 @@ export default function Header({ content, context }: HeaderProps) {
               ) : (
                 <>
                   {showSecondaryCta && (
-                    <a
+                    <Link
                       href={secondaryCtaUrl}
                       className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
                     >
                       {secondaryCtaLabel}
-                    </a>
+                    </Link>
                   )}
                   {showCta && (
-                    <a
+                    <Link
                       href={ctaUrl}
                       className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full bg-linear-to-r from-violet-600 to-purple-600 text-white transition-colors"
                     >
                       {ctaLabel}
-                    </a>
+                    </Link>
                   )}
                 </>
               )}

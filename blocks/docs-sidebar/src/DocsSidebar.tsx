@@ -1,6 +1,272 @@
-import { useState } from "react";
-import { Search, Menu, X, Github, MessageCircle, ChevronRight } from "lucide-react";
+"use client";
+import {
+  ExternalLink,
+  Github,
+  Menu,
+  MessageCircle,
+  Search,
+  X,
+} from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BlockContent } from "./block";
+
+function formatSlugAsLabel(slug: string): string {
+  const clean = slug.replace(/^\//, "");
+  if (!clean) return "Home";
+  const last = clean.split("/").pop() || clean;
+  return last
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+function getCurrentPageLabel(
+  sections: BlockContent["sections"],
+  currentPath: string,
+): string {
+  for (const section of sections || []) {
+    for (const slug of section.pages || []) {
+      if (slug === currentPath) return formatSlugAsLabel(slug);
+    }
+    for (const item of (section as any).items || []) {
+      if (item.url === currentPath) return item.label;
+    }
+  }
+  return "Documentation";
+}
+
+// Shared sidebar content (used in both desktop aside and mobile drawer)
+function SidebarContent({
+  sections,
+  showSearch,
+  searchPlaceholder,
+  logo,
+  logoText,
+  logoUrl,
+  showVersionSelector,
+  currentVersion,
+  githubUrl,
+  discordUrl,
+  currentPath,
+  onNavigate,
+}: {
+  sections: BlockContent["sections"];
+  showSearch: boolean;
+  searchPlaceholder: string;
+  logo?: string;
+  logoText: string;
+  logoUrl: string;
+  showVersionSelector: boolean;
+  currentVersion: string;
+  githubUrl?: string;
+  discordUrl?: string;
+  currentPath: string;
+  onNavigate?: () => void;
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const matchesSearch = useCallback(
+    (label: string, slug: string) => {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return label.toLowerCase().includes(q) || slug.toLowerCase().includes(q);
+    },
+    [searchQuery],
+  );
+
+  return (
+    <>
+      {/* Header: Logo + Version */}
+      <div className="flex items-center gap-3 px-5 h-14 shrink-0 border-b border-border">
+        <a
+          href={logoUrl}
+          onClick={onNavigate}
+          className="flex items-center gap-2.5 text-foreground no-underline hover:opacity-80 transition-opacity"
+        >
+          {logo && (
+            <img src={logo} alt="" className="size-6 rounded-xs object-cover" />
+          )}
+          <span className="text-[15px] font-semibold tracking-tight">
+            {logoText}
+          </span>
+        </a>
+        {showVersionSelector && (
+          <span className="ml-auto text-[10px] font-medium tracking-wide uppercase bg-muted text-muted-foreground px-2 py-0.5 rounded-md">
+            {currentVersion}
+          </span>
+        )}
+      </div>
+
+      {/* Search */}
+      {showSearch && (
+        <div className="px-4 py-3 shrink-0">
+          <div
+            className={`relative flex items-center rounded-lg border transition-colors duration-150 ${
+              searchFocused
+                ? "border-ring bg-background ring-[3px] ring-ring/20"
+                : "border-border bg-muted/50 hover:bg-muted"
+            }`}
+          >
+            <Search className="absolute left-3 size-3.5 text-muted-foreground pointer-events-none" />
+            <input
+              ref={searchRef}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => setSearchFocused(false)}
+              placeholder={searchPlaceholder}
+              className="w-full bg-transparent pl-9 pr-12 py-2 text-sm outline-hidden placeholder:text-muted-foreground/60"
+            />
+            <kbd className="absolute right-3 text-[10px] font-medium text-muted-foreground/50 tracking-wide pointer-events-none">
+              ⌘K
+            </kbd>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation */}
+      <nav
+        className="flex-1 overflow-y-auto px-3 py-2 space-y-5 overscroll-contain"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent, black 8px, black calc(100% - 8px), transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent, black 8px, black calc(100% - 8px), transparent)",
+        }}
+      >
+        {sections?.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <div className="size-10 rounded-lg bg-muted flex items-center justify-center mb-3">
+              <Menu className="size-5 text-muted-foreground" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              No sections configured
+            </p>
+          </div>
+        )}
+
+        {sections?.map((section, si) => {
+          const pages = section.pages || [];
+          const legacyItems = (section as any).items || [];
+          const allItems: { label: string; slug: string; isNew?: boolean }[] = [
+            ...pages.map((slug: string) => ({
+              label: formatSlugAsLabel(slug),
+              slug,
+            })),
+            ...legacyItems.map((item: any) => ({
+              label: item.label,
+              slug: item.url,
+              isNew: item.isNew,
+            })),
+          ];
+
+          const filtered = allItems.filter((item) =>
+            matchesSearch(item.label, item.slug),
+          );
+          if (filtered.length === 0 && searchQuery) return null;
+
+          return (
+            <div key={si}>
+              <h3 className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-widest px-2 mb-1.5">
+                {section.title}
+              </h3>
+              <ul className="space-y-px">
+                {filtered.map((item, ii) => {
+                  const isActive = currentPath === item.slug;
+                  return (
+                    <li key={ii}>
+                      <a
+                        href={item.slug}
+                        onClick={onNavigate}
+                        className={`group relative flex items-center gap-2 pl-3 pr-2 py-1.5 text-[13px] rounded-md transition-all duration-150 no-underline ${
+                          isActive
+                            ? "bg-primary/8 text-foreground font-medium"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
+                        }`}
+                      >
+                        {/* Active indicator bar */}
+                        <span
+                          className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-200 ${
+                            isActive
+                              ? "h-4 bg-primary opacity-100"
+                              : "h-0 bg-primary opacity-0 group-hover:h-2 group-hover:opacity-40"
+                          }`}
+                        />
+                        <span className="truncate">{item.label}</span>
+                        {item.isNew && (
+                          <span className="ml-auto shrink-0 text-[9px] font-bold uppercase tracking-wider bg-violet-500 text-white px-1.5 py-px rounded">
+                            new
+                          </span>
+                        )}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
+
+        {searchQuery && (
+          <div className="text-center py-6">
+            <p className="text-xs text-muted-foreground/50">
+              {sections?.every((s) => {
+                const all = [
+                  ...(s.pages || []).map((slug: string) => ({
+                    label: formatSlugAsLabel(slug),
+                    slug,
+                  })),
+                  ...((s as any).items || []).map((i: any) => ({
+                    label: i.label,
+                    slug: i.url,
+                  })),
+                ];
+                return all.every(
+                  (item) => !matchesSearch(item.label, item.slug),
+                );
+              })
+                ? `No results for "${searchQuery}"`
+                : ""}
+            </p>
+          </div>
+        )}
+      </nav>
+
+      {/* Footer links */}
+      {(githubUrl || discordUrl) && (
+        <div className="px-4 py-3 border-t border-border flex items-center gap-1 shrink-0">
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors no-underline"
+            >
+              <Github className="size-3.5" />
+              <span>GitHub</span>
+              <ExternalLink className="size-2.5 opacity-40" />
+            </a>
+          )}
+          {discordUrl && (
+            <a
+              href={discordUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors no-underline"
+            >
+              <MessageCircle className="size-3.5" />
+              <span>Discord</span>
+              <ExternalLink className="size-2.5 opacity-40" />
+            </a>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
 
 export default function DocsSidebar({ content }: { content: BlockContent }) {
   const {
@@ -16,144 +282,84 @@ export default function DocsSidebar({ content }: { content: BlockContent }) {
     discordUrl,
   } = content;
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "";
+  const currentPageLabel = getCurrentPageLabel(sections, currentPath);
 
-  // Get current path for active state
-  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [mobileOpen]);
+
+  const sharedProps = {
+    sections,
+    showSearch,
+    searchPlaceholder,
+    logo,
+    logoText,
+    logoUrl,
+    showVersionSelector,
+    currentVersion,
+    githubUrl,
+    discordUrl,
+    currentPath,
+  };
 
   return (
     <>
-      {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-b">
-        <div className="flex items-center justify-between px-4 h-14">
-          <a href={logoUrl} className="flex items-center gap-2 font-semibold">
-            {logo && <img src={logo} alt="" className="h-6 w-6" />}
-            <span>{logoText}</span>
-          </a>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 hover:bg-muted rounded-lg"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+      {/* Desktop sidebar — hidden on mobile */}
+      <aside className="hidden md:flex flex-col h-full bg-background">
+        <SidebarContent {...sharedProps} />
+      </aside>
+
+      {/* Mobile top bar — visible only on mobile */}
+      <div className="md:hidden sticky top-0 z-30 flex items-center gap-3 px-4 h-12 bg-background/95 backdrop-blur-sm border-b border-border">
+        <button
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          className="flex items-center justify-center size-8 -ml-1 rounded-md hover:bg-muted transition-colors"
+          aria-label="Open navigation"
+        >
+          <Menu className="size-5 text-foreground" />
+        </button>
+        <span className="text-sm font-medium text-foreground truncate">
+          {currentPageLabel}
+        </span>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-40 bg-black/50"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`
-          fixed top-0 left-0 z-40 h-screen w-72 bg-background border-r
-          transform transition-transform duration-200 ease-in-out
-          lg:translate-x-0 lg:sticky lg:top-0
-          ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
-        `}
-      >
-        <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="h-14 flex items-center gap-2 px-4 border-b">
-            <a href={logoUrl} className="flex items-center gap-2 font-semibold">
-              {logo && <img src={logo} alt="" className="h-6 w-6" />}
-              <span>{logoText}</span>
-            </a>
-            {showVersionSelector && (
-              <span className="ml-auto text-xs bg-muted px-2 py-0.5 rounded">
-                {currentVersion}
-              </span>
-            )}
-          </div>
-
-          {/* Search */}
-          {showSearch && (
-            <div className="p-4 border-b">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder={searchPlaceholder}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 text-sm bg-muted rounded-lg border-0 focus:ring-2 focus:ring-violet-500 outline-none"
-                />
-                <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hidden sm:block">
-                  ⌘K
-                </kbd>
-              </div>
-            </div>
-          )}
-
-          {/* Navigation */}
-          <nav className="flex-1 overflow-y-auto p-4 space-y-6">
-            {sections.map((section, sectionIndex) => (
-              <div key={sectionIndex}>
-                <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                  {section.title}
-                </h3>
-                <ul className="space-y-1">
-                  {section.items?.map((item, itemIndex) => {
-                    const isActive = currentPath === item.url;
-                    return (
-                      <li key={itemIndex}>
-                        <a
-                          href={item.url}
-                          className={`
-                            flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors
-                            ${isActive
-                              ? "bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                            }
-                          `}
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <ChevronRight className={`h-3 w-3 ${isActive ? "opacity-100" : "opacity-0"}`} />
-                          <span>{item.label}</span>
-                          {item.isNew && (
-                            <span className="ml-auto text-[10px] font-medium bg-violet-500 text-white px-1.5 py-0.5 rounded">
-                              NEW
-                            </span>
-                          )}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </nav>
-
-          {/* Footer Links */}
-          <div className="p-4 border-t flex items-center gap-4">
-            {githubUrl && (
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-            )}
-            {discordUrl && (
-              <a
-                href={discordUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-            )}
+      {/* Mobile drawer overlay */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-xs"
+            onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+          {/* Drawer panel */}
+          <div className="relative flex flex-col w-[280px] max-w-[85vw] h-full bg-background shadow-xl animate-in slide-in-from-left duration-200">
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="absolute top-3 right-3 z-10 flex items-center justify-center size-8 rounded-md hover:bg-muted transition-colors"
+              aria-label="Close navigation"
+            >
+              <X className="size-4 text-muted-foreground" />
+            </button>
+            <SidebarContent
+              {...sharedProps}
+              onNavigate={() => setMobileOpen(false)}
+            />
           </div>
         </div>
-      </aside>
+      )}
     </>
   );
 }

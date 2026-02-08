@@ -1,12 +1,10 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Article",
   description: "Documentation article with rich text content, table of contents, and navigation",
   category: "documentation",
   tags: ["docs", "article", "content", "documentation", "richtext"],
-
-  interactive: true,
 
   schema: {
     title: {
@@ -105,6 +103,4 @@ export default defineBlock({
       showWhen: { field: "showEditLink", equals: true },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

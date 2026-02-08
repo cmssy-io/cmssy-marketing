@@ -24,7 +24,7 @@ export default function DocsCardGrid({ content }: { content: BlockContent }) {
   };
 
   return (
-    <section className="py-12">
+    <section className="container py-12">
       {(heading || description) && (
         <div className="mb-8">
           {heading && (

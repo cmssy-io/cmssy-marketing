@@ -1,4 +1,5 @@
-import { useState, FormEvent, useCallback, useEffect } from "react";
+"use client";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { BlockContent } from "./block";
 
 interface CustomerData {
@@ -28,11 +29,11 @@ interface BlockContext {
 }
 
 const UPDATE_PROFILE_MUTATION = `
-  mutation SiteCustomerUpdateProfile($input: SiteCustomerProfileInput!) {
-    siteCustomerUpdateProfile(input: $input) {
+  mutation SiteMemberUpdateProfile($input: SiteMemberProfileInput!) {
+    siteMemberUpdateProfile(input: $input) {
       success
       message
-      customer {
+      member {
         id
         email
         profile {
@@ -49,10 +50,10 @@ const UPDATE_PROFILE_MUTATION = `
 
 interface GraphQLResponse {
   data?: {
-    siteCustomerUpdateProfile?: {
+    siteMemberUpdateProfile?: {
       success: boolean;
       message: string;
-      customer?: CustomerData;
+      member?: CustomerData;
     };
   };
   errors?: Array<{ message: string }>;
@@ -161,14 +162,16 @@ export default function CustomerProfile({
   const [error, setError] = useState<string | null>(null);
 
   // Form state
-  const [firstName, setFirstName] = useState(customer?.profile?.firstName || "");
+  const [firstName, setFirstName] = useState(
+    customer?.profile?.firstName || "",
+  );
   const [lastName, setLastName] = useState(customer?.profile?.lastName || "");
   const [displayName, setDisplayName] = useState(
-    customer?.profile?.displayName || ""
+    customer?.profile?.displayName || "",
   );
   const [phone, setPhone] = useState(customer?.profile?.phone || "");
   const [avatarUrl, setAvatarUrl] = useState(
-    customer?.profile?.avatarUrl || ""
+    customer?.profile?.avatarUrl || "",
   );
 
   // Update form when customer data changes
@@ -222,12 +225,12 @@ export default function CustomerProfile({
 
         if (result.errors && result.errors.length > 0) {
           setError(result.errors[0].message);
-        } else if (result.data?.siteCustomerUpdateProfile?.success) {
+        } else if (result.data?.siteMemberUpdateProfile?.success) {
           setShowSuccess(true);
           setTimeout(() => setShowSuccess(false), 3000);
         } else {
           setError(
-            result.data?.siteCustomerUpdateProfile?.message || errorMessage
+            result.data?.siteMemberUpdateProfile?.message || errorMessage,
           );
         }
       } catch {
@@ -246,7 +249,7 @@ export default function CustomerProfile({
       showPhoneField,
       showAvatarUpload,
       errorMessage,
-    ]
+    ],
   );
 
   const handleLogout = useCallback(async () => {
@@ -284,7 +287,9 @@ export default function CustomerProfile({
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
                 <UserIcon className="h-6 w-6 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{notLoggedInMessage}</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                {notLoggedInMessage}
+              </h3>
               <a
                 href={loginUrl}
                 className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"

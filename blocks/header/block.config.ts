@@ -1,12 +1,11 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Header Navigation",
   description:
     "Clean, responsive header with logo, navigation, and CTA buttons",
   category: "Layout",
-  layoutSlot: "header",
-  interactive: true,
+  layoutPosition: "header",
   tags: ["header", "navigation", "menu", "navbar"],
 
   groups: {
@@ -195,6 +194,4 @@ export default defineBlock({
       showWhen: { field: "showAnnouncement", equals: true },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

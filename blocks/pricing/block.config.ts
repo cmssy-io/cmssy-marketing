@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Pricing",
@@ -89,6 +89,4 @@ export default defineBlock({
       },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

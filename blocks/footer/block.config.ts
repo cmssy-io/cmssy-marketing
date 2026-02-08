@@ -1,10 +1,10 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Footer",
   description: "Footer section with links, branding, and social links",
   category: "Layout",
-  layoutSlot: "footer",
+  layoutPosition: "footer",
   tags: ["footer", "navigation", "links"],
 
   schema: {
@@ -88,6 +88,4 @@ export default defineBlock({
       group: "legal",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

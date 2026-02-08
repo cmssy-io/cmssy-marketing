@@ -19,17 +19,12 @@ export default function Footer({ content }: { content: BlockContent }) {
   return (
     <footer className="border-t bg-slate-50/50 dark:bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div
-          className="grid gap-8"
-          style={{
-            gridTemplateColumns: `2fr repeat(${linkColumns.length || 1}, 1fr)`,
-          }}
-        >
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {/* Brand column */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="col-span-2 sm:col-span-3 md:col-span-1 lg:col-span-2">
             <a href="/" className="flex items-center gap-2 mb-4">
               {logo ? (
-                <img src={logo.url} alt={logoText} className="h-8 w-auto" />
+                <img src={logo} alt={logoText} className="h-8 w-auto" />
               ) : (
                 <div className="w-8 h-8 rounded-lg bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center">
                   <span className="text-white font-bold text-sm">

@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Call to Action",
@@ -52,6 +52,4 @@ export default defineBlock({
       defaultValue: "/contact",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

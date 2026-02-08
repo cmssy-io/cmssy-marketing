@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Hero Section",
@@ -71,5 +71,4 @@ export default defineBlock({
       placeholder: "This is a test field",
     },
   },
-  pricing: { licenseType: "free" },
 });

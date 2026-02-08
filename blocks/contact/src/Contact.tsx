@@ -1,4 +1,5 @@
-import { useState, FormEvent, useCallback } from "react";
+"use client";
+import React, { FormEvent, useCallback, useState } from "react";
 import { BlockContent } from "./block";
 
 interface BlockContext {
@@ -84,6 +85,60 @@ function MapPinIcon({ className }: { className?: string }) {
   );
 }
 
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+      />
+    </svg>
+  );
+}
+
+function ChatIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+      />
+    </svg>
+  );
+}
+
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+      />
+    </svg>
+  );
+}
+
 function SendIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -104,7 +159,7 @@ function SendIcon({ className }: { className?: string }) {
 
 // GraphQL mutation for contact form
 const SUBMIT_CONTACT_FORM_MUTATION = `
-  mutation SubmitContactForm($input: WorkspaceContactInput!, $workspaceId: String!, $autoResponseTemplateId: String) {
+  mutation SubmitContactForm($input: WorkspaceContactInput!, $workspaceId: ID!, $autoResponseTemplateId: ID) {
     submitContactForm(input: $input, workspaceId: $workspaceId, autoResponseTemplateId: $autoResponseTemplateId) {
       success
       message
@@ -134,12 +189,11 @@ export default function Contact({
     heading = "Let's",
     headingHighlight = "talk",
     description = "Have a question, feedback, or just want to say hello? We'd love to hear from you.",
-    emailTitle = "Email Us",
-    emailDescription = "Drop us a line anytime. We typically respond within 24 hours.",
-    responseTitle = "Response Time",
-    responseDescription = "We aim to respond to all inquiries within 24-48 hours during business days.",
-    locationTitle = "Location",
-    locationDescription = "We're a remote-first team working across Europe.",
+    infoCards = [
+      { title: "Email Us", description: "Drop us a line anytime. We typically respond within 24 hours." },
+      { title: "Response Time", description: "We aim to respond to all inquiries within 24-48 hours during business days." },
+      { title: "Location", description: "We're a remote-first team working across Europe." },
+    ],
     showQuote = true,
     quoteText = "Building the future of content management, one pixel at a time.",
     quoteAuthor = "The Cmssy Team",
@@ -197,7 +251,10 @@ export default function Contact({
                 emailConfigurationId,
                 website: website || null,
               },
-              autoResponseTemplateId: enableAutoResponse && autoResponseTemplateId ? autoResponseTemplateId : null,
+              autoResponseTemplateId:
+                enableAutoResponse && autoResponseTemplateId
+                  ? autoResponseTemplateId
+                  : null,
             },
           }),
         });
@@ -212,7 +269,7 @@ export default function Contact({
         } else {
           setError(
             result.data?.submitContactForm?.message ||
-              "Something went wrong. Please try again."
+              "Something went wrong. Please try again.",
           );
         }
       } catch {
@@ -221,7 +278,12 @@ export default function Contact({
 
       setIsSubmitting(false);
     },
-    [workspaceId, emailConfigurationId, enableAutoResponse, autoResponseTemplateId]
+    [
+      workspaceId,
+      emailConfigurationId,
+      enableAutoResponse,
+      autoResponseTemplateId,
+    ],
   );
 
   return (
@@ -259,44 +321,31 @@ export default function Contact({
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-8">
             <div className="space-y-6">
-              {/* Email Card */}
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-                  <MailIcon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">{emailTitle}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {emailDescription}
-                  </p>
-                </div>
-              </div>
-
-              {/* Response Time Card */}
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-                  <ClockIcon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">{responseTitle}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {responseDescription}
-                  </p>
-                </div>
-              </div>
-
-              {/* Location Card */}
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-                  <MapPinIcon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">{locationTitle}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {locationDescription}
-                  </p>
-                </div>
-              </div>
+              {(infoCards as Array<{ icon?: string; title?: string; description?: string }>).map((card, index) => {
+                const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+                  mail: MailIcon,
+                  clock: ClockIcon,
+                  "map-pin": MapPinIcon,
+                  phone: PhoneIcon,
+                  chat: ChatIcon,
+                  globe: GlobeIcon,
+                };
+                const fallbackIcons = [MailIcon, ClockIcon, MapPinIcon];
+                const Icon = (card.icon && iconMap[card.icon]) || fallbackIcons[index % fallbackIcons.length];
+                return (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">{card.title}</h3>
+                      <p className="text-muted-foreground text-sm">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Quote */}

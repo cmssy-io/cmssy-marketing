@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Callout",
@@ -31,6 +31,4 @@ export default defineBlock({
       required: true,
     },
   },
-
-  pricing: { licenseType: "free" },
 });

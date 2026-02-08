@@ -28,7 +28,14 @@
       "price": "$0/mo",
       "popular": true,
       "period": "billed annually",
-      "features": [],
+      "features": [
+        {
+          "feature": "test"
+        },
+        {
+          "feature": "123123"
+        }
+      ],
       "cta": "Get Started",
       "href": "#"
     },
@@ -43,5 +50,6 @@
       "href": "#"
     }
   ],
-  "headingHighlight": "transparent pricing"
+  "headingHighlight": "transparent pricing",
+  "trialNotice": ""
 }

@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Legal",
@@ -6,9 +6,6 @@ export default defineBlock({
     "Legal page with accordion sections for privacy policy, terms of service, cookies",
   category: "marketing",
   tags: ["legal", "privacy", "terms", "cookies", "policy", "accordion"],
-
-  // Mark as interactive to skip SSR (uses Radix Accordion with createContext)
-  interactive: true,
 
   schema: {
     badge: {
@@ -115,6 +112,4 @@ export default defineBlock({
       group: "footer",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

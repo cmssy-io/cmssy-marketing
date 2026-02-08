@@ -57,7 +57,7 @@ export default function Legal({ content }: { content: BlockContent }) {
             <Accordion type="single" collapsible className="w-full">
               {sections.map((section, index) => (
                 <AccordionItem key={index} value={`section-${index}`}>
-                  <AccordionTrigger className="text-left font-semibold">
+                  <AccordionTrigger className="text-left font-semibold py-3">
                     {section.title}
                   </AccordionTrigger>
                   <AccordionContent>

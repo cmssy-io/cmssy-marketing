@@ -3,12 +3,23 @@
   "heading": "Let's",
   "headingHighlight": "talk",
   "description": "Have a question, feedback, or just want to say hello? We'd love to hear from you.",
-  "emailTitle": "Email Us",
-  "emailDescription": "Drop us a line anytime. We typically respond within 24 hours.",
-  "responseTitle": "Response Time",
-  "responseDescription": "We aim to respond to all inquiries within 24-48 hours during business days.",
-  "locationTitle": "Location",
-  "locationDescription": "We're a remote-first team working across Europe.",
+  "infoCards": [
+    {
+      "title": "Email Us",
+      "description": "Drop us a line anytime. We typically respond within 24 hours.",
+      "icon": "mail"
+    },
+    {
+      "icon": "clock",
+      "title": "Response Time",
+      "description": "We aim to respond to all inquiries within 24-48 hours during business days."
+    },
+    {
+      "icon": "map-pin",
+      "title": "Location",
+      "description": "We're a remote-first team working across Europe."
+    }
+  ],
   "showQuote": true,
   "quoteText": "Building the future of content management, one pixel at a time.",
   "quoteAuthor": "The Cmssy Team",

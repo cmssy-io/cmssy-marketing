@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Forgot Password Form",
@@ -79,6 +79,4 @@ export default defineBlock({
       group: "Styling",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

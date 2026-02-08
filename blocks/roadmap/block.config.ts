@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Roadmap",
@@ -112,6 +112,4 @@ export default defineBlock({
       showWhen: { field: "showCta", equals: true },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

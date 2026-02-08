@@ -1,12 +1,10 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Code Block",
   description: "Code block with syntax highlighting, copy button, and optional filename",
   category: "documentation",
   tags: ["docs", "code", "syntax", "highlighting", "copy"],
-
-  interactive: true,
 
   schema: {
     code: {
@@ -55,6 +53,4 @@ export default defineBlock({
       helpText: "Comma-separated line numbers or ranges to highlight",
     },
   },
-
-  pricing: { licenseType: "free" },
 });

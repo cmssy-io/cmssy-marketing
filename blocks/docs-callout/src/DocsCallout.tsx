@@ -46,6 +46,7 @@ export default function DocsCallout({ content }: { content: BlockContent }) {
   const Icon = config.icon;
 
   return (
+    <div className="container">
     <div
       className={`
         rounded-lg border p-4 my-6
@@ -68,6 +69,7 @@ export default function DocsCallout({ content }: { content: BlockContent }) {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 }

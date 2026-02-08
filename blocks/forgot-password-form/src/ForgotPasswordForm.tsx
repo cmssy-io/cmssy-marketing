@@ -19,8 +19,8 @@ interface BlockContext {
 }
 
 const REQUEST_PASSWORD_RESET_MUTATION = `
-  mutation SiteCustomerRequestPasswordReset($workspaceId: String!, $email: String!) {
-    siteCustomerRequestPasswordReset(workspaceId: $workspaceId, email: $email) {
+  mutation SiteMemberRequestPasswordReset($workspaceId: ID!, $email: String!) {
+    siteMemberRequestPasswordReset(workspaceId: $workspaceId, email: $email) {
       success
       message
     }
@@ -29,7 +29,7 @@ const REQUEST_PASSWORD_RESET_MUTATION = `
 
 interface GraphQLResponse {
   data?: {
-    siteCustomerRequestPasswordReset?: {
+    siteMemberRequestPasswordReset?: {
       success: boolean;
       message: string;
     };
@@ -153,7 +153,7 @@ export default function ForgotPasswordForm({
 
         if (result.errors && result.errors.length > 0) {
           setError(result.errors[0].message);
-        } else if (result.data?.siteCustomerRequestPasswordReset?.success) {
+        } else if (result.data?.siteMemberRequestPasswordReset?.success) {
           setIsSuccess(true);
         } else {
           // Still show success to prevent email enumeration

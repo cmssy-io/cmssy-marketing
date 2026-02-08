@@ -6,12 +6,11 @@ export interface BlockContent {
   heading?: string;
   headingHighlight?: string;
   description?: string;
-  emailTitle?: string;
-  emailDescription?: string;
-  responseTitle?: string;
-  responseDescription?: string;
-  locationTitle?: string;
-  locationDescription?: string;
+  infoCards?: Array<{
+    icon?: "mail" | "clock" | "map-pin" | "phone" | "chat" | "globe";
+    title?: string;
+    description?: string;
+  }>;
   showQuote?: boolean;
   quoteText?: string;
   quoteAuthor?: string;

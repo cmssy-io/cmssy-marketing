@@ -19,13 +19,13 @@ interface BlockContext {
 }
 
 const SITE_CUSTOMER_LOGIN_MUTATION = `
-  mutation SiteCustomerLogin($workspaceId: String!, $input: SiteCustomerLoginInput!) {
-    siteCustomerLogin(workspaceId: $workspaceId, input: $input) {
+  mutation SiteCustomerLogin($workspaceId: ID!, $input: SiteMemberLoginInput!) {
+    siteMemberLogin(workspaceId: $workspaceId, input: $input) {
       success
       message
       accessToken
       accessTokenExpiresIn
-      customer {
+      member {
         id
         email
       }
@@ -35,12 +35,12 @@ const SITE_CUSTOMER_LOGIN_MUTATION = `
 
 interface GraphQLResponse {
   data?: {
-    siteCustomerLogin?: {
+    siteMemberLogin?: {
       success: boolean;
       message: string;
       accessToken?: string;
       accessTokenExpiresIn?: number;
-      customer?: {
+      member?: {
         id: string;
         email: string;
       };
@@ -206,10 +206,10 @@ export default function LoginForm({
 
         if (result.errors && result.errors.length > 0) {
           setError(result.errors[0].message);
-        } else if (result.data?.siteCustomerLogin?.success) {
+        } else if (result.data?.siteMemberLogin?.success) {
           // Store token in localStorage or cookie
-          const token = result.data.siteCustomerLogin.accessToken;
-          const expiresIn = result.data.siteCustomerLogin.accessTokenExpiresIn;
+          const token = result.data.siteMemberLogin.accessToken;
+          const expiresIn = result.data.siteMemberLogin.accessTokenExpiresIn;
 
           if (token) {
             if (rememberMe && expiresIn) {
@@ -231,7 +231,7 @@ export default function LoginForm({
           }, 1500);
         } else {
           setError(
-            result.data?.siteCustomerLogin?.message || errorMessage
+            result.data?.siteMemberLogin?.message || errorMessage
           );
         }
       } catch {

@@ -5,42 +5,91 @@
     {
       "title": "Product",
       "links": [
-        { "name": "Features", "href": "/features" },
-        { "name": "Pricing", "href": "/pricing" },
-        { "name": "Changelog", "href": "/changelog" },
-        { "name": "Roadmap", "href": "/roadmap" }
+        {
+          "name": "Features",
+          "href": "/features"
+        },
+        {
+          "name": "Pricing",
+          "href": "/pricing"
+        },
+        {
+          "name": "Changelog",
+          "href": "/changelog"
+        },
+        {
+          "name": "Roadmap",
+          "href": "/roadmap"
+        }
       ]
     },
     {
       "title": "Company",
       "links": [
-        { "name": "About", "href": "/about" },
-        { "name": "Blog", "href": "/blog" },
-        { "name": "Careers", "href": "/careers" },
-        { "name": "Contact", "href": "/contact" }
+        {
+          "name": "About",
+          "href": "/about"
+        },
+        {
+          "name": "Blog",
+          "href": "/blog"
+        },
+        {
+          "name": "Careers",
+          "href": "/careers"
+        },
+        {
+          "name": "Contact",
+          "href": "/contact"
+        }
       ]
     },
     {
       "title": "Resources",
       "links": [
-        { "name": "Documentation", "href": "/docs" },
-        { "name": "Help Center", "href": "/help" },
-        { "name": "Templates", "href": "/templates" },
-        { "name": "API", "href": "/api" }
+        {
+          "name": "Documentation",
+          "href": "/docs"
+        },
+        {
+          "name": "Help Center",
+          "href": "/help"
+        },
+        {
+          "name": "Templates",
+          "href": "/templates"
+        },
+        {
+          "name": "API",
+          "href": "/api"
+        }
       ]
     },
     {
       "title": "Legal",
       "links": [
-        { "name": "Privacy", "href": "/privacy" },
-        { "name": "Terms", "href": "/terms" },
-        { "name": "Security", "href": "/security" },
-        { "name": "Cookies", "href": "/cookies" }
+        {
+          "name": "Privacy",
+          "href": "/privacy"
+        },
+        {
+          "name": "Terms",
+          "href": "/terms"
+        },
+        {
+          "name": "Security",
+          "href": "/security"
+        },
+        {
+          "name": "Cookies",
+          "href": "/cookies"
+        }
       ]
     }
   ],
   "showSocial": true,
   "twitterUrl": "https://twitter.com/cmssy",
   "githubUrl": "https://github.com/cmssy",
-  "copyrightText": "cmssy. All rights reserved."
+  "copyrightText": "cmssy. All rights reserved.",
+  "logo": "https://images.unsplash.com/photo-1761839257961-4dce65b72d99?q=80&w=3432&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }

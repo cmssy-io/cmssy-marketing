@@ -1,13 +1,10 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Faq",
   description: "",
   category: "marketing",
   tags: ["marketing", "faq"],
-
-  // Mark as interactive to skip SSR (uses Radix Accordion with createContext)
-  interactive: true,
 
   schema: {
     heading: {
@@ -47,6 +44,4 @@ export default defineBlock({
       },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

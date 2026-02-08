@@ -7,11 +7,7 @@ export interface BlockContent {
   logoUrl?: string;
   sections?: Array<{
     title: string;
-    items?: Array<{
-      label: string;
-      url: string;
-      isNew?: boolean;
-    }>;
+    pages?: string[];
   }>;
   showSearch?: boolean;
   searchPlaceholder?: string;

@@ -1,5 +1,6 @@
+"use client";
+import { Calendar, ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Edit3, Calendar } from "lucide-react";
 import { BlockContent } from "./block";
 
 interface TocItem {
@@ -34,7 +35,10 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
 
     const items: TocItem[] = [];
     headings.forEach((heading) => {
-      const id = heading.id || heading.textContent?.toLowerCase().replace(/\s+/g, "-") || "";
+      const id =
+        heading.id ||
+        heading.textContent?.toLowerCase().replace(/\s+/g, "-") ||
+        "";
       items.push({
         id,
         text: heading.textContent || "",
@@ -55,7 +59,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
           }
         });
       },
-      { rootMargin: "-20% 0% -35% 0%" }
+      { rootMargin: "-20% 0% -35% 0%" },
     );
 
     tocItems.forEach((item) => {
@@ -82,7 +86,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
   const next = nextPage[0];
 
   return (
-    <div className="flex gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div className="container flex gap-8 py-8 lg:py-12">
       {/* Main Content */}
       <article className="flex-1 min-w-0">
         {/* Header */}
@@ -107,8 +111,6 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
             prose-h3:text-xl prose-h3:font-medium prose-h3:mt-8 prose-h3:mb-3
             prose-p:text-muted-foreground prose-p:leading-relaxed
             prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline
-            prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
-            prose-pre:bg-zinc-950 prose-pre:text-zinc-50 prose-pre:rounded-lg prose-pre:p-4
             prose-ul:text-muted-foreground prose-li:marker:text-violet-500
           "
           dangerouslySetInnerHTML={{ __html: articleContent }}
@@ -179,9 +181,10 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
                   className={`
                     block text-sm py-1 transition-colors
                     ${item.level === 3 ? "pl-4" : ""}
-                    ${activeId === item.id
-                      ? "text-violet-600 font-medium"
-                      : "text-muted-foreground hover:text-foreground"
+                    ${
+                      activeId === item.id
+                        ? "text-violet-600 font-medium"
+                        : "text-muted-foreground hover:text-foreground"
                     }
                   `}
                 >

@@ -1,4 +1,4 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Card Grid",
@@ -58,6 +58,4 @@ export default defineBlock({
       },
     },
   },
-
-  pricing: { licenseType: "free" },
 });

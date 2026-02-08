@@ -1,11 +1,10 @@
-import { defineBlock } from "cmssy-cli/config";
+import { defineBlock } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Contact",
   description: "Contact section with form and info cards",
   category: "marketing",
   tags: ["contact", "form"],
-  interactive: true,
 
   schema: {
     // Header section
@@ -32,43 +31,48 @@ export default defineBlock({
     },
 
     // Info cards
-    emailTitle: {
-      type: "singleLine",
-      label: "Email Card Title",
-      defaultValue: "Email Us",
+    infoCards: {
+      type: "repeater",
+      label: "Info Cards",
       group: "Info Cards",
-    },
-    emailDescription: {
-      type: "multiLine",
-      label: "Email Card Description",
-      defaultValue:
-        "Drop us a line anytime. We typically respond within 24 hours.",
-      group: "Info Cards",
-    },
-    responseTitle: {
-      type: "singleLine",
-      label: "Response Time Title",
-      defaultValue: "Response Time",
-      group: "Info Cards",
-    },
-    responseDescription: {
-      type: "multiLine",
-      label: "Response Time Description",
-      defaultValue:
-        "We aim to respond to all inquiries within 24-48 hours during business days.",
-      group: "Info Cards",
-    },
-    locationTitle: {
-      type: "singleLine",
-      label: "Location Title",
-      defaultValue: "Location",
-      group: "Info Cards",
-    },
-    locationDescription: {
-      type: "multiLine",
-      label: "Location Description",
-      defaultValue: "We're a remote-first team working across Europe.",
-      group: "Info Cards",
+      schema: {
+        icon: {
+          type: "select",
+          label: "Icon",
+          options: [
+            { label: "Mail", value: "mail" },
+            { label: "Clock", value: "clock" },
+            { label: "Map Pin", value: "map-pin" },
+            { label: "Phone", value: "phone" },
+            { label: "Chat", value: "chat" },
+            { label: "Globe", value: "globe" },
+          ],
+        },
+        title: {
+          type: "singleLine",
+          label: "Title",
+        },
+        description: {
+          type: "multiLine",
+          label: "Description",
+        },
+      },
+      defaultValue: [
+        {
+          title: "Email Us",
+          description:
+            "Drop us a line anytime. We typically respond within 24 hours.",
+        },
+        {
+          title: "Response Time",
+          description:
+            "We aim to respond to all inquiries within 24-48 hours during business days.",
+        },
+        {
+          title: "Location",
+          description: "We're a remote-first team working across Europe.",
+        },
+      ],
     },
 
     // Quote
@@ -128,6 +132,4 @@ export default defineBlock({
       showWhen: { field: "enableAutoResponse", equals: true },
     },
   },
-
-  pricing: { licenseType: "free" },
 });
