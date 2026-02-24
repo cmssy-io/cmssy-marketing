@@ -1,12 +1,47 @@
-"use client";
 import { Calendar, ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
-import { useEffect, useState } from "react";
 import { BlockContent } from "./block";
+import { TocSidebar } from "./TocSidebar";
 
 interface TocItem {
   id: string;
   text: string;
   level: number;
+}
+
+/**
+ * Extract headings from HTML string using regex.
+ * Works in both Node.js (SSR) and browser — no DOMParser needed.
+ */
+function extractTocItems(html: string): TocItem[] {
+  const items: TocItem[] = [];
+  const regex = /<(h[23])(?:\s[^>]*id="([^"]*)"[^>]*|[^>]*)>(.*?)<\/\1>/gi;
+
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    const tag = match[1].toLowerCase();
+    const explicitId = match[2] || "";
+    // Strip inner HTML tags to get plain text
+    const text = match[3].replace(/<[^>]*>/g, "").trim();
+    const id = explicitId || text.toLowerCase().replace(/\s+/g, "-");
+
+    if (text) {
+      items.push({ id, text, level: tag === "h2" ? 2 : 3 });
+    }
+  }
+
+  return items;
+}
+
+function formatDate(dateStr: string) {
+  try {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
 }
 
 export default function DocsArticle({ content }: { content: BlockContent }) {
@@ -24,64 +59,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
     editUrl,
   } = content;
 
-  const [tocItems, setTocItems] = useState<TocItem[]>([]);
-  const [activeId, setActiveId] = useState<string>("");
-
-  // Extract headings from content for TOC
-  useEffect(() => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(articleContent, "text/html");
-    const headings = doc.querySelectorAll("h2, h3");
-
-    const items: TocItem[] = [];
-    headings.forEach((heading) => {
-      const id =
-        heading.id ||
-        heading.textContent?.toLowerCase().replace(/\s+/g, "-") ||
-        "";
-      items.push({
-        id,
-        text: heading.textContent || "",
-        level: heading.tagName === "H2" ? 2 : 3,
-      });
-    });
-
-    setTocItems(items);
-  }, [articleContent]);
-
-  // Track active heading on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-20% 0% -35% 0%" },
-    );
-
-    tocItems.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [tocItems]);
-
-  const formatDate = (dateStr: string) => {
-    try {
-      return new Date(dateStr).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch {
-      return dateStr;
-    }
-  };
-
+  const tocItems = showToc ? extractTocItems(articleContent) : [];
   const prev = prevPage[0];
   const next = nextPage[0];
 
@@ -168,32 +146,9 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
         )}
       </article>
 
-      {/* Table of Contents */}
+      {/* Table of Contents — client component for scroll tracking */}
       {showToc && tocItems.length > 0 && (
-        <aside className="hidden xl:block w-64 shrink-0">
-          <div className="sticky top-20">
-            <h4 className="text-sm font-semibold mb-4">{tocTitle}</h4>
-            <nav className="space-y-1">
-              {tocItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={`
-                    block text-sm py-1 transition-colors
-                    ${item.level === 3 ? "pl-4" : ""}
-                    ${
-                      activeId === item.id
-                        ? "text-violet-600 font-medium"
-                        : "text-muted-foreground hover:text-foreground"
-                    }
-                  `}
-                >
-                  {item.text}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
+        <TocSidebar items={tocItems} title={tocTitle} />
       )}
     </div>
   );
