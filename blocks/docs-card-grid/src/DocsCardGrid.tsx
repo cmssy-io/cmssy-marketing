@@ -5,7 +5,7 @@ import { BlockContent } from "./block";
 // Dynamic icon lookup
 function getIcon(name?: string): LucideIcon {
   if (!name) return Icons.FileText;
-  const IconComponent = (Icons as Record<string, LucideIcon>)[name];
+  const IconComponent = (Icons as unknown as Record<string, LucideIcon>)[name];
   return IconComponent || Icons.FileText;
 }
 

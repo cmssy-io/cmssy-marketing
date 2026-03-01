@@ -18,9 +18,9 @@ export default function Hero({ content }: { content: BlockContent }) {
   // Detect if media is a video (by file extension)
   const isVideo =
     media &&
-    (media.url.endsWith(".mp4") ||
-      media.url.endsWith(".webm") ||
-      media.url.endsWith(".ogg"));
+    (media.endsWith(".mp4") ||
+      media.endsWith(".webm") ||
+      media.endsWith(".ogg"));
 
   return (
     <section className="cmssy-hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -163,7 +163,7 @@ export default function Hero({ content }: { content: BlockContent }) {
               <div className="aspect-video relative overflow-hidden">
                 {isVideo ? (
                   <video
-                    src={media.url}
+                    src={media}
                     autoPlay
                     muted
                     loop
@@ -174,7 +174,7 @@ export default function Hero({ content }: { content: BlockContent }) {
                   </video>
                 ) : (
                   <img
-                    src={media.url}
+                    src={media}
                     alt={heading}
                     className="w-full h-full object-cover"
                   />

@@ -8,6 +8,7 @@ export default defineBlock({
   layoutPosition: "header",
   tags: ["header", "navigation", "menu", "navbar"],
 
+  // @ts-expect-error groups is supported by CLI runtime but not yet in @cmssy/types BlockConfig
   groups: {
     logo: { label: "Logo", icon: "Image" },
     navigation: { label: "Navigation", icon: "Menu" },
