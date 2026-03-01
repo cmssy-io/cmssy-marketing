@@ -40,11 +40,11 @@ importers:
         version: 3.4.0
     devDependencies:
       '@cmssy/cli':
-        specifier: ^0.5.1
-        version: 0.5.1(next@16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.5.4
+        version: 0.5.4(next@16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@cmssy/types':
-        specifier: 0.4.1
-        version: 0.4.1
+        specifier: 0.5.1
+        version: 0.5.1
       '@tailwindcss/postcss':
         specifier: ^4.1.18
         version: 4.1.18
@@ -73,8 +73,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@cmssy/cli@0.5.1':
-    resolution: {integrity: sha512-aqtrnKbysuchw9o6ckXi9TIgbsFG4UpDVGKpToK4HX8xbP4uoDhvRqV7x835I6H1JKtdPzg3d2UtmIspupV8Zw==}
+  '@cmssy/cli@0.5.4':
+    resolution: {integrity: sha512-xMTfGUR9hYQLpYLymIZHUDTij0i1q+pnkc6055q6ObnJaBt20/mVW/agbc35CdKLJY/jKTjHDIBCb0cOQXRdlA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -85,8 +85,8 @@ packages:
       next:
         optional: true
 
-  '@cmssy/types@0.4.1':
-    resolution: {integrity: sha512-KN0KrhTL4cl9cIPG2K5sQ80zcCwcOxp6YGBYC7IzuAcWMGr9INo5VbYL46LlKJodlTHGUFng0qvdI8MQgWgyWw==}
+  '@cmssy/types@0.5.1':
+    resolution: {integrity: sha512-RWKHme7lTCmShKAlLHnnzb9BU7Oaa4sIaIknOEvWS8noHU3TCmBGwknRLOb5tBgO7WIwIm5Duth4mTss5rTIGw==}
 
   '@emnapi/runtime@1.8.1':
     resolution: {integrity: sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg==}
@@ -1924,9 +1924,9 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@cmssy/cli@0.5.1(next@16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@cmssy/cli@0.5.4(next@16.1.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@cmssy/types': 0.4.1
+      '@cmssy/types': 0.5.1
       '@tailwindcss/postcss': 4.1.18
       archiver: 7.0.1
       chalk: 5.6.2
@@ -1954,7 +1954,7 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  '@cmssy/types@0.4.1': {}
+  '@cmssy/types@0.5.1': {}
 
   '@emnapi/runtime@1.8.1':
     dependencies:
