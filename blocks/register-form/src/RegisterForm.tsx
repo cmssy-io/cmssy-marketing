@@ -1,22 +1,6 @@
 import { useState, FormEvent, useCallback } from "react";
 import { BlockContent } from "./block";
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: {
-      id: string;
-      email: string;
-    } | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 const SITE_MEMBER_REGISTER_MUTATION = `
   mutation SiteMemberRegister($workspaceId: ID!, $input: SiteMemberRegisterInput!) {
@@ -159,7 +143,7 @@ export default function RegisterForm({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     heading = "Create an account",
@@ -269,7 +253,10 @@ export default function RegisterForm({
           setError(result.errors[0].message);
         } else if (result.data?.siteMemberRegister?.success) {
           setIsSuccess(true);
-          if (redirectAfterRegister && redirectAfterRegister !== "/verify-email-pending") {
+          if (
+            redirectAfterRegister &&
+            redirectAfterRegister !== "/verify-email-pending"
+          ) {
             setTimeout(() => {
               window.location.href = redirectAfterRegister;
             }, 2000);
@@ -291,7 +278,7 @@ export default function RegisterForm({
       redirectAfterRegister,
       errorMessage,
       passwordMismatchMessage,
-    ]
+    ],
   );
 
   const isCard = variant === "card";

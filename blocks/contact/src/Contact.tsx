@@ -1,29 +1,7 @@
 "use client";
 import React, { FormEvent, useCallback, useState } from "react";
 import { BlockContent } from "./block";
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: {
-      id: string;
-      email: string;
-      profile: {
-        firstName?: string | null;
-        lastName?: string | null;
-        displayName?: string | null;
-        avatarUrl?: string | null;
-      };
-    } | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 // Icons as inline SVG components
 function MailIcon({ className }: { className?: string }) {
@@ -182,7 +160,7 @@ export default function Contact({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     badgeText = "Contact Us",
@@ -190,9 +168,20 @@ export default function Contact({
     headingHighlight = "talk",
     description = "Have a question, feedback, or just want to say hello? We'd love to hear from you.",
     infoCards = [
-      { title: "Email Us", description: "Drop us a line anytime. We typically respond within 24 hours." },
-      { title: "Response Time", description: "We aim to respond to all inquiries within 24-48 hours during business days." },
-      { title: "Location", description: "We're a remote-first team working across Europe." },
+      {
+        title: "Email Us",
+        description:
+          "Drop us a line anytime. We typically respond within 24 hours.",
+      },
+      {
+        title: "Response Time",
+        description:
+          "We aim to respond to all inquiries within 24-48 hours during business days.",
+      },
+      {
+        title: "Location",
+        description: "We're a remote-first team working across Europe.",
+      },
     ],
     showQuote = true,
     quoteText = "Building the future of content management, one pixel at a time.",
@@ -321,8 +310,17 @@ export default function Contact({
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-8">
             <div className="space-y-6">
-              {(infoCards as Array<{ icon?: string; title?: string; description?: string }>).map((card, index) => {
-                const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+              {(
+                infoCards as Array<{
+                  icon?: string;
+                  title?: string;
+                  description?: string;
+                }>
+              ).map((card, index) => {
+                const iconMap: Record<
+                  string,
+                  React.ComponentType<{ className?: string }>
+                > = {
                   mail: MailIcon,
                   clock: ClockIcon,
                   "map-pin": MapPinIcon,
@@ -331,7 +329,9 @@ export default function Contact({
                   globe: GlobeIcon,
                 };
                 const fallbackIcons = [MailIcon, ClockIcon, MapPinIcon];
-                const Icon = (card.icon && iconMap[card.icon]) || fallbackIcons[index % fallbackIcons.length];
+                const Icon =
+                  (card.icon && iconMap[card.icon]) ||
+                  fallbackIcons[index % fallbackIcons.length];
                 return (
                   <div key={index} className="flex items-start gap-4">
                     <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">

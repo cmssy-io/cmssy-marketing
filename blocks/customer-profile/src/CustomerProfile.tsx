@@ -1,32 +1,7 @@
 "use client";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { BlockContent } from "./block";
-
-interface CustomerData {
-  id: string;
-  email: string;
-  profile?: {
-    firstName?: string;
-    lastName?: string;
-    displayName?: string;
-    avatarUrl?: string;
-    phone?: string;
-  };
-}
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: CustomerData | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 const UPDATE_PROFILE_MUTATION = `
   mutation SiteMemberUpdateProfile($input: SiteMemberProfileInput!) {
@@ -53,7 +28,17 @@ interface GraphQLResponse {
     siteMemberUpdateProfile?: {
       success: boolean;
       message: string;
-      member?: CustomerData;
+      member?: {
+        id: string;
+        email: string;
+        profile?: {
+          firstName?: string;
+          lastName?: string;
+          displayName?: string;
+          avatarUrl?: string;
+          phone?: string;
+        };
+      };
     };
   };
   errors?: Array<{ message: string }>;
@@ -132,7 +117,7 @@ export default function CustomerProfile({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     heading = "Your Profile",
@@ -155,35 +140,31 @@ export default function CustomerProfile({
   } = content;
 
   const isAuthenticated = context?.auth?.isAuthenticated ?? false;
-  const customer = context?.auth?.customer;
+  const member = context?.auth?.member;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Form state
-  const [firstName, setFirstName] = useState(
-    customer?.profile?.firstName || "",
-  );
-  const [lastName, setLastName] = useState(customer?.profile?.lastName || "");
+  const [firstName, setFirstName] = useState(member?.profile?.firstName || "");
+  const [lastName, setLastName] = useState(member?.profile?.lastName || "");
   const [displayName, setDisplayName] = useState(
-    customer?.profile?.displayName || "",
+    member?.profile?.displayName || "",
   );
-  const [phone, setPhone] = useState(customer?.profile?.phone || "");
-  const [avatarUrl, setAvatarUrl] = useState(
-    customer?.profile?.avatarUrl || "",
-  );
+  const [phone, setPhone] = useState(member?.profile?.phone || "");
+  const [avatarUrl, setAvatarUrl] = useState(member?.profile?.avatarUrl || "");
 
-  // Update form when customer data changes
+  // Update form when member data changes
   useEffect(() => {
-    if (customer?.profile) {
-      setFirstName(customer.profile.firstName || "");
-      setLastName(customer.profile.lastName || "");
-      setDisplayName(customer.profile.displayName || "");
-      setPhone(customer.profile.phone || "");
-      setAvatarUrl(customer.profile.avatarUrl || "");
+    if (member?.profile) {
+      setFirstName(member.profile.firstName || "");
+      setLastName(member.profile.lastName || "");
+      setDisplayName(member.profile.displayName || "");
+      setPhone(member.profile.phone || "");
+      setAvatarUrl(member.profile.avatarUrl || "");
     }
-  }, [customer]);
+  }, [member]);
 
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -304,7 +285,7 @@ export default function CustomerProfile({
   }
 
   // Demo data for preview mode
-  const displayEmail = customer?.email || "demo@example.com";
+  const displayEmail = member?.email || "demo@example.com";
   const initials =
     (firstName?.[0] || displayEmail[0])?.toUpperCase() +
     (lastName?.[0] || displayEmail[1])?.toUpperCase();

@@ -1,22 +1,6 @@
 import { useState, FormEvent, useCallback } from "react";
 import { BlockContent } from "./block";
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: {
-      id: string;
-      email: string;
-    } | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 const REQUEST_PASSWORD_RESET_MUTATION = `
   mutation SiteMemberRequestPasswordReset($workspaceId: ID!, $email: String!) {
@@ -92,7 +76,7 @@ export default function ForgotPasswordForm({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     heading = "Forgot your password?",
@@ -165,7 +149,7 @@ export default function ForgotPasswordForm({
 
       setIsSubmitting(false);
     },
-    [workspaceId, errorMessage]
+    [workspaceId, errorMessage],
   );
 
   const isCard = variant === "card";

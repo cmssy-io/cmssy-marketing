@@ -1,22 +1,6 @@
 import { useState, FormEvent, useCallback } from "react";
 import { BlockContent } from "./block";
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: {
-      id: string;
-      email: string;
-    } | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 const SITE_CUSTOMER_LOGIN_MUTATION = `
   mutation SiteCustomerLogin($workspaceId: ID!, $input: SiteMemberLoginInput!) {
@@ -131,7 +115,7 @@ export default function LoginForm({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     heading = "Welcome back",
@@ -217,7 +201,7 @@ export default function LoginForm({
               localStorage.setItem("site_customer_token", token);
               localStorage.setItem(
                 "site_customer_token_expires",
-                String(Date.now() + expiresIn * 1000)
+                String(Date.now() + expiresIn * 1000),
               );
             } else {
               // Store in sessionStorage for session-only login
@@ -230,9 +214,7 @@ export default function LoginForm({
             window.location.href = redirectAfterLogin;
           }, 1500);
         } else {
-          setError(
-            result.data?.siteMemberLogin?.message || errorMessage
-          );
+          setError(result.data?.siteMemberLogin?.message || errorMessage);
         }
       } catch {
         setError(errorMessage);
@@ -240,7 +222,7 @@ export default function LoginForm({
 
       setIsSubmitting(false);
     },
-    [workspaceId, redirectAfterLogin, errorMessage]
+    [workspaceId, redirectAfterLogin, errorMessage],
   );
 
   const isCard = variant === "card";

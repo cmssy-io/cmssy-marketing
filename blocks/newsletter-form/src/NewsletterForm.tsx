@@ -1,22 +1,6 @@
 import { useState, FormEvent, useCallback } from "react";
 import { BlockContent } from "./block";
-
-interface BlockContext {
-  auth?: {
-    isAuthenticated: boolean;
-    customer: {
-      id: string;
-      email: string;
-    } | null;
-    logout: () => Promise<void>;
-  };
-  language: string;
-  isPreview?: boolean;
-  workspace?: {
-    id: string;
-    name?: string;
-  };
-}
+import type { PlatformContext } from "@cmssy/cli/config";
 
 // GraphQL mutation for newsletter subscription
 const SUBSCRIBE_NEWSLETTER_MUTATION = `
@@ -65,11 +49,7 @@ function CheckIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       strokeWidth={2}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5 13l4 4L19 7"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
 }
@@ -79,7 +59,7 @@ export default function NewsletterForm({
   context,
 }: {
   content: BlockContent;
-  context?: BlockContext;
+  context?: PlatformContext;
 }) {
   const {
     heading = "Stay in the loop",
@@ -157,9 +137,7 @@ export default function NewsletterForm({
           setIsSuccess(true);
           form.reset();
         } else {
-          setError(
-            result.data?.subscribeToNewsletter?.message || errorMessage
-          );
+          setError(result.data?.subscribeToNewsletter?.message || errorMessage);
         }
       } catch {
         setError(errorMessage);
@@ -167,7 +145,7 @@ export default function NewsletterForm({
 
       setIsSubmitting(false);
     },
-    [workspaceId, tags, showNameField, errorMessage]
+    [workspaceId, tags, showNameField, errorMessage],
   );
 
   if (isSuccess) {
@@ -190,9 +168,17 @@ export default function NewsletterForm({
   const isCard = variant === "card";
 
   return (
-    <section className={`py-12 lg:py-16 ${isCard ? "bg-linear-to-br from-violet-50 via-background to-purple-50 dark:from-violet-950/20 dark:via-background dark:to-purple-950/20" : ""}`}>
+    <section
+      className={`py-12 lg:py-16 ${isCard ? "bg-linear-to-br from-violet-50 via-background to-purple-50 dark:from-violet-950/20 dark:via-background dark:to-purple-950/20" : ""}`}
+    >
       <div className="max-w-xl mx-auto px-4">
-        <div className={isCard ? "bg-card/80 backdrop-blur-sm rounded-2xl border shadow-xl shadow-violet-500/5 p-8" : ""}>
+        <div
+          className={
+            isCard
+              ? "bg-card/80 backdrop-blur-sm rounded-2xl border shadow-xl shadow-violet-500/5 p-8"
+              : ""
+          }
+        >
           {/* Header */}
           <div className="text-center mb-6">
             {heading && (
@@ -223,7 +209,11 @@ export default function NewsletterForm({
               </div>
             )}
 
-            <div className={isInline && !showNameField ? "flex gap-3" : "space-y-3"}>
+            <div
+              className={
+                isInline && !showNameField ? "flex gap-3" : "space-y-3"
+              }
+            >
               {showNameField && (
                 <div>
                   <input
@@ -237,8 +227,18 @@ export default function NewsletterForm({
               )}
 
               <div className={isInline && !showNameField ? "flex-1" : ""}>
-                <div className={isInline && !showNameField ? "flex gap-3" : "space-y-3"}>
-                  <div className={isInline && !showNameField ? "flex-1 relative" : "relative"}>
+                <div
+                  className={
+                    isInline && !showNameField ? "flex gap-3" : "space-y-3"
+                  }
+                >
+                  <div
+                    className={
+                      isInline && !showNameField
+                        ? "flex-1 relative"
+                        : "relative"
+                    }
+                  >
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                       <MailIcon className="h-4 w-4" />
                     </div>
