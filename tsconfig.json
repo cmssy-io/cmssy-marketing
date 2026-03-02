@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "jsx": "preserve",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -22,20 +18,9 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./*"],
-      "cmssy-cli/config": [
-        "./node_modules/cmssy-cli/config"
-      ]
+      "@cmssy/cli/config": ["./node_modules/@cmssy/cli/config"]
     }
   },
-  "include": [
-    "blocks/**/*",
-    "templates/**/*",
-    "components/**/*",
-    "lib/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "public"
-  ]
+  "include": ["blocks/**/*", "templates/**/*", "components/**/*", "lib/**/*"],
+  "exclude": ["node_modules", "dist", "public"]
 }

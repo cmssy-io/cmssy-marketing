@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "cmssy dev",
-    "build": "cmssy build"
+    "build": "cmssy build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -21,12 +23,16 @@
   "devDependencies": {
     "@cmssy/cli": "^0.5.5",
     "@cmssy/types": "^0.5.2",
+    "@eslint/js": "^9.39.3",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.3",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.56.1"
   }
 }
