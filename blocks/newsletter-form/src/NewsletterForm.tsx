@@ -68,7 +68,9 @@ export default function NewsletterForm({
     namePlaceholder = "Your name",
     emailPlaceholder = "you@example.com",
     submitButtonText = "Subscribe",
+    submitLoadingText = "Subscribing...",
     tags = [],
+    successHeading = "You're subscribed!",
     successMessage = "Thanks for subscribing!",
     errorMessage = "Something went wrong. Please try again.",
     variant = "inline",
@@ -156,7 +158,7 @@ export default function NewsletterForm({
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50">
               <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
             </div>
-            <h3 className="text-lg font-semibold mb-2">You're subscribed!</h3>
+            <h3 className="text-lg font-semibold mb-2">{successHeading}</h3>
             <p className="text-muted-foreground">{successMessage}</p>
           </div>
         </div>
@@ -257,7 +259,7 @@ export default function NewsletterForm({
                     disabled={isSubmitting}
                     className={`inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors ${isInline && !showNameField ? "" : "w-full"}`}
                   >
-                    {isSubmitting ? "Subscribing..." : submitButtonText}
+                    {isSubmitting ? submitLoadingText : submitButtonText}
                   </button>
                 </div>
               </div>

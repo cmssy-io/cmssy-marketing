@@ -20,6 +20,7 @@ export interface BlockContent {
   secondaryCtaStyle?: "ghost" | "outline" | "link";
   sticky?: boolean;
   transparent?: boolean;
+  logoutButtonText?: string;
   showAnnouncement?: boolean;
   announcementText?: string;
   announcementLink?: string;

@@ -81,11 +81,15 @@ export default function ForgotPasswordForm({
   const {
     heading = "Forgot your password?",
     description = "Enter your email address and we'll send you a link to reset your password.",
+    emailLabel = "Email",
     emailPlaceholder = "you@example.com",
     submitButtonText = "Send reset link",
+    submitLoadingText = "Sending...",
     showLoginLink = true,
     loginLinkText = "Back to login",
     loginUrl = "/login",
+    successHeading = "Check your email",
+    emailSentText = "We sent an email to",
     successMessage = "If an account exists with this email, you will receive a password reset link shortly.",
     errorMessage = "Something went wrong. Please try again.",
     variant = "default",
@@ -175,11 +179,11 @@ export default function ForgotPasswordForm({
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50">
                 <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Check your email</h3>
+              <h3 className="text-lg font-semibold mb-2">{successHeading}</h3>
               <p className="text-muted-foreground mb-2">{successMessage}</p>
               {submittedEmail && (
                 <p className="text-sm text-muted-foreground">
-                  We sent an email to{" "}
+                  {emailSentText}{" "}
                   <span className="font-medium text-foreground">
                     {submittedEmail}
                   </span>
@@ -243,7 +247,7 @@ export default function ForgotPasswordForm({
                 htmlFor="email"
                 className="block text-sm font-medium mb-1.5"
               >
-                Email
+                {emailLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -267,7 +271,7 @@ export default function ForgotPasswordForm({
               disabled={isSubmitting}
               className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
             >
-              {isSubmitting ? "Sending..." : submitButtonText}
+              {isSubmitting ? submitLoadingText : submitButtonText}
             </button>
           </form>
 

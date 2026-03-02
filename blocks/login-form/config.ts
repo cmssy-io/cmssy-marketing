@@ -20,10 +20,22 @@ export default defineBlock({
     },
 
     // Form settings
+    emailLabel: {
+      type: "singleLine",
+      label: "Email Label",
+      defaultValue: "Email",
+      group: "Form Settings",
+    },
     emailPlaceholder: {
       type: "singleLine",
       label: "Email Placeholder",
       defaultValue: "you@example.com",
+      group: "Form Settings",
+    },
+    passwordLabel: {
+      type: "singleLine",
+      label: "Password Label",
+      defaultValue: "Password",
       group: "Form Settings",
     },
     passwordPlaceholder: {
@@ -36,6 +48,12 @@ export default defineBlock({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Sign in",
+      group: "Form Settings",
+    },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Signing in...",
       group: "Form Settings",
     },
     showRememberMe: {

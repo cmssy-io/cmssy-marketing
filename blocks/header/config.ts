@@ -153,6 +153,12 @@ export default defineBlock({
       defaultValue: false,
       group: "behavior",
     },
+    logoutButtonText: {
+      type: "singleLine",
+      label: "Logout Button Text",
+      defaultValue: "Log out",
+      group: "behavior",
+    },
 
     showAnnouncement: {
       type: "boolean",

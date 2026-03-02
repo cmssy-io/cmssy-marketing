@@ -30,6 +30,11 @@ export default defineBlock({
       defaultValue:
         "14-day free trial on all paid plans. No credit card required.",
     },
+    popularBadgeText: {
+      type: "singleLine",
+      label: "Popular Badge Text",
+      defaultValue: "MOST POPULAR",
+    },
     plans: {
       maxItems: 3,
       type: "repeater",

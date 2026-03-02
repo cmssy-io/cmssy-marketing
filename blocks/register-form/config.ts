@@ -20,6 +20,43 @@ export default defineBlock({
     },
 
     // Form settings
+    firstNameLabel: {
+      type: "singleLine",
+      label: "First Name Label",
+      defaultValue: "First name",
+      group: "Form Settings",
+    },
+    lastNameLabel: {
+      type: "singleLine",
+      label: "Last Name Label",
+      defaultValue: "Last name",
+      group: "Form Settings",
+    },
+    emailLabel: {
+      type: "singleLine",
+      label: "Email Label",
+      defaultValue: "Email",
+      group: "Form Settings",
+    },
+    passwordLabel: {
+      type: "singleLine",
+      label: "Password Label",
+      defaultValue: "Password",
+      group: "Form Settings",
+    },
+    confirmPasswordLabel: {
+      type: "singleLine",
+      label: "Confirm Password Label",
+      defaultValue: "Confirm password",
+      group: "Form Settings",
+    },
+    passwordHelpText: {
+      type: "singleLine",
+      label: "Password Help Text",
+      defaultValue: "Must be at least {min} characters",
+      helpText: "Use {min} for minimum length",
+      group: "Form Settings",
+    },
     showNameFields: {
       type: "boolean",
       label: "Show Name Fields",
@@ -62,6 +99,12 @@ export default defineBlock({
       defaultValue: "Create account",
       group: "Form Settings",
     },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Creating account...",
+      group: "Form Settings",
+    },
     minPasswordLength: {
       type: "numeric",
       label: "Minimum Password Length",
@@ -70,6 +113,30 @@ export default defineBlock({
     },
 
     // Terms & Privacy
+    termsPrefix: {
+      type: "singleLine",
+      label: "Terms Prefix",
+      defaultValue: "I agree to the",
+      group: "Terms",
+    },
+    termsLinkText: {
+      type: "singleLine",
+      label: "Terms Link Text",
+      defaultValue: "Terms of Service",
+      group: "Terms",
+    },
+    termsConnector: {
+      type: "singleLine",
+      label: "Terms Connector",
+      defaultValue: "and",
+      group: "Terms",
+    },
+    privacyLinkText: {
+      type: "singleLine",
+      label: "Privacy Link Text",
+      defaultValue: "Privacy Policy",
+      group: "Terms",
+    },
     showTerms: {
       type: "boolean",
       label: "Show Terms Checkbox",
@@ -124,6 +191,31 @@ export default defineBlock({
     },
 
     // Messages
+    successHeading: {
+      type: "singleLine",
+      label: "Success Heading",
+      defaultValue: "Check your email",
+      group: "Messages",
+    },
+    successLoginLinkText: {
+      type: "singleLine",
+      label: "Success Login Link Text",
+      defaultValue: "Go to login",
+      group: "Messages",
+    },
+    passwordTooShortMessage: {
+      type: "singleLine",
+      label: "Password Too Short Message",
+      defaultValue: "Password must be at least {min} characters.",
+      helpText: "Use {min} for minimum length",
+      group: "Messages",
+    },
+    termsRequiredMessage: {
+      type: "singleLine",
+      label: "Terms Required Message",
+      defaultValue: "Please accept the terms and conditions.",
+      group: "Messages",
+    },
     successMessage: {
       type: "multiLine",
       label: "Success Message",

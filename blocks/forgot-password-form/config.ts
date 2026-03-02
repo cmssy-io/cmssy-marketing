@@ -20,6 +20,12 @@ export default defineBlock({
     },
 
     // Form settings
+    emailLabel: {
+      type: "singleLine",
+      label: "Email Label",
+      defaultValue: "Email",
+      group: "Form Settings",
+    },
     emailPlaceholder: {
       type: "singleLine",
       label: "Email Placeholder",
@@ -30,6 +36,12 @@ export default defineBlock({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Send reset link",
+      group: "Form Settings",
+    },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Sending...",
       group: "Form Settings",
     },
 
@@ -54,6 +66,18 @@ export default defineBlock({
     },
 
     // Messages
+    successHeading: {
+      type: "singleLine",
+      label: "Success Heading",
+      defaultValue: "Check your email",
+      group: "Messages",
+    },
+    emailSentText: {
+      type: "singleLine",
+      label: "Email Sent Text",
+      defaultValue: "We sent an email to",
+      group: "Messages",
+    },
     successMessage: {
       type: "multiLine",
       label: "Success Message",

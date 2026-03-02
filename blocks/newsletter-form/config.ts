@@ -45,6 +45,12 @@ export default defineBlock({
       defaultValue: "Subscribe",
       group: "Form Settings",
     },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Subscribing...",
+      group: "Form Settings",
+    },
 
     // Tags for segmentation
     tags: {
@@ -61,6 +67,12 @@ export default defineBlock({
     },
 
     // Messages
+    successHeading: {
+      type: "singleLine",
+      label: "Success Heading",
+      defaultValue: "You're subscribed!",
+      group: "Messages",
+    },
     successMessage: {
       type: "multiLine",
       label: "Success Message",

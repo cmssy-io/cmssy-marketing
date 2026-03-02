@@ -50,6 +50,11 @@ export default defineBlock({
       label: "Secondary Button URL",
       defaultValue: "#demo",
     },
+    socialProofPrefix: {
+      type: "singleLine",
+      label: "Social Proof Prefix",
+      defaultValue: "Join",
+    },
     socialProofCount: {
       type: "singleLine",
       label: "Social Proof Count",
@@ -64,6 +69,16 @@ export default defineBlock({
       type: "media",
       label: "Media (Image or Video)",
       placeholder: "Upload an image or video for the hero section",
+    },
+    mediaPlaceholderHeading: {
+      type: "singleLine",
+      label: "Media Placeholder Heading",
+      defaultValue: "Page Builder Preview",
+    },
+    mediaPlaceholderText: {
+      type: "singleLine",
+      label: "Media Placeholder Text",
+      defaultValue: "Drag & drop interface with real-time preview",
     },
     test: {
       type: "singleLine",

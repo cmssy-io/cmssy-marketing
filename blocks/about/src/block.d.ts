@@ -6,12 +6,15 @@ export interface BlockContent {
   heading: string;
   headingHighlight?: string;
   subtitle?: string;
+  missionHeading?: string;
   missionText?: string;
+  valuesHeading?: string;
   values?: Array<{
     icon?: "sparkles" | "heart" | "users" | "zap" | "globe" | "code" | "shield" | "rocket";
     title: string;
     description?: string;
   }>;
+  techStackHeading?: string;
   showTechStack?: boolean;
   techStack?: Array<{
     name: string;

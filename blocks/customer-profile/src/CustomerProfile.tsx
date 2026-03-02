@@ -122,6 +122,11 @@ export default function CustomerProfile({
   const {
     heading = "Your Profile",
     description = "Manage your account information.",
+    firstNameLabel = "First name",
+    lastNameLabel = "Last name",
+    displayNameLabel = "Display name",
+    displayNameHelpText = "This is how your name will appear publicly",
+    phoneLabel = "Phone number",
     showAvatarUpload = true,
     showPhoneField = true,
     firstNamePlaceholder = "First name",
@@ -129,6 +134,7 @@ export default function CustomerProfile({
     displayNamePlaceholder = "Display name (public)",
     phonePlaceholder = "+1 (555) 123-4567",
     saveButtonText = "Save changes",
+    submitLoadingText = "Saving...",
     showLogoutButton = true,
     logoutButtonText = "Sign out",
     logoutRedirectUrl = "/",
@@ -136,6 +142,7 @@ export default function CustomerProfile({
     errorMessage = "Failed to update profile. Please try again.",
     notLoggedInMessage = "Please log in to view your profile.",
     loginUrl = "/login",
+    loginButtonText = "Sign in",
     variant = "default",
   } = content;
 
@@ -275,7 +282,7 @@ export default function CustomerProfile({
                 href={loginUrl}
                 className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
-                Sign in
+                {loginButtonText}
               </a>
             </div>
           </div>
@@ -368,7 +375,7 @@ export default function CustomerProfile({
                   htmlFor="firstName"
                   className="block text-sm font-medium mb-1.5"
                 >
-                  First name
+                  {firstNameLabel}
                 </label>
                 <input
                   type="text"
@@ -385,7 +392,7 @@ export default function CustomerProfile({
                   htmlFor="lastName"
                   className="block text-sm font-medium mb-1.5"
                 >
-                  Last name
+                  {lastNameLabel}
                 </label>
                 <input
                   type="text"
@@ -405,7 +412,7 @@ export default function CustomerProfile({
                 htmlFor="displayName"
                 className="block text-sm font-medium mb-1.5"
               >
-                Display name
+                {displayNameLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -422,7 +429,7 @@ export default function CustomerProfile({
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-1">
-                This is how your name will appear publicly
+                {displayNameHelpText}
               </p>
             </div>
 
@@ -433,7 +440,7 @@ export default function CustomerProfile({
                   htmlFor="phone"
                   className="block text-sm font-medium mb-1.5"
                 >
-                  Phone number
+                  {phoneLabel}
                 </label>
                 <div className="relative">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -458,7 +465,7 @@ export default function CustomerProfile({
               disabled={isSubmitting}
               className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
             >
-              {isSubmitting ? "Saving..." : saveButtonText}
+              {isSubmitting ? submitLoadingText : saveButtonText}
             </button>
           </form>
 

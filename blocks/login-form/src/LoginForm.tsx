@@ -120,9 +120,12 @@ export default function LoginForm({
   const {
     heading = "Welcome back",
     description = "Sign in to your account to continue.",
+    emailLabel = "Email",
     emailPlaceholder = "you@example.com",
+    passwordLabel = "Password",
     passwordPlaceholder = "Enter your password",
     submitButtonText = "Sign in",
+    submitLoadingText = "Signing in...",
     showRememberMe = true,
     rememberMeLabel = "Remember me",
     showForgotPassword = true,
@@ -278,7 +281,7 @@ export default function LoginForm({
                 htmlFor="email"
                 className="block text-sm font-medium mb-1.5"
               >
-                Email
+                {emailLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -303,7 +306,7 @@ export default function LoginForm({
                 htmlFor="password"
                 className="block text-sm font-medium mb-1.5"
               >
-                Password
+                {passwordLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -365,7 +368,7 @@ export default function LoginForm({
               disabled={isSubmitting || isSuccess}
               className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
             >
-              {isSubmitting ? "Signing in..." : submitButtonText}
+              {isSubmitting ? submitLoadingText : submitButtonText}
             </button>
           </form>
 

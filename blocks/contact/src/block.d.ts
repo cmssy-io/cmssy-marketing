@@ -14,9 +14,15 @@ export interface BlockContent {
   showQuote?: boolean;
   quoteText?: string;
   quoteAuthor?: string;
+  nameLabel?: string;
+  emailLabel?: string;
+  messageLabel?: string;
   /** Select which email configuration to use for notifications */
   emailConfigurationId?: string;
   submitButtonText?: string;
+  submitLoadingText?: string;
+  successHeading?: string;
+  errorMessage?: string;
   successMessage?: string;
   enableAutoResponse?: boolean;
   /** Enter the ID of a published email template for automatic responses */

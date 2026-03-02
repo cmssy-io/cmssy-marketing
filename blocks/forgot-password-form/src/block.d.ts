@@ -4,11 +4,15 @@
 export interface BlockContent {
   heading?: string;
   description?: string;
+  emailLabel?: string;
   emailPlaceholder?: string;
   submitButtonText?: string;
+  submitLoadingText?: string;
   showLoginLink?: boolean;
   loginLinkText?: string;
   loginUrl?: string;
+  successHeading?: string;
+  emailSentText?: string;
   successMessage?: string;
   errorMessage?: string;
   variant?: "default" | "card";

@@ -1,0 +1,16 @@
+{
+  "title": "Terminal",
+  "commands": [
+    {
+      "prompt": "$",
+      "command": "npx @cmssy/cli init my-docs-site",
+      "output": "Creating project in ./my-docs-site...\n\u2713 Scaffolded block project\n\u2713 Installed dependencies\n\u2713 Created cmssy.config.js"
+    },
+    {
+      "prompt": "$",
+      "command": "cd my-docs-site && cmssy dev"
+    }
+  ],
+  "theme": "macos",
+  "showCopyAll": true
+}

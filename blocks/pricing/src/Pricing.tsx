@@ -7,6 +7,7 @@ export default function Pricing({ content }: { content: BlockContent }) {
     heading = "Simple,",
     headingHighlight = "transparent pricing",
     description = "Start free and upgrade as you grow. No hidden fees, no surprises.",
+    popularBadgeText = "MOST POPULAR",
     plans = [],
   } = content;
 
@@ -39,7 +40,7 @@ export default function Pricing({ content }: { content: BlockContent }) {
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-max">
                   <span className="bg-linear-to-r from-amber-400 to-orange-400 text-black text-xs font-bold px-4 py-1 rounded-full">
-                    MOST POPULAR
+                    {popularBadgeText}
                   </span>
                 </div>
               )}

@@ -10,9 +10,12 @@ export default function Hero({ content }: { content: BlockContent }) {
     primaryButtonUrl = "/signup",
     secondaryButtonText = "Watch Demo",
     secondaryButtonUrl = "#demo",
+    socialProofPrefix = "Join",
     socialProofCount = "2,000+",
     socialProofText = "creators already building with cmssy",
     media = "",
+    mediaPlaceholderHeading = "Page Builder Preview",
+    mediaPlaceholderText = "Drag & drop interface with real-time preview",
   } = content;
 
   // Detect if media is a video (by file extension)
@@ -147,7 +150,7 @@ export default function Hero({ content }: { content: BlockContent }) {
             ))}
           </div>
           <p className="text-sm text-muted-foreground">
-            Join{" "}
+            {socialProofPrefix}{" "}
             <span className="font-semibold text-foreground">
               {socialProofCount}
             </span>{" "}
@@ -199,10 +202,10 @@ export default function Hero({ content }: { content: BlockContent }) {
                     </svg>
                   </div>
                   <p className="text-lg font-medium text-muted-foreground">
-                    Page Builder Preview
+                    {mediaPlaceholderHeading}
                   </p>
                   <p className="text-sm text-muted-foreground/60">
-                    Drag & drop interface with real-time preview
+                    {mediaPlaceholderText}
                   </p>
                 </div>
               </div>

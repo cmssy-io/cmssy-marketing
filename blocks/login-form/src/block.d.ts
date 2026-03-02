@@ -4,9 +4,12 @@
 export interface BlockContent {
   heading?: string;
   description?: string;
+  emailLabel?: string;
   emailPlaceholder?: string;
+  passwordLabel?: string;
   passwordPlaceholder?: string;
   submitButtonText?: string;
+  submitLoadingText?: string;
   showRememberMe?: boolean;
   rememberMeLabel?: string;
   showForgotPassword?: boolean;

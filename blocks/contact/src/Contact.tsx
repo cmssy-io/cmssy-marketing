@@ -186,8 +186,14 @@ export default function Contact({
     showQuote = true,
     quoteText = "Building the future of content management, one pixel at a time.",
     quoteAuthor = "The Cmssy Team",
+    nameLabel = "Name",
+    emailLabel = "Email",
+    messageLabel = "Message",
     emailConfigurationId,
     submitButtonText = "Send Message",
+    submitLoadingText = "Sending...",
+    successHeading = "Message Sent!",
+    errorMessage = "Something went wrong. Please try again.",
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
     // Auto-response settings
     enableAutoResponse = false,
@@ -257,12 +263,11 @@ export default function Contact({
           form.reset();
         } else {
           setError(
-            result.data?.submitContactForm?.message ||
-              "Something went wrong. Please try again.",
+            result.data?.submitContactForm?.message || errorMessage,
           );
         }
       } catch {
-        setError("Failed to send message. Please try again.");
+        setError(errorMessage);
       }
 
       setIsSubmitting(false);
@@ -272,6 +277,7 @@ export default function Contact({
       emailConfigurationId,
       enableAutoResponse,
       autoResponseTemplateId,
+      errorMessage,
     ],
   );
 
@@ -373,7 +379,7 @@ export default function Contact({
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                     <SendIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">Message Sent!</h3>
+                  <h3 className="mb-2 text-lg font-semibold">{successHeading}</h3>
                   <p className="text-muted-foreground">{successMessage}</p>
                 </div>
               ) : (
@@ -400,7 +406,7 @@ export default function Contact({
                       htmlFor="name"
                       className="text-sm font-medium leading-none"
                     >
-                      Name
+                      {nameLabel}
                     </label>
                     <input
                       id="name"
@@ -419,7 +425,7 @@ export default function Contact({
                       htmlFor="email"
                       className="text-sm font-medium leading-none"
                     >
-                      Email
+                      {emailLabel}
                     </label>
                     <input
                       id="email"
@@ -438,7 +444,7 @@ export default function Contact({
                       htmlFor="message"
                       className="text-sm font-medium leading-none"
                     >
-                      Message
+                      {messageLabel}
                     </label>
                     <textarea
                       id="message"
@@ -456,7 +462,7 @@ export default function Contact({
                     disabled={isSubmitting}
                     className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
                   >
-                    {isSubmitting ? "Sending..." : submitButtonText}
+                    {isSubmitting ? submitLoadingText : submitButtonText}
                   </button>
                 </form>
               )}

@@ -148,6 +148,12 @@ export default function RegisterForm({
   const {
     heading = "Create an account",
     description = "Sign up to get started with your account.",
+    firstNameLabel = "First name",
+    lastNameLabel = "Last name",
+    emailLabel = "Email",
+    passwordLabel = "Password",
+    confirmPasswordLabel = "Confirm password",
+    passwordHelpText = "Must be at least {min} characters",
     showNameFields = true,
     firstNamePlaceholder = "First name",
     lastNamePlaceholder = "Last name",
@@ -155,7 +161,12 @@ export default function RegisterForm({
     passwordPlaceholder = "Create a password",
     confirmPasswordPlaceholder = "Confirm your password",
     submitButtonText = "Create account",
+    submitLoadingText = "Creating account...",
     minPasswordLength = 8,
+    termsPrefix = "I agree to the",
+    termsLinkText = "Terms of Service",
+    termsConnector = "and",
+    privacyLinkText = "Privacy Policy",
     showTerms = true,
     termsText = "I agree to the Terms of Service and Privacy Policy",
     termsUrl = "/terms",
@@ -164,6 +175,10 @@ export default function RegisterForm({
     loginLinkText = "Already have an account? Sign in",
     loginUrl = "/login",
     redirectAfterRegister = "/verify-email-pending",
+    successHeading = "Check your email",
+    successLoginLinkText = "Go to login",
+    passwordTooShortMessage = "Password must be at least {min} characters.",
+    termsRequiredMessage = "Please accept the terms and conditions.",
     successMessage = "Account created! Please check your email to verify your account.",
     errorMessage = "Something went wrong. Please try again.",
     passwordMismatchMessage = "Passwords do not match.",
@@ -203,14 +218,14 @@ export default function RegisterForm({
 
       // Validate password length
       if (password.length < minPasswordLength) {
-        setError(`Password must be at least ${minPasswordLength} characters.`);
+        setError(passwordTooShortMessage.replace("{min}", String(minPasswordLength)));
         setIsSubmitting(false);
         return;
       }
 
       // Validate terms acceptance
       if (showTerms && !acceptTerms) {
-        setError("Please accept the terms and conditions.");
+        setError(termsRequiredMessage);
         setIsSubmitting(false);
         return;
       }
@@ -278,6 +293,8 @@ export default function RegisterForm({
       redirectAfterRegister,
       errorMessage,
       passwordMismatchMessage,
+      passwordTooShortMessage,
+      termsRequiredMessage,
     ],
   );
 
@@ -304,14 +321,14 @@ export default function RegisterForm({
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50">
                 <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Check your email</h3>
+              <h3 className="text-lg font-semibold mb-2">{successHeading}</h3>
               <p className="text-muted-foreground">{successMessage}</p>
               {showLoginLink && (
                 <a
                   href={loginUrl}
                   className="inline-block mt-4 text-primary hover:underline"
                 >
-                  Go to login
+                  {successLoginLinkText}
                 </a>
               )}
             </div>
@@ -365,7 +382,7 @@ export default function RegisterForm({
                     htmlFor="firstName"
                     className="block text-sm font-medium mb-1.5"
                   >
-                    First name
+                    {firstNameLabel}
                   </label>
                   <div className="relative">
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -386,7 +403,7 @@ export default function RegisterForm({
                     htmlFor="lastName"
                     className="block text-sm font-medium mb-1.5"
                   >
-                    Last name
+                    {lastNameLabel}
                   </label>
                   <input
                     type="text"
@@ -406,7 +423,7 @@ export default function RegisterForm({
                 htmlFor="email"
                 className="block text-sm font-medium mb-1.5"
               >
-                Email
+                {emailLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -430,7 +447,7 @@ export default function RegisterForm({
                 htmlFor="password"
                 className="block text-sm font-medium mb-1.5"
               >
-                Password
+                {passwordLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -459,7 +476,7 @@ export default function RegisterForm({
                 </button>
               </div>
               <p className="text-xs text-muted-foreground mt-1">
-                Must be at least {minPasswordLength} characters
+                {passwordHelpText.replace("{min}", String(minPasswordLength))}
               </p>
             </div>
 
@@ -469,7 +486,7 @@ export default function RegisterForm({
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium mb-1.5"
               >
-                Confirm password
+                {confirmPasswordLabel}
               </label>
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -507,23 +524,23 @@ export default function RegisterForm({
                   className="h-4 w-4 mt-0.5 rounded border-input text-primary focus:ring-ring"
                 />
                 <span className="text-muted-foreground">
-                  I agree to the{" "}
+                  {termsPrefix}{" "}
                   <a
                     href={termsUrl}
                     className="text-primary hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Terms of Service
+                    {termsLinkText}
                   </a>{" "}
-                  and{" "}
+                  {termsConnector}{" "}
                   <a
                     href={privacyUrl}
                     className="text-primary hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Privacy Policy
+                    {privacyLinkText}
                   </a>
                 </span>
               </label>
@@ -535,7 +552,7 @@ export default function RegisterForm({
               disabled={isSubmitting}
               className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-6 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
             >
-              {isSubmitting ? "Creating account..." : submitButtonText}
+              {isSubmitting ? submitLoadingText : submitButtonText}
             </button>
           </form>
 

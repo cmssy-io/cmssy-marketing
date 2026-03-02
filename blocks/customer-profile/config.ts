@@ -20,6 +20,36 @@ export default defineBlock({
     },
 
     // Form settings
+    firstNameLabel: {
+      type: "singleLine",
+      label: "First Name Label",
+      defaultValue: "First name",
+      group: "Form Settings",
+    },
+    lastNameLabel: {
+      type: "singleLine",
+      label: "Last Name Label",
+      defaultValue: "Last name",
+      group: "Form Settings",
+    },
+    displayNameLabel: {
+      type: "singleLine",
+      label: "Display Name Label",
+      defaultValue: "Display name",
+      group: "Form Settings",
+    },
+    displayNameHelpText: {
+      type: "singleLine",
+      label: "Display Name Help Text",
+      defaultValue: "This is how your name will appear publicly",
+      group: "Form Settings",
+    },
+    phoneLabel: {
+      type: "singleLine",
+      label: "Phone Label",
+      defaultValue: "Phone number",
+      group: "Form Settings",
+    },
     showAvatarUpload: {
       type: "boolean",
       label: "Show Avatar Upload",
@@ -60,6 +90,12 @@ export default defineBlock({
       type: "singleLine",
       label: "Save Button Text",
       defaultValue: "Save changes",
+      group: "Form Settings",
+    },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Saving...",
       group: "Form Settings",
     },
 
@@ -106,6 +142,12 @@ export default defineBlock({
       type: "link",
       label: "Login URL",
       defaultValue: "/login",
+      group: "Messages",
+    },
+    loginButtonText: {
+      type: "singleLine",
+      label: "Login Button Text",
+      defaultValue: "Sign in",
       group: "Messages",
     },
 

@@ -4,6 +4,13 @@
 export interface BlockContent {
   heading?: string;
   description?: string;
+  firstNameLabel?: string;
+  lastNameLabel?: string;
+  emailLabel?: string;
+  passwordLabel?: string;
+  confirmPasswordLabel?: string;
+  /** Use {min} for minimum length */
+  passwordHelpText?: string;
   showNameFields?: boolean;
   firstNamePlaceholder?: string;
   lastNamePlaceholder?: string;
@@ -11,7 +18,12 @@ export interface BlockContent {
   passwordPlaceholder?: string;
   confirmPasswordPlaceholder?: string;
   submitButtonText?: string;
+  submitLoadingText?: string;
   minPasswordLength?: number;
+  termsPrefix?: string;
+  termsLinkText?: string;
+  termsConnector?: string;
+  privacyLinkText?: string;
   showTerms?: boolean;
   termsText?: string;
   termsUrl?: string;
@@ -20,6 +32,11 @@ export interface BlockContent {
   loginLinkText?: string;
   loginUrl?: string;
   redirectAfterRegister?: string;
+  successHeading?: string;
+  successLoginLinkText?: string;
+  /** Use {min} for minimum length */
+  passwordTooShortMessage?: string;
+  termsRequiredMessage?: string;
   successMessage?: string;
   errorMessage?: string;
   passwordMismatchMessage?: string;

@@ -51,6 +51,7 @@ export default function Header({ content, context }: HeaderProps) {
     announcementBg = "#7c3aed",
     announcementTextColor = "#ffffff",
     announcementDismissible = true,
+    logoutButtonText = "Log out",
   } = content;
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -234,7 +235,7 @@ export default function Header({ content, context }: HeaderProps) {
                     onClick={handleLogout}
                     className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    Log out
+                    {logoutButtonText}
                   </button>
                 </div>
               ) : (
@@ -345,7 +346,7 @@ export default function Header({ content, context }: HeaderProps) {
                     onClick={handleLogout}
                     className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    Log out
+                    {logoutButtonText}
                   </button>
                 </div>
               ) : (

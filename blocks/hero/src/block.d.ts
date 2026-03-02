@@ -10,8 +10,11 @@ export interface BlockContent {
   primaryButtonUrl?: string;
   secondaryButtonText?: string;
   secondaryButtonUrl?: string;
+  socialProofPrefix?: string;
   socialProofCount?: string;
   socialProofText?: string;
   media?: string;
+  mediaPlaceholderHeading?: string;
+  mediaPlaceholderText?: string;
   test?: string;
 }

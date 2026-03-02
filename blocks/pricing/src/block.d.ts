@@ -6,6 +6,7 @@ export interface BlockContent {
   headingHighlight?: string;
   description?: string;
   trialNotice?: string;
+  popularBadgeText?: string;
   plans?: Array<{
     name: string;
     description?: string;

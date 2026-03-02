@@ -32,6 +32,12 @@ export default defineBlock({
     },
 
     // Mission
+    missionHeading: {
+      type: "singleLine",
+      label: "Mission Heading",
+      defaultValue: "Our Mission",
+      group: "Mission",
+    },
     missionText: {
       type: "multiLine",
       label: "Mission Text",
@@ -41,6 +47,12 @@ export default defineBlock({
     },
 
     // Values
+    valuesHeading: {
+      type: "singleLine",
+      label: "Values Heading",
+      defaultValue: "Our Values",
+      group: "Values",
+    },
     values: {
       type: "repeater",
       label: "Values",
@@ -74,6 +86,12 @@ export default defineBlock({
     },
 
     // Tech Stack
+    techStackHeading: {
+      type: "singleLine",
+      label: "Tech Stack Heading",
+      defaultValue: "Built With Modern Tech",
+      group: "Tech Stack",
+    },
     showTechStack: {
       type: "boolean",
       label: "Show Tech Stack",

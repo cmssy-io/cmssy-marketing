@@ -97,6 +97,24 @@ export default defineBlock({
     },
 
     // Form settings
+    nameLabel: {
+      type: "singleLine",
+      label: "Name Label",
+      defaultValue: "Name",
+      group: "Form Settings",
+    },
+    emailLabel: {
+      type: "singleLine",
+      label: "Email Label",
+      defaultValue: "Email",
+      group: "Form Settings",
+    },
+    messageLabel: {
+      type: "singleLine",
+      label: "Message Label",
+      defaultValue: "Message",
+      group: "Form Settings",
+    },
     emailConfigurationId: {
       type: "emailConfiguration",
       label: "Email Configuration",
@@ -107,6 +125,24 @@ export default defineBlock({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Send Message",
+      group: "Form Settings",
+    },
+    submitLoadingText: {
+      type: "singleLine",
+      label: "Submit Loading Text",
+      defaultValue: "Sending...",
+      group: "Form Settings",
+    },
+    successHeading: {
+      type: "singleLine",
+      label: "Success Heading",
+      defaultValue: "Message Sent!",
+      group: "Form Settings",
+    },
+    errorMessage: {
+      type: "singleLine",
+      label: "Error Message",
+      defaultValue: "Something went wrong. Please try again.",
       group: "Form Settings",
     },
     successMessage: {

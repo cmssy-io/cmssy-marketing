@@ -8,9 +8,11 @@ export interface BlockContent {
   namePlaceholder?: string;
   emailPlaceholder?: string;
   submitButtonText?: string;
+  submitLoadingText?: string;
   tags?: Array<{
     tag?: string;
   }>;
+  successHeading?: string;
   successMessage?: string;
   errorMessage?: string;
   variant?: "inline" | "stacked" | "card";

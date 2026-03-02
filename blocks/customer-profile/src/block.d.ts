@@ -4,6 +4,11 @@
 export interface BlockContent {
   heading?: string;
   description?: string;
+  firstNameLabel?: string;
+  lastNameLabel?: string;
+  displayNameLabel?: string;
+  displayNameHelpText?: string;
+  phoneLabel?: string;
   showAvatarUpload?: boolean;
   showPhoneField?: boolean;
   firstNamePlaceholder?: string;
@@ -11,6 +16,7 @@ export interface BlockContent {
   displayNamePlaceholder?: string;
   phonePlaceholder?: string;
   saveButtonText?: string;
+  submitLoadingText?: string;
   showLogoutButton?: boolean;
   logoutButtonText?: string;
   logoutRedirectUrl?: string;
@@ -18,5 +24,6 @@ export interface BlockContent {
   errorMessage?: string;
   notLoggedInMessage?: string;
   loginUrl?: string;
+  loginButtonText?: string;
   variant?: "default" | "card";
 }
