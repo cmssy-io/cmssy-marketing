@@ -1,7 +1,7 @@
 "use client";
+import type { PlatformContext } from "@cmssy/cli/config";
 import React, { FormEvent, useCallback, useState } from "react";
 import { BlockContent } from "./block";
-import type { PlatformContext } from "@cmssy/cli/config";
 
 // Icons as inline SVG components
 function MailIcon({ className }: { className?: string }) {
@@ -279,8 +279,8 @@ export default function Contact({
     <section className="relative min-h-screen py-24 lg:py-32">
       {/* Background */}
       <div className="absolute inset-0 bg-linear-to-br from-violet-50 via-background to-purple-50 dark:from-violet-950/20 dark:via-background dark:to-purple-950/20" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-400/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-400/20 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-violet-400/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-100 h-100 bg-purple-400/20 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -446,7 +446,7 @@ export default function Contact({
                       required
                       rows={5}
                       placeholder="How can we help you?"
-                      className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     />
                   </div>
 
