@@ -19,8 +19,8 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@cmssy/cli": "^0.5.4",
-    "@cmssy/types": "0.5.1",
+    "@cmssy/cli": "^0.5.5",
+    "@cmssy/types": "^0.5.2",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
