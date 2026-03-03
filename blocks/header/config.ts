@@ -65,12 +65,53 @@ export default defineBlock({
         url: {
           type: "link",
           label: "URL",
-          required: true,
         },
         openInNewTab: {
           type: "boolean",
           label: "Open in new tab",
           defaultValue: false,
+        },
+        columns: {
+          type: "select",
+          label: "Dropdown Columns",
+          defaultValue: "none",
+          options: [
+            { value: "none", label: "No dropdown (plain link)" },
+            { value: "1", label: "1 column" },
+            { value: "2", label: "2 columns" },
+            { value: "3", label: "3 columns" },
+          ],
+        },
+        children: {
+          type: "repeater",
+          label: "Dropdown Links",
+          showWhen: { field: "columns", notEquals: "none" },
+          schema: {
+            label: {
+              type: "singleLine",
+              label: "Label",
+              required: true,
+            },
+            description: {
+              type: "singleLine",
+              label: "Description",
+            },
+            url: {
+              type: "link",
+              label: "URL",
+              required: true,
+            },
+            icon: {
+              type: "singleLine",
+              label: "Lucide Icon Name",
+              placeholder: "e.g. Zap, BookOpen, Code",
+            },
+            openInNewTab: {
+              type: "boolean",
+              label: "Open in new tab",
+              defaultValue: false,
+            },
+          },
         },
       },
     },
@@ -157,6 +198,12 @@ export default defineBlock({
       type: "singleLine",
       label: "Logout Button Text",
       defaultValue: "Log out",
+      group: "behavior",
+    },
+    showLanguageSwitcher: {
+      type: "boolean",
+      label: "Show Language Switcher",
+      defaultValue: false,
       group: "behavior",
     },
 

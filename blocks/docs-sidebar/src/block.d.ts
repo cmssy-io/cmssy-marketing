@@ -14,5 +14,6 @@ export interface BlockContent {
   showVersionSelector?: boolean;
   currentVersion?: string;
   githubUrl?: string;
-  discordUrl?: string;
+  slackUrl?: string;
+  showLanguageSwitcher?: boolean;
 }

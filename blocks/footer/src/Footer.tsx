@@ -1,7 +1,25 @@
+"use client";
+
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { Container } from "../../../components/container";
+import { LanguageSwitcher } from "../../../components/language-switcher";
 import { BlockContent } from "./block";
 
-export default function Footer({ content }: { content: BlockContent }) {
+interface PlatformContext {
+  i18n?: {
+    enabledLanguages: string[];
+    defaultLanguage: string;
+    currentLanguage: string;
+  };
+}
+
+export default function Footer({
+  content,
+  context,
+}: {
+  content: BlockContent;
+  context?: PlatformContext;
+}) {
   const {
     logo,
     logoText = "cmssy",
@@ -12,13 +30,18 @@ export default function Footer({ content }: { content: BlockContent }) {
     githubUrl,
     linkedinUrl,
     copyrightText = "cmssy. All rights reserved.",
+    showLanguageSwitcher = false,
   } = content;
+
+  const i18n = context?.i18n;
+  const hasLanguageSwitcher =
+    showLanguageSwitcher && i18n && i18n.enabledLanguages.length > 1;
 
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-t bg-slate-50/50 dark:bg-slate-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <Container className="py-16">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-3 md:col-span-1 lg:col-span-2">
@@ -96,12 +119,20 @@ export default function Footer({ content }: { content: BlockContent }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t">
-          <p className="text-sm text-muted-foreground text-center">
+        <div className={`mt-12 pt-8 border-t ${hasLanguageSwitcher ? "flex items-center justify-between" : ""}`}>
+          <p className={`text-sm text-muted-foreground ${hasLanguageSwitcher ? "" : "text-center"}`}>
             © {currentYear} {copyrightText}
           </p>
+          {hasLanguageSwitcher && (
+            <LanguageSwitcher
+              enabledLanguages={i18n.enabledLanguages}
+              defaultLanguage={i18n.defaultLanguage}
+              currentLanguage={i18n.currentLanguage}
+              variant="full"
+            />
+          )}
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

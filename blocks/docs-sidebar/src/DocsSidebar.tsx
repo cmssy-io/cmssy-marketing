@@ -8,7 +8,16 @@ import {
   X,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { LanguageSwitcher } from "../../../components/language-switcher";
 import { BlockContent } from "./block";
+
+interface PlatformContext {
+  i18n?: {
+    enabledLanguages: string[];
+    defaultLanguage: string;
+    currentLanguage: string;
+  };
+}
 
 function formatSlugAsLabel(slug: string): string {
   const clean = slug.replace(/^\//, "");
@@ -28,9 +37,6 @@ function getCurrentPageLabel(
     for (const slug of section.pages || []) {
       if (slug === currentPath) return formatSlugAsLabel(slug);
     }
-    for (const item of (section as any).items || []) {
-      if (item.url === currentPath) return item.label;
-    }
   }
   return "Documentation";
 }
@@ -46,7 +52,9 @@ function SidebarContent({
   showVersionSelector,
   currentVersion,
   githubUrl,
-  discordUrl,
+  slackUrl,
+  hasLanguageSwitcher,
+  i18n,
   currentPath,
   onNavigate,
 }: {
@@ -59,7 +67,9 @@ function SidebarContent({
   showVersionSelector: boolean;
   currentVersion: string;
   githubUrl?: string;
-  discordUrl?: string;
+  slackUrl?: string;
+  hasLanguageSwitcher: boolean;
+  i18n?: PlatformContext["i18n"];
   currentPath: string;
   onNavigate?: () => void;
 }) {
@@ -150,21 +160,9 @@ function SidebarContent({
 
         {sections?.map((section, si) => {
           const pages = section.pages || [];
-          const legacyItems = (section as any).items || [];
-          const allItems: { label: string; slug: string; isNew?: boolean }[] = [
-            ...pages.map((slug: string) => ({
-              label: formatSlugAsLabel(slug),
-              slug,
-            })),
-            ...legacyItems.map((item: any) => ({
-              label: item.label,
-              slug: item.url,
-              isNew: item.isNew,
-            })),
-          ];
 
-          const filtered = allItems.filter((item) =>
-            matchesSearch(item.label, item.slug),
+          const filtered = pages.filter((slug) =>
+            matchesSearch(formatSlugAsLabel(slug), slug),
           );
           if (filtered.length === 0 && searchQuery) return null;
 
@@ -174,12 +172,12 @@ function SidebarContent({
                 {section.title}
               </h3>
               <ul className="space-y-px">
-                {filtered.map((item, ii) => {
-                  const isActive = currentPath === item.slug;
+                {filtered.map((slug) => {
+                  const isActive = currentPath === slug;
                   return (
-                    <li key={ii}>
+                    <li key={slug}>
                       <a
-                        href={item.slug}
+                        href={slug}
                         onClick={onNavigate}
                         className={`group relative flex items-center gap-2 pl-3 pr-2 py-1.5 text-[13px] rounded-md transition-all duration-150 no-underline ${
                           isActive
@@ -189,18 +187,15 @@ function SidebarContent({
                       >
                         {/* Active indicator bar */}
                         <span
-                          className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-200 ${
+                          className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.75 rounded-full transition-all duration-200 ${
                             isActive
                               ? "h-4 bg-primary opacity-100"
                               : "h-0 bg-primary opacity-0 group-hover:h-2 group-hover:opacity-40"
                           }`}
                         />
-                        <span className="truncate">{item.label}</span>
-                        {item.isNew && (
-                          <span className="ml-auto shrink-0 text-[9px] font-bold uppercase tracking-wider bg-violet-500 text-white px-1.5 py-px rounded">
-                            new
-                          </span>
-                        )}
+                        <span className="truncate">
+                          {formatSlugAsLabel(slug)}
+                        </span>
                       </a>
                     </li>
                   );
@@ -210,33 +205,22 @@ function SidebarContent({
           );
         })}
 
-        {searchQuery && (
-          <div className="text-center py-6">
-            <p className="text-xs text-muted-foreground/50">
-              {sections?.every((s) => {
-                const all = [
-                  ...(s.pages || []).map((slug: string) => ({
-                    label: formatSlugAsLabel(slug),
-                    slug,
-                  })),
-                  ...((s as any).items || []).map((i: any) => ({
-                    label: i.label,
-                    slug: i.url,
-                  })),
-                ];
-                return all.every(
-                  (item) => !matchesSearch(item.label, item.slug),
-                );
-              })
-                ? `No results for "${searchQuery}"`
-                : ""}
-            </p>
-          </div>
-        )}
+        {searchQuery &&
+          sections?.every((s) =>
+            (s.pages || []).every(
+              (slug) => !matchesSearch(formatSlugAsLabel(slug), slug),
+            ),
+          ) && (
+            <div className="text-center py-6">
+              <p className="text-xs text-muted-foreground/50">
+                No results for &ldquo;{searchQuery}&rdquo;
+              </p>
+            </div>
+          )}
       </nav>
 
-      {/* Footer links */}
-      {(githubUrl || discordUrl) && (
+      {/* Footer links + Language Switcher */}
+      {(githubUrl || slackUrl || hasLanguageSwitcher) && (
         <div className="px-4 py-3 border-t border-border flex items-center gap-1 shrink-0">
           {githubUrl && (
             <a
@@ -250,17 +234,26 @@ function SidebarContent({
               <ExternalLink className="size-2.5 opacity-40" />
             </a>
           )}
-          {discordUrl && (
+          {slackUrl && (
             <a
-              href={discordUrl}
+              href={slackUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors no-underline"
             >
               <MessageCircle className="size-3.5" />
-              <span>Discord</span>
+              <span>Slack</span>
               <ExternalLink className="size-2.5 opacity-40" />
             </a>
+          )}
+          {hasLanguageSwitcher && i18n && (
+            <LanguageSwitcher
+              enabledLanguages={i18n.enabledLanguages}
+              defaultLanguage={i18n.defaultLanguage}
+              currentLanguage={i18n.currentLanguage}
+              variant="compact"
+              className="ml-auto"
+            />
           )}
         </div>
       )}
@@ -268,7 +261,13 @@ function SidebarContent({
   );
 }
 
-export default function DocsSidebar({ content }: { content: BlockContent }) {
+export default function DocsSidebar({
+  content,
+  context,
+}: {
+  content: BlockContent;
+  context?: PlatformContext;
+}) {
   const {
     logo,
     logoText = "Docs",
@@ -279,8 +278,13 @@ export default function DocsSidebar({ content }: { content: BlockContent }) {
     showVersionSelector = false,
     currentVersion = "v1.0",
     githubUrl,
-    discordUrl,
+    slackUrl,
+    showLanguageSwitcher = false,
   } = content;
+
+  const i18n = context?.i18n;
+  const hasLanguageSwitcher =
+    showLanguageSwitcher && !!i18n && i18n.enabledLanguages.length > 1;
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const currentPath =
@@ -307,7 +311,9 @@ export default function DocsSidebar({ content }: { content: BlockContent }) {
     showVersionSelector,
     currentVersion,
     githubUrl,
-    discordUrl,
+    slackUrl,
+    hasLanguageSwitcher,
+    i18n,
     currentPath,
   };
 
@@ -343,7 +349,7 @@ export default function DocsSidebar({ content }: { content: BlockContent }) {
             aria-hidden="true"
           />
           {/* Drawer panel */}
-          <div className="relative flex flex-col w-[280px] max-w-[85vw] h-full bg-background shadow-xl animate-in slide-in-from-left duration-200">
+          <div className="relative flex flex-col w-70 max-w-[85vw] h-full bg-background shadow-xl animate-in slide-in-from-left duration-200">
             {/* Close button */}
             <button
               type="button"

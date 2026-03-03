@@ -87,5 +87,11 @@ export default defineBlock({
       defaultValue: "cmssy. All rights reserved.",
       group: "legal",
     },
+    showLanguageSwitcher: {
+      type: "boolean",
+      label: "Show Language Switcher",
+      defaultValue: false,
+      group: "legal",
+    },
   },
 });

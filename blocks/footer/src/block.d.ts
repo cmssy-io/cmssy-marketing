@@ -17,4 +17,5 @@ export interface BlockContent {
   githubUrl?: string;
   linkedinUrl?: string;
   copyrightText?: string;
+  showLanguageSwitcher?: boolean;
 }

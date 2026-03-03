@@ -78,10 +78,16 @@ export default defineBlock({
       label: "GitHub URL",
       group: "links",
     },
-    discordUrl: {
+    slackUrl: {
       type: "link",
-      label: "Discord URL",
+      label: "Slack URL",
       group: "links",
+    },
+    showLanguageSwitcher: {
+      type: "boolean",
+      label: "Show Language Switcher",
+      defaultValue: false,
+      group: "features",
     },
   },
 });

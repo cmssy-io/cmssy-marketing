@@ -7,8 +7,16 @@ export interface BlockContent {
   logoSize?: "sm" | "md" | "lg";
   navigation?: Array<{
     label: string;
-    url: string;
+    url?: string;
     openInNewTab?: boolean;
+    columns?: "none" | "1" | "2" | "3";
+    children?: Array<{
+      label: string;
+      description?: string;
+      url: string;
+      icon?: string;
+      openInNewTab?: boolean;
+    }>;
   }>;
   showCta?: boolean;
   ctaLabel?: string;
@@ -27,4 +35,5 @@ export interface BlockContent {
   announcementBg?: string;
   announcementTextColor?: string;
   announcementDismissible?: boolean;
+  showLanguageSwitcher?: boolean;
 }

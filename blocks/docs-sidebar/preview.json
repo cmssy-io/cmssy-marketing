@@ -4,73 +4,15 @@
   "sections": [
     {
       "title": "Getting Started",
-      "items": [
-        {
-          "label": "Introduction",
-          "url": "/docs",
-          "isNew": false
-        },
-        {
-          "label": "Quick Start",
-          "url": "/docs/quick-start",
-          "isNew": false
-        },
-        {
-          "label": "Installation",
-          "url": "/docs/installation",
-          "isNew": false
-        }
-      ]
+      "pages": ["/docs", "/docs/quick-start", "/docs/installation"]
     },
     {
       "title": "CLI Reference",
-      "items": [
-        {
-          "label": "Overview",
-          "url": "/docs/cli",
-          "isNew": false
-        },
-        {
-          "label": "cmssy init",
-          "url": "/docs/cli/init",
-          "isNew": false
-        },
-        {
-          "label": "cmssy dev",
-          "url": "/docs/cli/dev",
-          "isNew": false
-        },
-        {
-          "label": "cmssy build",
-          "url": "/docs/cli/build",
-          "isNew": false
-        },
-        {
-          "label": "cmssy publish",
-          "url": "/docs/cli/publish",
-          "isNew": true
-        }
-      ]
+      "pages": ["/docs/cli", "/docs/cli/init", "/docs/cli/dev", "/docs/cli/build", "/docs/cli/publish"]
     },
     {
       "title": "Blocks",
-      "items": [
-        {
-          "label": "Creating Blocks",
-          "url": "/docs/blocks/creating",
-          "isNew": false
-        },
-        {
-          "label": "Block Schema",
-          "url": "/docs/blocks/schema",
-          "isNew": false
-        },
-        {
-          "label": "Field Types",
-          "url": "/docs/blocks/field-types",
-          "isNew": false
-        }
-      ]
+      "pages": ["/docs/blocks/creating", "/docs/blocks/schema", "/docs/blocks/field-types"]
     }
   ],
   "showSearch": true,
@@ -78,6 +20,7 @@
   "showVersionSelector": true,
   "currentVersion": "v0.24",
   "githubUrl": "https://github.com/cmssy-io/cmssy-cli",
-  "discordUrl": "https://discord.gg/cmssy",
+  "slackUrl": "https://cmssy.slack.com",
+  "showLanguageSwitcher": true,
   "logo": "https://images.unsplash.com/photo-1761839256951-10c4468c3621?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 }
