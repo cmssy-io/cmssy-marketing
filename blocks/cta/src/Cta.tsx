@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function Cta({ content }: { content: BlockContent }) {
@@ -16,7 +17,7 @@ export default function Cta({ content }: { content: BlockContent }) {
 
   return (
     <section className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         <div className="relative rounded-3xl overflow-hidden">
           <div className="absolute inset-0 bg-linear-to-br from-violet-600 via-purple-600 to-violet-700" />
 
@@ -60,7 +61,10 @@ export default function Cta({ content }: { content: BlockContent }) {
                   asChild
                   className="bg-white text-violet-600 hover:bg-violet-50 text-lg px-8 h-14 shadow-lg"
                 >
-                  <a href={primaryButtonUrl} className="flex items-center gap-2">
+                  <a
+                    href={primaryButtonUrl}
+                    className="flex items-center gap-2"
+                  >
                     {primaryButtonText}
                     <ArrowRight className="w-5 h-5" />
                   </a>
@@ -79,7 +83,7 @@ export default function Cta({ content }: { content: BlockContent }) {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

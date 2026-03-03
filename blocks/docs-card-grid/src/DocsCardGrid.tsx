@@ -1,5 +1,6 @@
 import * as Icons from "lucide-react";
 import { ArrowRight, LucideIcon } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 // Dynamic icon lookup
@@ -10,12 +11,7 @@ function getIcon(name?: string): LucideIcon {
 }
 
 export default function DocsCardGrid({ content }: { content: BlockContent }) {
-  const {
-    heading,
-    description,
-    columns = "3",
-    cards = [],
-  } = content;
+  const { heading, description, columns = "3", cards = [] } = content;
 
   const gridCols = {
     "2": "md:grid-cols-2",
@@ -24,19 +20,19 @@ export default function DocsCardGrid({ content }: { content: BlockContent }) {
   };
 
   return (
-    <section className="container py-12">
+    <Container as="section" className="py-6">
       {(heading || description) && (
         <div className="mb-8">
-          {heading && (
-            <h2 className="text-2xl font-bold mb-2">{heading}</h2>
-          )}
+          {heading && <h2 className="text-2xl font-bold mb-2">{heading}</h2>}
           {description && (
             <p className="text-muted-foreground">{description}</p>
           )}
         </div>
       )}
 
-      <div className={`grid gap-4 ${gridCols[columns as keyof typeof gridCols]}`}>
+      <div
+        className={`grid gap-4 ${gridCols[columns as keyof typeof gridCols]}`}
+      >
         {cards.map((card, index) => {
           const Icon = getIcon(card.icon);
 
@@ -70,6 +66,6 @@ export default function DocsCardGrid({ content }: { content: BlockContent }) {
           );
         })}
       </div>
-    </section>
+    </Container>
   );
 }

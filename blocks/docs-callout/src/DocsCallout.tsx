@@ -1,4 +1,11 @@
-import { Info, Lightbulb, AlertTriangle, AlertCircle, FileText } from "lucide-react";
+import {
+  Info,
+  Lightbulb,
+  AlertTriangle,
+  AlertCircle,
+  FileText,
+} from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 const calloutConfig = {
@@ -42,34 +49,37 @@ const calloutConfig = {
 export default function DocsCallout({ content }: { content: BlockContent }) {
   const { type = "info", title, content: calloutContent = "" } = content;
 
-  const config = calloutConfig[type as keyof typeof calloutConfig] || calloutConfig.info;
+  const config =
+    calloutConfig[type as keyof typeof calloutConfig] || calloutConfig.info;
   const Icon = config.icon;
 
   return (
-    <div className="container">
-    <div
-      className={`
-        rounded-lg border p-4 my-6
+    <Container className="py-6">
+      <div
+        className={`
+        rounded-lg border p-4
         ${config.bg} ${config.border}
       `}
-    >
-      <div className="flex gap-3">
-        <Icon className={`h-5 w-5 mt-0.5 shrink-0 ${config.iconColor}`} />
-        <div className="flex-1 min-w-0">
-          {title && (
-            <h5 className={`font-semibold mb-1 ${config.titleColor}`}>{title}</h5>
-          )}
-          <div
-            className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground
+      >
+        <div className="flex gap-3">
+          <Icon className={`h-5 w-5 mt-0.5 shrink-0 ${config.iconColor}`} />
+          <div className="flex-1 min-w-0">
+            {title && (
+              <h5 className={`font-semibold mb-1 ${config.titleColor}`}>
+                {title}
+              </h5>
+            )}
+            <div
+              className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground
               prose-p:my-1 prose-p:leading-relaxed
               prose-code:bg-white/50 dark:prose-code:bg-black/20 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs
               prose-a:text-inherit prose-a:underline
             "
-            dangerouslySetInnerHTML={{ __html: calloutContent }}
-          />
+              dangerouslySetInnerHTML={{ __html: calloutContent }}
+            />
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+    </Container>
   );
 }

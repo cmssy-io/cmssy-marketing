@@ -1,4 +1,5 @@
 import { Calendar, ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 import { TocSidebar } from "./TocSidebar";
 
@@ -64,7 +65,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
   const next = nextPage[0];
 
   return (
-    <div className="container flex gap-8 py-8 lg:py-12">
+    <Container className="py-6 flex gap-8 lg:py-12">
       {/* Main Content */}
       <article className="flex-1 min-w-0">
         {/* Header */}
@@ -150,6 +151,6 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
       {showToc && tocItems.length > 0 && (
         <TocSidebar items={tocItems} title={tocTitle} />
       )}
-    </div>
+    </Container>
   );
 }

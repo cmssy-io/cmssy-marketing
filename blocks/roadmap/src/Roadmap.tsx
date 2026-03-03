@@ -6,6 +6,7 @@ import {
   Lightbulb,
   MessageSquare,
 } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 const statusConfig = {
@@ -51,7 +52,7 @@ export default function Roadmap({ content }: { content: BlockContent }) {
 
   return (
     <section className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         {/* Header */}
         <div className="text-center mb-16">
           {badge && (
@@ -136,7 +137,7 @@ export default function Roadmap({ content }: { content: BlockContent }) {
             </div>
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

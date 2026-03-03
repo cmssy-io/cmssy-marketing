@@ -1,3 +1,4 @@
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 // Icon components
@@ -189,7 +190,7 @@ export default function About({ content }: { content: BlockContent }) {
       <div className="absolute top-0 right-0 w-125 h-125 bg-violet-400/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-100 h-100 bg-purple-400/20 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container className="relative">
         {/* Header */}
         <div className="text-center mb-16">
           {badgeText && (
@@ -228,7 +229,9 @@ export default function About({ content }: { content: BlockContent }) {
         {/* Values Grid */}
         {(values as Value[]).length > 0 && (
           <div className="mb-20">
-            <h2 className="text-2xl font-bold text-center mb-10">{valuesHeading}</h2>
+            <h2 className="text-2xl font-bold text-center mb-10">
+              {valuesHeading}
+            </h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {(values as Value[]).map((value, index) => {
                 const IconComponent = iconMap[value.icon] || SparklesIcon;
@@ -283,7 +286,7 @@ export default function About({ content }: { content: BlockContent }) {
             </div>
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function Pricing({ content }: { content: BlockContent }) {
@@ -13,7 +14,7 @@ export default function Pricing({ content }: { content: BlockContent }) {
 
   return (
     <section id="pricing" className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -89,7 +90,7 @@ export default function Pricing({ content }: { content: BlockContent }) {
                         {feature.feature}
                       </span>
                     </li>
-                  )
+                  ),
                 )}
               </ul>
 
@@ -114,7 +115,7 @@ export default function Pricing({ content }: { content: BlockContent }) {
             {content.trialNotice}
           </p>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

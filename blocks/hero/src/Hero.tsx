@@ -1,3 +1,4 @@
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function Hero({ content }: { content: BlockContent }) {
@@ -45,7 +46,7 @@ export default function Hero({ content }: { content: BlockContent }) {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+      <Container className="relative py-32 text-center">
         {/* Badge */}
         {badgeText && (
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium mb-8">
@@ -212,7 +213,7 @@ export default function Hero({ content }: { content: BlockContent }) {
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

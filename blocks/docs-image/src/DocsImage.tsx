@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ZoomIn, X } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function DocsImage({ content }: { content: BlockContent }) {
@@ -50,7 +51,7 @@ export default function DocsImage({ content }: { content: BlockContent }) {
     .join(" ");
 
   return (
-    <figure className="container my-6">
+    <Container as="figure" className="py-6">
       <div className={`mx-auto ${widthClasses[width]}`}>
         {/* Image with zoom hint */}
         <div className="relative group">
@@ -98,6 +99,6 @@ export default function DocsImage({ content }: { content: BlockContent }) {
           />
         </div>
       )}
-    </figure>
+    </Container>
   );
 }

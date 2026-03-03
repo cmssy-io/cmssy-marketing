@@ -1957,7 +1957,107 @@ export default defineTemplate({
   ],
 
   layoutPositions: [
-    { position: "header", type: "header", content: {} },
+    {
+      position: "header",
+      type: "header",
+      content: {
+        logoText: "cmssy",
+        logoSize: "md",
+        navigation: [
+          {
+            label: "Product",
+            columns: "3",
+            children: [
+              {
+                label: "Headless CMS",
+                description: "Content management with full API access",
+                url: "/features",
+                icon: "Database",
+              },
+              {
+                label: "Page Builder",
+                description: "Drag-and-drop visual editor for pages",
+                url: "/features",
+                icon: "LayoutGrid",
+              },
+              {
+                label: "Media Library",
+                description: "Organize and optimize all your assets",
+                url: "/features",
+                icon: "Image",
+              },
+              {
+                label: "Templates",
+                description: "Pre-built designs to get started fast",
+                url: "/features",
+                icon: "Palette",
+              },
+              {
+                label: "Custom Domains",
+                description: "Launch on your own domain in minutes",
+                url: "/features",
+                icon: "Globe",
+              },
+              {
+                label: "Analytics",
+                description: "Track performance across all pages",
+                url: "/features",
+                icon: "BarChart3",
+              },
+            ],
+          },
+          {
+            label: "Pricing",
+            url: "/pricing",
+            columns: "none",
+          },
+          {
+            label: "Developers",
+            columns: "2",
+            children: [
+              {
+                label: "Documentation",
+                description: "Guides and references for the platform",
+                url: "/docs",
+                icon: "BookOpen",
+              },
+              {
+                label: "API Reference",
+                description: "Complete REST and GraphQL API docs",
+                url: "/docs/api-overview",
+                icon: "Code",
+              },
+              {
+                label: "CLI Tools",
+                description: "Command-line tools for block development",
+                url: "/docs/installation",
+                icon: "Terminal",
+              },
+              {
+                label: "Community",
+                description: "Join the developer community",
+                url: "/about",
+                icon: "Users",
+              },
+            ],
+          },
+          {
+            label: "Blog",
+            url: "/changelog",
+            columns: "none",
+          },
+        ],
+        showCta: true,
+        ctaLabel: "Get Started",
+        ctaUrl: "/signup",
+        ctaStyle: "primary",
+        showSecondaryCta: true,
+        secondaryCtaLabel: "Login",
+        secondaryCtaUrl: "/login",
+        secondaryCtaStyle: "ghost",
+        sticky: true,
+      },
+    },
     { position: "footer", type: "footer", content: {} },
   ],
 

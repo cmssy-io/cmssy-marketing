@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function DocsTerminal({ content }: { content: BlockContent }) {
@@ -16,7 +17,7 @@ export default function DocsTerminal({ content }: { content: BlockContent }) {
   };
 
   return (
-    <div className="container my-6">
+    <Container className="py-6">
       <div className="rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shadow-lg">
         {/* Title bar */}
         <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-900 border-b border-zinc-800">
@@ -79,6 +80,6 @@ export default function DocsTerminal({ content }: { content: BlockContent }) {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

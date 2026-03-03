@@ -1,3 +1,4 @@
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function DocsPropsTable({ content }: { content: BlockContent }) {
@@ -12,7 +13,7 @@ export default function DocsPropsTable({ content }: { content: BlockContent }) {
   if (props.length === 0) return null;
 
   return (
-    <section className="container my-6">
+    <Container as="section" className="py-6">
       {(title || description) && (
         <div className="mb-4">
           {title && (
@@ -85,6 +86,6 @@ export default function DocsPropsTable({ content }: { content: BlockContent }) {
           </tbody>
         </table>
       </div>
-    </section>
+    </Container>
   );
 }

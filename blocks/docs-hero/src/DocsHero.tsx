@@ -1,6 +1,7 @@
 import * as Icons from "lucide-react";
 import { ArrowRight, LucideIcon, Search } from "lucide-react";
 import { useState } from "react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 function getIcon(name?: string): LucideIcon {
@@ -43,7 +44,7 @@ export default function DocsHero({ content }: { content: BlockContent }) {
         />
       )}
 
-      <div className="container relative py-16 lg:py-24">
+      <Container className="relative py-16 lg:py-24">
         <div className="max-w-3xl mx-auto text-center">
           {/* Badge */}
           {badge && (
@@ -132,7 +133,7 @@ export default function DocsHero({ content }: { content: BlockContent }) {
             })}
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

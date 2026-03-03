@@ -209,6 +209,10 @@ export default function Header({ content, context }: HeaderProps) {
   const i18n = context?.i18n;
   const hasLanguageSwitcher =
     showLanguageSwitcher && i18n && i18n.enabledLanguages.length > 1;
+  const homeHref =
+    i18n && i18n.currentLanguage !== i18n.defaultLanguage
+      ? `/${i18n.currentLanguage}`
+      : "/";
 
   const hasDropdown = (item: NavItem) =>
     item.columns && item.columns !== "none" && item.children?.length;
@@ -383,7 +387,7 @@ export default function Header({ content, context }: HeaderProps) {
         <Container as="nav">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href={homeHref} className="flex items-center gap-2">
               {logo ? (
                 <Image
                   src={logo}
@@ -577,7 +581,7 @@ export default function Header({ content, context }: HeaderProps) {
             {/* Mobile header with logo + close */}
             <div className="flex items-center justify-between h-16 px-4 border-b">
               <Link
-                href="/"
+                href={homeHref}
                 className="flex items-center gap-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

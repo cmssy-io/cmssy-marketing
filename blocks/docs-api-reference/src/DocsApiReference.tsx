@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 const METHOD_STYLES: Record<string, string> = {
@@ -90,7 +91,7 @@ export default function DocsApiReference({
   const authInfo = AUTH_LABELS[auth] ?? AUTH_LABELS.required;
 
   return (
-    <section className="container my-6">
+    <Container as="section" className="py-6">
       {/* Header */}
       <div className="rounded-lg border bg-zinc-950 dark:bg-zinc-950 overflow-hidden">
         <div className="px-6 py-5 border-b border-zinc-800">
@@ -186,6 +187,6 @@ export default function DocsApiReference({
           </div>
         )}
       </div>
-    </section>
+    </Container>
   );
 }

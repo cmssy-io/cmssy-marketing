@@ -1,6 +1,7 @@
 "use client";
 import type { PlatformContext } from "@cmssy/cli/config";
 import React, { FormEvent, useCallback, useState } from "react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 // Icons as inline SVG components
@@ -262,9 +263,7 @@ export default function Contact({
           setIsSuccess(true);
           form.reset();
         } else {
-          setError(
-            result.data?.submitContactForm?.message || errorMessage,
-          );
+          setError(result.data?.submitContactForm?.message || errorMessage);
         }
       } catch {
         setError(errorMessage);
@@ -288,7 +287,7 @@ export default function Contact({
       <div className="absolute top-0 right-0 w-125 h-125 bg-violet-400/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-100 h-100 bg-purple-400/20 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container className="relative">
         {/* Header */}
         <div className="text-center mb-16">
           {badgeText && (
@@ -379,7 +378,9 @@ export default function Contact({
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                     <SendIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">{successHeading}</h3>
+                  <h3 className="mb-2 text-lg font-semibold">
+                    {successHeading}
+                  </h3>
                   <p className="text-muted-foreground">{successMessage}</p>
                 </div>
               ) : (
@@ -469,7 +470,7 @@ export default function Contact({
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

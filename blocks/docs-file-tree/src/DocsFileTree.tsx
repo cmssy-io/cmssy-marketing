@@ -1,3 +1,4 @@
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 const FILE_ICONS: Record<string, string> = {
@@ -70,9 +71,7 @@ function parseTree(raw: string): TreeLine[] {
 export default function DocsFileTree({ content }: { content: BlockContent }) {
   const { title, tree, highlights = "", showIcons = true } = content;
 
-  if (!tree) return null;
-
-  const lines = parseTree(tree);
+  const lines = tree ? parseTree(tree) : [];
   const highlightSet = new Set(
     highlights
       .split(",")
@@ -86,7 +85,7 @@ export default function DocsFileTree({ content }: { content: BlockContent }) {
   }
 
   return (
-    <section className="container my-6">
+    <Container as="section" className="py-6">
       {title && (
         <h3 className="text-lg font-semibold font-mono mb-3">{title}</h3>
       )}
@@ -98,40 +97,48 @@ export default function DocsFileTree({ content }: { content: BlockContent }) {
           </span>
         </div>
 
-        <pre className="px-4 py-3 text-sm font-mono leading-relaxed overflow-x-auto">
-          {lines.map((line, i) => {
-            const highlighted = isHighlighted(line.name);
-            return (
-              <div
-                key={i}
-                className={
-                  highlighted
-                    ? "bg-violet-500/10 -mx-4 px-4 text-violet-300"
-                    : "text-zinc-300"
-                }
-              >
-                <span className="text-zinc-600 select-none">{line.prefix}</span>
-                {showIcons && (
-                  <span className="mr-1.5 select-none">
-                    {line.isDir ? "📁" : getFileIcon(line.name)}
-                  </span>
-                )}
-                <span
+        {lines.length > 0 ? (
+          <pre className="px-4 py-3 text-sm font-mono leading-relaxed overflow-x-auto">
+            {lines.map((line, i) => {
+              const highlighted = isHighlighted(line.name);
+              return (
+                <div
+                  key={i}
                   className={
-                    line.isDir
-                      ? "font-semibold text-sky-400"
-                      : highlighted
-                        ? "text-violet-300"
-                        : "text-zinc-300"
+                    highlighted
+                      ? "bg-violet-500/10 -mx-4 px-4 text-violet-300"
+                      : "text-zinc-300"
                   }
                 >
-                  {line.name}
-                </span>
-              </div>
-            );
-          })}
-        </pre>
+                  <span className="text-zinc-600 select-none">
+                    {line.prefix}
+                  </span>
+                  {showIcons && (
+                    <span className="mr-1.5 select-none">
+                      {line.isDir ? "📁" : getFileIcon(line.name)}
+                    </span>
+                  )}
+                  <span
+                    className={
+                      line.isDir
+                        ? "font-semibold text-sky-400"
+                        : highlighted
+                          ? "text-violet-300"
+                          : "text-zinc-300"
+                    }
+                  >
+                    {line.name}
+                  </span>
+                </div>
+              );
+            })}
+          </pre>
+        ) : (
+          <div className="px-4 py-6 text-sm text-zinc-500 text-center">
+            Add a file tree structure in the block settings.
+          </div>
+        )}
       </div>
-    </section>
+    </Container>
   );
 }

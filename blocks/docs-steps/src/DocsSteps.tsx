@@ -1,3 +1,4 @@
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 export default function DocsSteps({ content }: { content: BlockContent }) {
@@ -16,7 +17,7 @@ export default function DocsSteps({ content }: { content: BlockContent }) {
   };
 
   return (
-    <section className="container py-8">
+    <Container as="section" className="py-6">
       {(heading || description) && (
         <div className="mb-8">
           {heading && <h2 className="text-2xl font-bold mb-2">{heading}</h2>}
@@ -73,6 +74,6 @@ export default function DocsSteps({ content }: { content: BlockContent }) {
           );
         })}
       </div>
-    </section>
+    </Container>
   );
 }

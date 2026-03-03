@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as Icons from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
 function getIcon(name?: string): LucideIcon | null {
@@ -21,7 +22,7 @@ export default function DocsTabs({ content }: { content: BlockContent }) {
   const activeContent = tabs[activeTab]?.content || "";
 
   return (
-    <div className="container my-6">
+    <Container className="py-6">
       <div
         className={
           variant === "bordered" ? "rounded-lg border overflow-hidden" : ""
@@ -90,6 +91,6 @@ export default function DocsTabs({ content }: { content: BlockContent }) {
           />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
