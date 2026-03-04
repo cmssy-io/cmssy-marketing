@@ -29,11 +29,11 @@ export interface BlockContent {
   sticky?: boolean;
   transparent?: boolean;
   logoutButtonText?: string;
+  showLanguageSwitcher?: boolean;
   showAnnouncement?: boolean;
   announcementText?: string;
   announcementLink?: string;
   announcementBg?: string;
   announcementTextColor?: string;
   announcementDismissible?: boolean;
-  showLanguageSwitcher?: boolean;
 }

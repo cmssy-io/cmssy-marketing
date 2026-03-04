@@ -69,6 +69,7 @@ export default function Footer({
                     href={twitterUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="X (Twitter)"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Twitter className="w-5 h-5" />
@@ -79,6 +80,7 @@ export default function Footer({
                     href={githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Github className="w-5 h-5" />
@@ -89,6 +91,7 @@ export default function Footer({
                     href={linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Linkedin className="w-5 h-5" />
@@ -119,8 +122,12 @@ export default function Footer({
         </div>
 
         {/* Bottom bar */}
-        <div className={`mt-12 pt-8 border-t ${hasLanguageSwitcher ? "flex items-center justify-between" : ""}`}>
-          <p className={`text-sm text-muted-foreground ${hasLanguageSwitcher ? "" : "text-center"}`}>
+        <div
+          className={`mt-12 pt-8 border-t ${hasLanguageSwitcher ? "flex items-center justify-between" : ""}`}
+        >
+          <p
+            className={`text-sm text-muted-foreground ${hasLanguageSwitcher ? "" : "text-center"}`}
+          >
             © {currentYear} {copyrightText}
           </p>
           {hasLanguageSwitcher && (

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 
@@ -177,10 +178,13 @@ export default function Hero({ content }: { content: BlockContent }) {
                     Your browser does not support the video tag.
                   </video>
                 ) : (
-                  <img
+                  <Image
                     src={media}
                     alt={heading}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    className="object-cover"
+                    priority
                   />
                 )}
               </div>
