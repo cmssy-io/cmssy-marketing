@@ -47,7 +47,7 @@ export default function Hero({ content }: { content: BlockContent }) {
         }}
       />
 
-      <Container className="relative py-32 text-center">
+      <Container className="relative py-16 sm:py-24 lg:py-32 text-center">
         {/* Badge */}
         {badgeText && (
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium mb-8">
@@ -83,16 +83,16 @@ export default function Hero({ content }: { content: BlockContent }) {
 
         {/* Subheading */}
         {subheading && (
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10">
             {subheading}
           </p>
         )}
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sm:mb-16">
           {primaryButtonText && (
             <a href={primaryButtonUrl || "#"}>
-              <button className="inline-flex items-center justify-center gap-2 rounded-md bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 px-8 h-14 text-lg font-medium text-white shadow-lg shadow-violet-500/25 transition-colors">
+              <button className="inline-flex items-center justify-center gap-2 rounded-md bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 px-6 sm:px-8 h-12 sm:h-14 text-base sm:text-lg font-medium text-white shadow-lg shadow-violet-500/25 transition-colors">
                 {primaryButtonText}
                 <svg
                   className="w-5 h-5"
@@ -113,7 +113,7 @@ export default function Hero({ content }: { content: BlockContent }) {
           {secondaryButtonText && (
             <a
               href={secondaryButtonUrl || "#"}
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground px-8 h-14 text-lg font-medium transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground px-6 sm:px-8 h-12 sm:h-14 text-base sm:text-lg font-medium transition-colors"
             >
               <svg
                 className="w-5 h-5"
@@ -161,10 +161,10 @@ export default function Hero({ content }: { content: BlockContent }) {
         </div>
 
         {/* Hero image/preview */}
-        <div className="mt-20 relative">
-          <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
-          <div className="relative rounded-xl shadow-2xl shadow-violet-500/10 overflow-hidden bg-background">
-            {media ? (
+        {media && (
+          <div className="mt-12 sm:mt-20 relative">
+            <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent z-10 pointer-events-none" />
+            <div className="relative rounded-xl shadow-2xl shadow-violet-500/10 overflow-hidden bg-background">
               <div className="aspect-video relative overflow-hidden">
                 {isVideo ? (
                   <video
@@ -188,35 +188,9 @@ export default function Hero({ content }: { content: BlockContent }) {
                   />
                 )}
               </div>
-            ) : (
-              <div className="aspect-video bg-linear-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-violet-500 to-purple-600 mx-auto mb-4 flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-lg font-medium text-muted-foreground">
-                    {mediaPlaceholderHeading}
-                  </p>
-                  <p className="text-sm text-muted-foreground/60">
-                    {mediaPlaceholderText}
-                  </p>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </section>
   );
