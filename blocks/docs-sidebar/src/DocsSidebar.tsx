@@ -9,7 +9,9 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LanguageSwitcher } from "../../../components/language-switcher";
-import { BlockContent, PageEntry } from "./block";
+import { BlockContent } from "./block";
+
+type PageEntry = string | { slug: string; displayName?: Record<string, string> };
 
 interface PlatformContext {
   i18n?: {
