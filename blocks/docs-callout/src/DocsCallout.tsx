@@ -1,8 +1,8 @@
 import {
   Info,
   Lightbulb,
-  AlertTriangle,
-  AlertCircle,
+  TriangleAlert,
+  CircleAlert,
   FileText,
 } from "lucide-react";
 import { Container } from "../../../components/container";
@@ -24,14 +24,14 @@ const calloutConfig = {
     titleColor: "text-emerald-900 dark:text-emerald-100",
   },
   warning: {
-    icon: AlertTriangle,
+    icon: TriangleAlert,
     bg: "bg-amber-50 dark:bg-amber-950/30",
     border: "border-amber-200 dark:border-amber-800",
     iconColor: "text-amber-600 dark:text-amber-400",
     titleColor: "text-amber-900 dark:text-amber-100",
   },
   danger: {
-    icon: AlertCircle,
+    icon: CircleAlert,
     bg: "bg-red-50 dark:bg-red-950/30",
     border: "border-red-200 dark:border-red-800",
     iconColor: "text-red-600 dark:text-red-400",
@@ -62,7 +62,7 @@ export default function DocsCallout({ content }: { content: BlockContent }) {
       `}
       >
         <div className="flex gap-3">
-          <Icon className={`h-5 w-5 mt-0.5 shrink-0 ${config.iconColor}`} />
+          <Icon className={`size-5 mt-0.5 shrink-0 ${config.iconColor}`} />
           <div className="flex-1 min-w-0">
             {title && (
               <h5 className={`font-semibold mb-1 ${config.titleColor}`}>

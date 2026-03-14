@@ -1,7 +1,7 @@
 "use client";
 import {
   ArrowRight,
-  BarChart3,
+  ChartColumn,
   Blocks,
   BookOpen,
   Box,
@@ -15,7 +15,7 @@ import {
   Globe,
   Headphones,
   Heart,
-  HelpCircle,
+  CircleHelp,
   Image as ImageIcon,
   Key,
   Layers,
@@ -38,7 +38,7 @@ import {
   Star,
   Terminal,
   Users,
-  Wand2,
+  WandSparkles,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -51,7 +51,7 @@ import { BlockContent } from "./block";
 
 const iconMap: Record<string, LucideIcon> = {
   ArrowRight,
-  BarChart3,
+  ChartColumn,
   Blocks,
   BookOpen,
   Box,
@@ -65,7 +65,7 @@ const iconMap: Record<string, LucideIcon> = {
   Globe,
   Headphones,
   Heart,
-  HelpCircle,
+  CircleHelp,
   Image: ImageIcon,
   Key,
   Layers,
@@ -88,7 +88,7 @@ const iconMap: Record<string, LucideIcon> = {
   Star,
   Terminal,
   Users,
-  Wand2,
+  WandSparkles,
   Zap,
 };
 

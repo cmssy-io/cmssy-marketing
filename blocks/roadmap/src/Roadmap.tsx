@@ -1,8 +1,8 @@
 import {
   ArrowRight,
-  CheckCircle2,
+  CircleCheck,
   Clock,
-  HelpCircle,
+  CircleHelp,
   Lightbulb,
   MessageSquare,
 } from "lucide-react";
@@ -11,7 +11,7 @@ import { BlockContent } from "./block";
 
 const statusConfig = {
   completed: {
-    icon: CheckCircle2,
+    icon: CircleCheck,
     color: "text-emerald-600 dark:text-emerald-400",
     bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
     borderColor: "border-emerald-200 dark:border-emerald-800",
@@ -29,7 +29,7 @@ const statusConfig = {
     borderColor: "border-amber-200 dark:border-amber-800",
   },
   considering: {
-    icon: HelpCircle,
+    icon: CircleHelp,
     color: "text-slate-600 dark:text-slate-400",
     bgColor: "bg-slate-50 dark:bg-slate-900/20",
     borderColor: "border-slate-200 dark:border-slate-800",
@@ -85,7 +85,7 @@ export default function Roadmap({ content }: { content: BlockContent }) {
                 <div
                   className={`flex items-center gap-2 px-4 py-3 rounded-lg ${config.bgColor} ${config.borderColor} border`}
                 >
-                  <Icon className={`w-5 h-5 ${config.color}`} />
+                  <Icon className={`size-5 ${config.color}`} />
                   <h3 className="font-semibold">{column.title}</h3>
                   <span className="ml-auto text-sm text-muted-foreground">
                     {(column.items || []).length}
@@ -124,7 +124,7 @@ export default function Roadmap({ content }: { content: BlockContent }) {
         {showCta && (
           <div className="max-w-2xl mx-auto">
             <div className="bg-linear-to-br from-violet-500 to-purple-600 rounded-2xl shadow-xl shadow-violet-500/25 p-8 text-center text-white">
-              <MessageSquare className="w-10 h-10 mx-auto mb-4 opacity-90" />
+              <MessageSquare className="size-10 mx-auto mb-4 opacity-90" />
               <h3 className="text-2xl font-bold mb-3">{ctaTitle}</h3>
               <p className="text-violet-100 mb-6">{ctaDescription}</p>
               <a
@@ -132,7 +132,7 @@ export default function Roadmap({ content }: { content: BlockContent }) {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-violet-600 font-medium rounded-lg hover:bg-violet-50 transition-colors"
               >
                 {ctaButtonText}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="size-4" />
               </a>
             </div>
           </div>

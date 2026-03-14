@@ -1,4 +1,4 @@
-import { Calendar, ChevronLeft, ChevronRight, Edit3 } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, PenLine } from "lucide-react";
 import { Container } from "../../../components/container";
 import { BlockContent } from "./block";
 import { TocSidebar } from "./TocSidebar";
@@ -76,7 +76,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
           )}
           {lastUpdated && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="size-4" />
               <span>Last updated: {formatDate(lastUpdated)}</span>
             </div>
           )}
@@ -104,7 +104,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <Edit3 className="h-4 w-4" />
+              <PenLine className="size-4" />
               Edit this page on GitHub
             </a>
           </div>
@@ -119,7 +119,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
                 className="group flex flex-col p-4 rounded-lg border hover:border-violet-500 hover:bg-violet-50 dark:hover:bg-violet-950/20 transition-colors"
               >
                 <span className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
-                  <ChevronLeft className="h-3 w-3" />
+                  <ChevronLeft className="size-3" />
                   Previous
                 </span>
                 <span className="font-medium group-hover:text-violet-600 transition-colors">
@@ -136,7 +136,7 @@ export default function DocsArticle({ content }: { content: BlockContent }) {
               >
                 <span className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
                   Next
-                  <ChevronRight className="h-3 w-3" />
+                  <ChevronRight className="size-3" />
                 </span>
                 <span className="font-medium group-hover:text-violet-600 transition-colors">
                   {next.label}

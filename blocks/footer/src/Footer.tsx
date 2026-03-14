@@ -72,7 +72,7 @@ export default function Footer({
                     aria-label="X (Twitter)"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <Twitter className="w-5 h-5" />
+                    <Twitter className="size-5" />
                   </a>
                 )}
                 {githubUrl && (
@@ -83,7 +83,7 @@ export default function Footer({
                     aria-label="GitHub"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="size-5" />
                   </a>
                 )}
                 {linkedinUrl && (
@@ -94,7 +94,7 @@ export default function Footer({
                     aria-label="LinkedIn"
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="size-5" />
                   </a>
                 )}
               </div>
