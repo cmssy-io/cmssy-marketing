@@ -382,7 +382,7 @@ export default function Header({ content, context }: HeaderProps) {
       {/* Main Header */}
       <header
         ref={headerRef}
-        className={`relative w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-background/95 backdrop-blur-lg border-b shadow-sm" : "bg-background border-b"}`}
+        className={`relative z-50 w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-background/95 backdrop-blur-lg border-b shadow-sm" : "bg-background border-b"}`}
       >
         <Container as="nav">
           <div className="relative flex items-center justify-between h-16">
