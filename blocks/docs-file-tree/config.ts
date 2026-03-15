@@ -18,14 +18,14 @@ export default defineBlock({
       required: true,
       placeholder:
         "src/\n├── index.ts\n├── components/\n│   └── App.tsx\n└── styles/\n    └── main.css",
-      helperText: "Paste a plaintext tree using ├── └── │ characters",
+      helpText: "Paste a plaintext tree using ├── └── │ characters",
       group: "content",
     },
     highlights: {
       type: "singleLine",
       label: "Highlighted Files",
       placeholder: "src/index.ts,config.ts",
-      helperText: "Comma-separated file names to highlight",
+      helpText: "Comma-separated file names to highlight",
       group: "content",
     },
     showIcons: {
