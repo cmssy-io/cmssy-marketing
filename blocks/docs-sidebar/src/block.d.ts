@@ -1,15 +1,13 @@
 // Auto-generated from config.ts
 // DO NOT EDIT - This file is automatically regenerated
 
-export type PageEntry = string | { slug: string; displayName?: Record<string, string> };
-
 export interface BlockContent {
   logo?: string;
   logoText?: string;
   logoUrl?: string;
   sections?: Array<{
     title: string;
-    pages?: Array<PageEntry>;
+    pages?: Array<{ slug: string; displayName: Record<string, string> }>;
   }>;
   showSearch?: boolean;
   searchPlaceholder?: string;
