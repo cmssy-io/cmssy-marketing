@@ -100,8 +100,8 @@ function IconRenderer({
   className?: string;
 }) {
   if (!name || !iconMap[name]) return null;
-  const props = { className };
-  return iconMap[name](props);
+  const Icon = iconMap[name];
+  return <Icon className={className} />;
 }
 
 interface NavChild {
