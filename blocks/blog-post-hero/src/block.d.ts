@@ -2,6 +2,7 @@
 // DO NOT EDIT - This file is automatically regenerated
 
 export interface BlockContent {
+  /** Recommended: 1200x630px for optimal social sharing */
   coverImage?: string;
   title: string;
   excerpt?: string;

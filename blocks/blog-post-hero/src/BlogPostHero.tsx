@@ -68,6 +68,8 @@ export default function BlogPostHero({ content }: { content: BlockContent }) {
               {breadcrumbLabel}
             </a>
             <svg
+              width={14}
+              height={14}
               className="w-3.5 h-3.5"
               fill="none"
               stroke="currentColor"
@@ -133,6 +135,8 @@ export default function BlogPostHero({ content }: { content: BlockContent }) {
             {date && (
               <time dateTime={date} className="flex items-center gap-1.5">
                 <svg
+                  width={16}
+                  height={16}
                   className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
