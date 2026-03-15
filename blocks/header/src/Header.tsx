@@ -385,7 +385,7 @@ export default function Header({ content, context }: HeaderProps) {
         className={`relative w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-background/95 backdrop-blur-lg border-b shadow-sm" : "bg-background border-b"}`}
       >
         <Container as="nav">
-          <div className="flex items-center justify-between h-16">
+          <div className="relative flex items-center justify-between h-16">
             {/* Logo */}
             <Link href={homeHref} className="flex items-center gap-2">
               {logo ? (
@@ -410,8 +410,8 @@ export default function Header({ content, context }: HeaderProps) {
               </span>
             </Link>
 
-            {/* Desktop navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            {/* Desktop navigation - centered */}
+            <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
               {navItems.map((item, index) =>
                 hasDropdown(item) ? (
                   <div
@@ -478,7 +478,7 @@ export default function Header({ content, context }: HeaderProps) {
             </div>
 
             {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               {hasLanguageSwitcher && (
                 <LanguageSwitcher
                   enabledLanguages={i18n.enabledLanguages}
@@ -535,7 +535,7 @@ export default function Header({ content, context }: HeaderProps) {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 -mr-2 rounded-md hover:bg-muted/50 transition-colors"
+              className="lg:hidden p-2 -mr-2 rounded-md hover:bg-muted/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
@@ -576,7 +576,7 @@ export default function Header({ content, context }: HeaderProps) {
 
       {/* Mobile fullscreen overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-50 lg:hidden">
           <div className="flex h-full flex-col bg-background">
             {/* Mobile header with logo + close */}
             <div className="flex items-center justify-between h-16 px-4 border-b">
