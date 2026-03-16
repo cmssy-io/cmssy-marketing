@@ -3,7 +3,9 @@
 
 export interface BlockContent {
   title?: string;
+  /** Paste a plaintext tree using ├── └── │ characters */
   tree: string;
+  /** Comma-separated file names to highlight */
   highlights?: string;
   showIcons?: boolean;
 }

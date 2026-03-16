@@ -11,7 +11,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { LanguageSwitcher } from "../../../components/language-switcher";
 import { BlockContent } from "./block";
 
-type PageEntry = string | { slug: string; displayName?: Record<string, string> };
+type PageEntry =
+  | string
+  | { slug: string; displayName?: Record<string, string> };
 
 interface PlatformContext {
   i18n?: {
@@ -315,8 +317,15 @@ export default function DocsSidebar({
     showLanguageSwitcher && !!i18n && i18n.enabledLanguages.length > 1;
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const currentPath =
-    typeof window !== "undefined" ? window.location.pathname : "";
+  const rawPath = typeof window !== "undefined" ? window.location.pathname : "";
+  // Strip language prefix so active state matches slugs (e.g. /pl/docs/x → /docs/x)
+  let currentPath = rawPath;
+  if (i18n) {
+    const match = rawPath.match(/^\/([a-z]{2})(?:\/|$)/);
+    if (match && i18n.enabledLanguages.includes(match[1]!)) {
+      currentPath = rawPath.slice(match[1]!.length + 1) || "/";
+    }
+  }
   const currentPageLabel = getCurrentPageLabel(sections, currentPath, language);
 
   // Lock body scroll when mobile drawer is open
