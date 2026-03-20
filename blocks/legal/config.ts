@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Legal",
@@ -8,108 +8,108 @@ export default defineBlock({
   tags: ["legal", "privacy", "terms", "cookies", "policy", "accordion"],
 
   schema: {
-    badge: {
+    badge: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "Privacy",
       group: "header",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Privacy",
       group: "header",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "Policy",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "Learn how we collect, use, and protect your personal information.",
       group: "header",
-    },
+    }),
 
-    showSummary: {
+    showSummary: field({
       type: "boolean",
       label: "Show Summary Box",
       defaultValue: true,
       group: "summary",
-    },
-    summaryTitle: {
+    }),
+    summaryTitle: field({
       type: "singleLine",
       label: "Summary Title",
       defaultValue: "TL;DR",
       group: "summary",
       showWhen: { field: "showSummary", equals: true },
-    },
-    summaryContent: {
+    }),
+    summaryContent: field({
       type: "multiLine",
       label: "Summary Content",
       defaultValue:
         "We respect your privacy and only collect data necessary to provide our services. We never sell your data.",
       group: "summary",
       showWhen: { field: "showSummary", equals: true },
-    },
+    }),
 
-    sections: {
+    sections: field({
       type: "repeater",
       label: "Accordion Sections",
       group: "sections",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Section Title",
           required: true,
-        },
-        content: {
+        }),
+        content: field({
           type: "richText",
           label: "Section Content",
           required: true,
-        },
+        }),
       },
-    },
+    }),
 
-    showFooterLinks: {
+    showFooterLinks: field({
       type: "boolean",
       label: "Show Footer Links",
       defaultValue: true,
       group: "footer",
-    },
-    footerText: {
+    }),
+    footerText: field({
       type: "singleLine",
       label: "Footer Text",
       defaultValue: "This policy is part of our",
       group: "footer",
       showWhen: { field: "showFooterLinks", equals: true },
-    },
-    footerLinks: {
+    }),
+    footerLinks: field({
       type: "repeater",
       label: "Footer Links",
       group: "footer",
       showWhen: { field: "showFooterLinks", equals: true },
       schema: {
-        text: {
+        text: field({
           type: "singleLine",
           label: "Link Text",
           required: true,
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
           required: true,
-        },
+        }),
       },
-    },
-    lastUpdated: {
+    }),
+    lastUpdated: field({
       type: "singleLine",
       label: "Last Updated Date",
       defaultValue: "January 2025",
       group: "footer",
-    },
+    }),
   },
 });

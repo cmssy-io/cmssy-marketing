@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Forgot Password Form",
@@ -8,91 +8,91 @@ export default defineBlock({
 
   schema: {
     // Header section
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Forgot your password?",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue: "Enter your email address and we'll send you a link to reset your password.",
-    },
+    }),
 
     // Form settings
-    emailLabel: {
+    emailLabel: field({
       type: "singleLine",
       label: "Email Label",
       defaultValue: "Email",
       group: "Form Settings",
-    },
-    emailPlaceholder: {
+    }),
+    emailPlaceholder: field({
       type: "singleLine",
       label: "Email Placeholder",
       defaultValue: "you@example.com",
       group: "Form Settings",
-    },
-    submitButtonText: {
+    }),
+    submitButtonText: field({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Send reset link",
       group: "Form Settings",
-    },
-    submitLoadingText: {
+    }),
+    submitLoadingText: field({
       type: "singleLine",
       label: "Submit Loading Text",
       defaultValue: "Sending...",
       group: "Form Settings",
-    },
+    }),
 
     // Links
-    showLoginLink: {
+    showLoginLink: field({
       type: "boolean",
       label: "Show Login Link",
       defaultValue: true,
       group: "Links",
-    },
-    loginLinkText: {
+    }),
+    loginLinkText: field({
       type: "singleLine",
       label: "Login Link Text",
       defaultValue: "Back to login",
       group: "Links",
-    },
-    loginUrl: {
+    }),
+    loginUrl: field({
       type: "link",
       label: "Login URL",
       defaultValue: "/login",
       group: "Links",
-    },
+    }),
 
     // Messages
-    successHeading: {
+    successHeading: field({
       type: "singleLine",
       label: "Success Heading",
       defaultValue: "Check your email",
       group: "Messages",
-    },
-    emailSentText: {
+    }),
+    emailSentText: field({
       type: "singleLine",
       label: "Email Sent Text",
       defaultValue: "We sent an email to",
       group: "Messages",
-    },
-    successMessage: {
+    }),
+    successMessage: field({
       type: "multiLine",
       label: "Success Message",
       defaultValue: "If an account exists with this email, you will receive a password reset link shortly.",
       group: "Messages",
-    },
-    errorMessage: {
+    }),
+    errorMessage: field({
       type: "multiLine",
       label: "Default Error Message",
       defaultValue: "Something went wrong. Please try again.",
       group: "Messages",
-    },
+    }),
 
     // Styling
-    variant: {
+    variant: field({
       type: "select",
       label: "Variant",
       options: [
@@ -101,6 +101,6 @@ export default defineBlock({
       ],
       defaultValue: "default",
       group: "Styling",
-    },
+    }),
   },
 });

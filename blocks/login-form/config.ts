@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Login Form",
@@ -8,129 +8,129 @@ export default defineBlock({
 
   schema: {
     // Header section
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Welcome back",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue: "Sign in to your account to continue.",
-    },
+    }),
 
     // Form settings
-    emailLabel: {
+    emailLabel: field({
       type: "singleLine",
       label: "Email Label",
       defaultValue: "Email",
       group: "Form Settings",
-    },
-    emailPlaceholder: {
+    }),
+    emailPlaceholder: field({
       type: "singleLine",
       label: "Email Placeholder",
       defaultValue: "you@example.com",
       group: "Form Settings",
-    },
-    passwordLabel: {
+    }),
+    passwordLabel: field({
       type: "singleLine",
       label: "Password Label",
       defaultValue: "Password",
       group: "Form Settings",
-    },
-    passwordPlaceholder: {
+    }),
+    passwordPlaceholder: field({
       type: "singleLine",
       label: "Password Placeholder",
       defaultValue: "Enter your password",
       group: "Form Settings",
-    },
-    submitButtonText: {
+    }),
+    submitButtonText: field({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Sign in",
       group: "Form Settings",
-    },
-    submitLoadingText: {
+    }),
+    submitLoadingText: field({
       type: "singleLine",
       label: "Submit Loading Text",
       defaultValue: "Signing in...",
       group: "Form Settings",
-    },
-    showRememberMe: {
+    }),
+    showRememberMe: field({
       type: "boolean",
       label: "Show Remember Me",
       defaultValue: true,
       group: "Form Settings",
-    },
-    rememberMeLabel: {
+    }),
+    rememberMeLabel: field({
       type: "singleLine",
       label: "Remember Me Label",
       defaultValue: "Remember me",
       group: "Form Settings",
-    },
+    }),
 
     // Links
-    showForgotPassword: {
+    showForgotPassword: field({
       type: "boolean",
       label: "Show Forgot Password Link",
       defaultValue: true,
       group: "Links",
-    },
-    forgotPasswordText: {
+    }),
+    forgotPasswordText: field({
       type: "singleLine",
       label: "Forgot Password Text",
       defaultValue: "Forgot your password?",
       group: "Links",
-    },
-    forgotPasswordUrl: {
+    }),
+    forgotPasswordUrl: field({
       type: "link",
       label: "Forgot Password URL",
       defaultValue: "/forgot-password",
       group: "Links",
-    },
-    showRegisterLink: {
+    }),
+    showRegisterLink: field({
       type: "boolean",
       label: "Show Register Link",
       defaultValue: true,
       group: "Links",
-    },
-    registerLinkText: {
+    }),
+    registerLinkText: field({
       type: "singleLine",
       label: "Register Link Text",
       defaultValue: "Don't have an account? Sign up",
       group: "Links",
-    },
-    registerUrl: {
+    }),
+    registerUrl: field({
       type: "link",
       label: "Register URL",
       defaultValue: "/register",
       group: "Links",
-    },
+    }),
 
     // Redirect
-    redirectAfterLogin: {
+    redirectAfterLogin: field({
       type: "link",
       label: "Redirect After Login",
       defaultValue: "/",
       group: "Redirect",
-    },
+    }),
 
     // Messages
-    successMessage: {
+    successMessage: field({
       type: "multiLine",
       label: "Success Message",
       defaultValue: "Login successful! Redirecting...",
       group: "Messages",
-    },
-    errorMessage: {
+    }),
+    errorMessage: field({
       type: "multiLine",
       label: "Default Error Message",
       defaultValue: "Invalid email or password. Please try again.",
       group: "Messages",
-    },
+    }),
 
     // Styling
-    variant: {
+    variant: field({
       type: "select",
       label: "Variant",
       options: [
@@ -139,6 +139,6 @@ export default defineBlock({
       ],
       defaultValue: "default",
       group: "Styling",
-    },
+    }),
   },
 });

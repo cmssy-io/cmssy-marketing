@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Pricing",
@@ -7,91 +7,91 @@ export default defineBlock({
   tags: ["marketing", "pricing"],
 
   schema: {
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       required: true,
       defaultValue: "Heading",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "Highlight",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       placeholder: "Enter description",
       defaultValue: "Description",
-    },
-    trialNotice: {
+    }),
+    trialNotice: field({
       type: "singleLine",
       label: "Trial Notice",
       defaultValue:
         "14-day free trial on all paid plans. No credit card required.",
-    },
-    popularBadgeText: {
+    }),
+    popularBadgeText: field({
       type: "singleLine",
       label: "Popular Badge Text",
       defaultValue: "MOST POPULAR",
-    },
-    plans: {
+    }),
+    plans: field({
       maxItems: 3,
       type: "repeater",
       label: "Plans",
       schema: {
-        name: {
+        name: field({
           type: "singleLine",
           label: "Plan Name",
           required: true,
           defaultValue: "Basic",
-        },
-        description: {
+        }),
+        description: field({
           type: "multiLine",
           label: "Plan Description",
           defaultValue: "Description of the plan.",
-        },
-        price: {
+        }),
+        price: field({
           type: "singleLine",
           label: "Price",
           required: true,
           defaultValue: "$0/mo",
-        },
-        popular: {
+        }),
+        popular: field({
           type: "boolean",
           label: "Is Popular?",
           defaultValue: false,
-        },
-        period: {
+        }),
+        period: field({
           type: "singleLine",
           label: "Billing Period",
           defaultValue: "billed annually",
-        },
-        features: {
+        }),
+        features: field({
           type: "repeater",
           label: "Features",
           schema: {
-            feature: {
+            feature: field({
               type: "singleLine",
               label: "Feature",
               required: true,
               defaultValue: "Feature",
-            },
+            }),
           },
-        },
-        cta: {
+        }),
+        cta: field({
           type: "singleLine",
           label: "Call to Action",
           required: true,
           defaultValue: "Get Started",
-        },
-        href: {
+        }),
+        href: field({
           type: "link",
           label: "Link",
           required: true,
           defaultValue: "#",
-        },
+        }),
       },
-    },
+    }),
   },
 });

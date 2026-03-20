@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Terminal",
@@ -7,36 +7,36 @@ export default defineBlock({
   tags: ["docs", "terminal", "cli", "command", "shell", "bash"],
 
   schema: {
-    title: {
+    title: field({
       type: "singleLine",
       label: "Window Title",
       placeholder: "e.g., Terminal",
       group: "header",
-    },
+    }),
 
-    commands: {
+    commands: field({
       type: "repeater",
       label: "Commands",
       group: "commands",
       schema: {
-        prompt: {
+        prompt: field({
           type: "singleLine",
           label: "Prompt",
           defaultValue: "$",
-        },
-        command: {
+        }),
+        command: field({
           type: "singleLine",
           label: "Command",
           required: true,
-        },
-        output: {
+        }),
+        output: field({
           type: "multiLine",
           label: "Output",
-        },
+        }),
       },
-    },
+    }),
 
-    theme: {
+    theme: field({
       type: "select",
       label: "Theme",
       options: [
@@ -46,12 +46,12 @@ export default defineBlock({
       ],
       defaultValue: "macos",
       group: "style",
-    },
-    showCopyAll: {
+    }),
+    showCopyAll: field({
       type: "boolean",
       label: "Show Copy All Button",
       defaultValue: true,
       group: "style",
-    },
+    }),
   },
 });

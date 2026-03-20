@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Header Navigation",
@@ -27,20 +27,20 @@ export default defineBlock({
   },
 
   schema: {
-    logo: {
+    logo: field({
       type: "media",
       label: "Logo",
       placeholder: "Recommended: SVG or PNG with transparent background",
       group: "logo",
-    },
-    logoText: {
+    }),
+    logoText: field({
       type: "singleLine",
       label: "Logo Text",
       defaultValue: "Brand",
       placeholder: "Shown next to logo or as fallback",
       group: "logo",
-    },
-    logoSize: {
+    }),
+    logoSize: field({
       type: "select",
       label: "Logo Size",
       defaultValue: "md",
@@ -50,28 +50,28 @@ export default defineBlock({
         { value: "lg", label: "Large" },
       ],
       group: "logo",
-    },
+    }),
 
-    navigation: {
+    navigation: field({
       type: "repeater",
       label: "Navigation Items",
       group: "navigation",
       schema: {
-        label: {
+        label: field({
           type: "singleLine",
           label: "Label",
           required: true,
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
-        },
-        openInNewTab: {
+        }),
+        openInNewTab: field({
           type: "boolean",
           label: "Open in new tab",
           defaultValue: false,
-        },
-        columns: {
+        }),
+        columns: field({
           type: "select",
           label: "Dropdown Columns",
           defaultValue: "none",
@@ -81,62 +81,62 @@ export default defineBlock({
             { value: "2", label: "2 columns" },
             { value: "3", label: "3 columns" },
           ],
-        },
-        children: {
+        }),
+        children: field({
           type: "repeater",
           label: "Dropdown Links",
           showWhen: { field: "columns", notEquals: "none" },
           schema: {
-            label: {
+            label: field({
               type: "singleLine",
               label: "Label",
               required: true,
-            },
-            description: {
+            }),
+            description: field({
               type: "singleLine",
               label: "Description",
-            },
-            url: {
+            }),
+            url: field({
               type: "link",
               label: "URL",
               required: true,
-            },
-            icon: {
+            }),
+            icon: field({
               type: "singleLine",
               label: "Lucide Icon Name",
               placeholder: "e.g. Zap, BookOpen, Code",
-            },
-            openInNewTab: {
+            }),
+            openInNewTab: field({
               type: "boolean",
               label: "Open in new tab",
               defaultValue: false,
-            },
+            }),
           },
-        },
+        }),
       },
-    },
+    }),
 
-    showCta: {
+    showCta: field({
       type: "boolean",
       label: "Show CTA Button",
       defaultValue: true,
       group: "primaryCta",
-    },
-    ctaLabel: {
+    }),
+    ctaLabel: field({
       type: "singleLine",
       label: "CTA Label",
       defaultValue: "Get Started",
       group: "primaryCta",
       showWhen: { field: "showCta", equals: true },
-    },
-    ctaUrl: {
+    }),
+    ctaUrl: field({
       type: "link",
       label: "CTA URL",
       defaultValue: "/signup",
       group: "primaryCta",
       showWhen: { field: "showCta", equals: true },
-    },
-    ctaStyle: {
+    }),
+    ctaStyle: field({
       type: "select",
       label: "CTA Style",
       defaultValue: "primary",
@@ -147,29 +147,29 @@ export default defineBlock({
       ],
       group: "primaryCta",
       showWhen: { field: "showCta", equals: true },
-    },
+    }),
 
-    showSecondaryCta: {
+    showSecondaryCta: field({
       type: "boolean",
       label: "Show Secondary CTA",
       defaultValue: false,
       group: "secondaryCta",
-    },
-    secondaryCtaLabel: {
+    }),
+    secondaryCtaLabel: field({
       type: "singleLine",
       label: "Secondary CTA Label",
       defaultValue: "Login",
       group: "secondaryCta",
       showWhen: { field: "showSecondaryCta", equals: true },
-    },
-    secondaryCtaUrl: {
+    }),
+    secondaryCtaUrl: field({
       type: "link",
       label: "Secondary CTA URL",
       defaultValue: "/login",
       group: "secondaryCta",
       showWhen: { field: "showSecondaryCta", equals: true },
-    },
-    secondaryCtaStyle: {
+    }),
+    secondaryCtaStyle: field({
       type: "select",
       label: "Secondary CTA Style",
       defaultValue: "ghost",
@@ -180,72 +180,72 @@ export default defineBlock({
       ],
       group: "secondaryCta",
       showWhen: { field: "showSecondaryCta", equals: true },
-    },
+    }),
 
-    sticky: {
+    sticky: field({
       type: "boolean",
       label: "Sticky Header",
       defaultValue: true,
       group: "behavior",
-    },
-    transparent: {
+    }),
+    transparent: field({
       type: "boolean",
       label: "Transparent Background",
       defaultValue: false,
       group: "behavior",
-    },
-    logoutButtonText: {
+    }),
+    logoutButtonText: field({
       type: "singleLine",
       label: "Logout Button Text",
       defaultValue: "Log out",
       group: "behavior",
-    },
-    showLanguageSwitcher: {
+    }),
+    showLanguageSwitcher: field({
       type: "boolean",
       label: "Show Language Switcher",
       defaultValue: false,
       group: "behavior",
-    },
+    }),
 
-    showAnnouncement: {
+    showAnnouncement: field({
       type: "boolean",
       label: "Show Announcement Bar",
       defaultValue: false,
       group: "announcement",
-    },
-    announcementText: {
+    }),
+    announcementText: field({
       type: "singleLine",
       label: "Announcement Text",
       placeholder: "New feature available!",
       group: "announcement",
       showWhen: { field: "showAnnouncement", equals: true },
-    },
-    announcementLink: {
+    }),
+    announcementLink: field({
       type: "link",
       label: "Announcement Link",
       group: "announcement",
       showWhen: { field: "showAnnouncement", equals: true },
-    },
-    announcementBg: {
+    }),
+    announcementBg: field({
       type: "color",
       label: "Announcement Background",
       defaultValue: "#7c3aed",
       group: "announcement",
       showWhen: { field: "showAnnouncement", equals: true },
-    },
-    announcementTextColor: {
+    }),
+    announcementTextColor: field({
       type: "color",
       label: "Announcement Text Color",
       defaultValue: "#ffffff",
       group: "announcement",
       showWhen: { field: "showAnnouncement", equals: true },
-    },
-    announcementDismissible: {
+    }),
+    announcementDismissible: field({
       type: "boolean",
       label: "Dismissible",
       defaultValue: true,
       group: "announcement",
       showWhen: { field: "showAnnouncement", equals: true },
-    },
+    }),
   },
 });

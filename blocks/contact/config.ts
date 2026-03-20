@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Contact",
@@ -8,35 +8,35 @@ export default defineBlock({
 
   schema: {
     // Header section
-    badgeText: {
+    badgeText: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "Contact Us",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Let's",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "talk",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "Have a question, feedback, or just want to say hello? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.",
-    },
+    }),
 
     // Info cards
-    infoCards: {
+    infoCards: field({
       type: "repeater",
       label: "Info Cards",
       group: "Info Cards",
       schema: {
-        icon: {
+        icon: field({
           type: "select",
           label: "Icon",
           options: [
@@ -47,15 +47,15 @@ export default defineBlock({
             { label: "Chat", value: "chat" },
             { label: "Globe", value: "globe" },
           ],
-        },
-        title: {
+        }),
+        title: field({
           type: "singleLine",
           label: "Title",
-        },
-        description: {
+        }),
+        description: field({
           type: "multiLine",
           label: "Description",
-        },
+        }),
       },
       defaultValue: [
         {
@@ -73,99 +73,99 @@ export default defineBlock({
           description: "We're a remote-first team working across Europe.",
         },
       ],
-    },
+    }),
 
     // Quote
-    showQuote: {
+    showQuote: field({
       type: "boolean",
       label: "Show Quote",
       defaultValue: true,
       group: "Quote",
-    },
-    quoteText: {
+    }),
+    quoteText: field({
       type: "multiLine",
       label: "Quote Text",
       defaultValue:
         "Building the future of content management, one pixel at a time.",
       group: "Quote",
-    },
-    quoteAuthor: {
+    }),
+    quoteAuthor: field({
       type: "singleLine",
       label: "Quote Author",
       defaultValue: "The Cmssy Team",
       group: "Quote",
-    },
+    }),
 
     // Form settings
-    nameLabel: {
+    nameLabel: field({
       type: "singleLine",
       label: "Name Label",
       defaultValue: "Name",
       group: "Form Settings",
-    },
-    emailLabel: {
+    }),
+    emailLabel: field({
       type: "singleLine",
       label: "Email Label",
       defaultValue: "Email",
       group: "Form Settings",
-    },
-    messageLabel: {
+    }),
+    messageLabel: field({
       type: "singleLine",
       label: "Message Label",
       defaultValue: "Message",
       group: "Form Settings",
-    },
-    emailConfigurationId: {
+    }),
+    emailConfigurationId: field({
       type: "emailConfiguration",
       label: "Email Configuration",
       group: "Form Settings",
       helpText: "Select which email configuration to use for notifications",
-    },
-    submitButtonText: {
+    }),
+    submitButtonText: field({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Send Message",
       group: "Form Settings",
-    },
-    submitLoadingText: {
+    }),
+    submitLoadingText: field({
       type: "singleLine",
       label: "Submit Loading Text",
       defaultValue: "Sending...",
       group: "Form Settings",
-    },
-    successHeading: {
+    }),
+    successHeading: field({
       type: "singleLine",
       label: "Success Heading",
       defaultValue: "Message Sent!",
       group: "Form Settings",
-    },
-    errorMessage: {
+    }),
+    errorMessage: field({
       type: "singleLine",
       label: "Error Message",
       defaultValue: "Something went wrong. Please try again.",
       group: "Form Settings",
-    },
-    successMessage: {
+    }),
+    successMessage: field({
       type: "multiLine",
       label: "Success Message",
       defaultValue:
         "Thank you for reaching out! We'll get back to you as soon as possible.",
       group: "Form Settings",
-    },
+    }),
 
     // Auto-response settings
-    enableAutoResponse: {
+    enableAutoResponse: field({
       type: "boolean",
       label: "Enable Auto-Response",
       defaultValue: false,
       group: "Auto-Response",
-    },
-    autoResponseTemplateId: {
+    }),
+    autoResponseTemplateId: field({
       type: "singleLine",
       label: "Auto-Response Template ID",
       helpText: "Enter the ID of a published email template for automatic responses",
       group: "Auto-Response",
       showWhen: { field: "enableAutoResponse", equals: true },
-    },
+    }),
   },
 });

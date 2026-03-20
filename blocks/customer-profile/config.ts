@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Customer Profile",
@@ -8,151 +8,151 @@ export default defineBlock({
 
   schema: {
     // Header section
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Your Profile",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue: "Manage your account information.",
-    },
+    }),
 
     // Form settings
-    firstNameLabel: {
+    firstNameLabel: field({
       type: "singleLine",
       label: "First Name Label",
       defaultValue: "First name",
       group: "Form Settings",
-    },
-    lastNameLabel: {
+    }),
+    lastNameLabel: field({
       type: "singleLine",
       label: "Last Name Label",
       defaultValue: "Last name",
       group: "Form Settings",
-    },
-    displayNameLabel: {
+    }),
+    displayNameLabel: field({
       type: "singleLine",
       label: "Display Name Label",
       defaultValue: "Display name",
       group: "Form Settings",
-    },
-    displayNameHelpText: {
+    }),
+    displayNameHelpText: field({
       type: "singleLine",
       label: "Display Name Help Text",
       defaultValue: "This is how your name will appear publicly",
       group: "Form Settings",
-    },
-    phoneLabel: {
+    }),
+    phoneLabel: field({
       type: "singleLine",
       label: "Phone Label",
       defaultValue: "Phone number",
       group: "Form Settings",
-    },
-    showAvatarUpload: {
+    }),
+    showAvatarUpload: field({
       type: "boolean",
       label: "Show Avatar Upload",
       defaultValue: true,
       group: "Form Settings",
-    },
-    showPhoneField: {
+    }),
+    showPhoneField: field({
       type: "boolean",
       label: "Show Phone Field",
       defaultValue: true,
       group: "Form Settings",
-    },
-    firstNamePlaceholder: {
+    }),
+    firstNamePlaceholder: field({
       type: "singleLine",
       label: "First Name Placeholder",
       defaultValue: "First name",
       group: "Form Settings",
-    },
-    lastNamePlaceholder: {
+    }),
+    lastNamePlaceholder: field({
       type: "singleLine",
       label: "Last Name Placeholder",
       defaultValue: "Last name",
       group: "Form Settings",
-    },
-    displayNamePlaceholder: {
+    }),
+    displayNamePlaceholder: field({
       type: "singleLine",
       label: "Display Name Placeholder",
       defaultValue: "Display name (public)",
       group: "Form Settings",
-    },
-    phonePlaceholder: {
+    }),
+    phonePlaceholder: field({
       type: "singleLine",
       label: "Phone Placeholder",
       defaultValue: "+1 (555) 123-4567",
       group: "Form Settings",
-    },
-    saveButtonText: {
+    }),
+    saveButtonText: field({
       type: "singleLine",
       label: "Save Button Text",
       defaultValue: "Save changes",
       group: "Form Settings",
-    },
-    submitLoadingText: {
+    }),
+    submitLoadingText: field({
       type: "singleLine",
       label: "Submit Loading Text",
       defaultValue: "Saving...",
       group: "Form Settings",
-    },
+    }),
 
     // Logout
-    showLogoutButton: {
+    showLogoutButton: field({
       type: "boolean",
       label: "Show Logout Button",
       defaultValue: true,
       group: "Actions",
-    },
-    logoutButtonText: {
+    }),
+    logoutButtonText: field({
       type: "singleLine",
       label: "Logout Button Text",
       defaultValue: "Sign out",
       group: "Actions",
-    },
-    logoutRedirectUrl: {
+    }),
+    logoutRedirectUrl: field({
       type: "link",
       label: "Logout Redirect URL",
       defaultValue: "/",
       group: "Actions",
-    },
+    }),
 
     // Messages
-    successMessage: {
+    successMessage: field({
       type: "singleLine",
       label: "Success Message",
       defaultValue: "Profile updated successfully!",
       group: "Messages",
-    },
-    errorMessage: {
+    }),
+    errorMessage: field({
       type: "singleLine",
       label: "Default Error Message",
       defaultValue: "Failed to update profile. Please try again.",
       group: "Messages",
-    },
-    notLoggedInMessage: {
+    }),
+    notLoggedInMessage: field({
       type: "singleLine",
       label: "Not Logged In Message",
       defaultValue: "Please log in to view your profile.",
       group: "Messages",
-    },
-    loginUrl: {
+    }),
+    loginUrl: field({
       type: "link",
       label: "Login URL",
       defaultValue: "/login",
       group: "Messages",
-    },
-    loginButtonText: {
+    }),
+    loginButtonText: field({
       type: "singleLine",
       label: "Login Button Text",
       defaultValue: "Sign in",
       group: "Messages",
-    },
+    }),
 
     // Styling
-    variant: {
+    variant: field({
       type: "select",
       label: "Variant",
       options: [
@@ -161,6 +161,6 @@ export default defineBlock({
       ],
       defaultValue: "default",
       group: "Styling",
-    },
+    }),
   },
 });
