@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Code Block",
@@ -7,13 +7,13 @@ export default defineBlock({
   tags: ["docs", "code", "syntax", "highlighting", "copy"],
 
   schema: {
-    code: {
+    code: field({
       type: "multiLine",
       label: "Code",
       required: true,
       placeholder: "// Your code here",
-    },
-    language: {
+    }),
+    language: field({
       type: "select",
       label: "Language",
       options: [
@@ -35,22 +35,22 @@ export default defineBlock({
         { value: "plaintext", label: "Plain Text" },
       ],
       defaultValue: "typescript",
-    },
-    filename: {
+    }),
+    filename: field({
       type: "singleLine",
       label: "Filename",
       placeholder: "e.g., block.config.ts",
-    },
-    showLineNumbers: {
+    }),
+    showLineNumbers: field({
       type: "boolean",
       label: "Show Line Numbers",
       defaultValue: false,
-    },
-    highlightLines: {
+    }),
+    highlightLines: field({
       type: "singleLine",
       label: "Highlight Lines",
       placeholder: "e.g., 1,3-5,8",
       helpText: "Comma-separated line numbers or ranges to highlight",
-    },
+    }),
   },
 });

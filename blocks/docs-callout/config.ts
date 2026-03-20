@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Callout",
@@ -7,7 +7,7 @@ export default defineBlock({
   tags: ["docs", "callout", "info", "warning", "tip", "alert"],
 
   schema: {
-    type: {
+    type: field({
       type: "select",
       label: "Type",
       required: true,
@@ -19,16 +19,16 @@ export default defineBlock({
         { value: "note", label: "Note (Gray)" },
       ],
       defaultValue: "info",
-    },
-    title: {
+    }),
+    title: field({
       type: "singleLine",
       label: "Title",
       placeholder: "Optional title",
-    },
-    content: {
+    }),
+    content: field({
       type: "richText",
       label: "Content",
       required: true,
-    },
+    }),
   },
 });

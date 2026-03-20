@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Roadmap",
@@ -7,43 +7,43 @@ export default defineBlock({
   tags: ["roadmap", "product", "kanban", "planning"],
 
   schema: {
-    badge: {
+    badge: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "Roadmap",
       group: "header",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Product",
       group: "header",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "Roadmap",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "Transparency is one of our core values. Here's what we're working on and what's coming next.",
       group: "header",
-    },
+    }),
 
-    columns: {
+    columns: field({
       type: "repeater",
       label: "Columns",
       group: "columns",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Column Title",
           required: true,
-        },
-        status: {
+        }),
+        status: field({
           type: "select",
           label: "Status Type",
           options: [
@@ -53,63 +53,63 @@ export default defineBlock({
             { value: "considering", label: "Under Consideration" },
           ],
           defaultValue: "planned",
-        },
-        items: {
+        }),
+        items: field({
           type: "repeater",
           label: "Items",
           schema: {
-            title: {
+            title: field({
               type: "singleLine",
               label: "Title",
               required: true,
-            },
-            description: {
+            }),
+            description: field({
               type: "singleLine",
               label: "Description",
-            },
-            badge: {
+            }),
+            badge: field({
               type: "singleLine",
               label: "Badge (optional)",
-            },
+            }),
           },
-        },
+        }),
       },
-    },
+    }),
 
-    showCta: {
+    showCta: field({
       type: "boolean",
       label: "Show Feedback CTA",
       defaultValue: true,
       group: "cta",
-    },
-    ctaTitle: {
+    }),
+    ctaTitle: field({
       type: "singleLine",
       label: "CTA Title",
       defaultValue: "Shape Our Roadmap",
       group: "cta",
       showWhen: { field: "showCta", equals: true },
-    },
-    ctaDescription: {
+    }),
+    ctaDescription: field({
       type: "multiLine",
       label: "CTA Description",
       defaultValue:
         "Have a feature request or idea? We'd love to hear from you.",
       group: "cta",
       showWhen: { field: "showCta", equals: true },
-    },
-    ctaButtonText: {
+    }),
+    ctaButtonText: field({
       type: "singleLine",
       label: "CTA Button Text",
       defaultValue: "Submit Feedback",
       group: "cta",
       showWhen: { field: "showCta", equals: true },
-    },
-    ctaButtonUrl: {
+    }),
+    ctaButtonUrl: field({
       type: "link",
       label: "CTA Button URL",
       defaultValue: "/contact",
       group: "cta",
       showWhen: { field: "showCta", equals: true },
-    },
+    }),
   },
 });

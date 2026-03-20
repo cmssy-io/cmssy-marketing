@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Blog Posts",
@@ -8,32 +8,32 @@ export default defineBlock({
   tags: ["blog", "posts", "articles", "grid", "listing", "collection"],
 
   schema: {
-    badge: {
+    badge: field({
       type: "singleLine",
       label: "Badge",
       defaultValue: "Latest Posts",
       group: "header",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "From the Blog",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       group: "header",
-    },
+    }),
 
     // Collection source
-    parentPage: {
+    parentPage: field({
       type: "pageSelector",
       label: "Parent Page",
       multiple: true,
       group: "source",
-    },
-    postsPerPage: {
+    }),
+    postsPerPage: field({
       type: "select",
       label: "Posts per page",
       defaultValue: "9",
@@ -44,16 +44,16 @@ export default defineBlock({
         { label: "12", value: "12" },
       ],
       group: "source",
-    },
+    }),
 
     // UI
-    showSearch: {
+    showSearch: field({
       type: "boolean",
       label: "Show Search",
       defaultValue: true,
       group: "settings",
-    },
-    layout: {
+    }),
+    layout: field({
       type: "select",
       label: "Layout",
       defaultValue: "grid",
@@ -62,8 +62,8 @@ export default defineBlock({
         { label: "List", value: "list" },
       ],
       group: "settings",
-    },
-    columns: {
+    }),
+    columns: field({
       type: "select",
       label: "Columns",
       defaultValue: "3",
@@ -73,26 +73,26 @@ export default defineBlock({
       ],
       group: "settings",
       showWhen: { field: "layout", equals: "grid" },
-    },
+    }),
 
     // Translatable texts
-    searchPlaceholder: {
+    searchPlaceholder: field({
       type: "singleLine",
       label: "Search Placeholder",
       defaultValue: "Search posts...",
       group: "texts",
-    },
-    loadingText: {
+    }),
+    loadingText: field({
       type: "singleLine",
       label: "Loading Text",
       defaultValue: "Loading...",
       group: "texts",
-    },
-    noResultsText: {
+    }),
+    noResultsText: field({
       type: "singleLine",
       label: "No Results Text",
       defaultValue: "No posts found",
       group: "texts",
-    },
+    }),
   },
 });

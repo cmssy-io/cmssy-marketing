@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Newsletter Form",
@@ -8,87 +8,87 @@ export default defineBlock({
 
   schema: {
     // Header section
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "Stay in the loop",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "Get the latest updates, tips, and exclusive content delivered straight to your inbox.",
-    },
+    }),
 
     // Form settings
-    showNameField: {
+    showNameField: field({
       type: "boolean",
       label: "Show Name Field",
       defaultValue: false,
       group: "Form Settings",
-    },
-    namePlaceholder: {
+    }),
+    namePlaceholder: field({
       type: "singleLine",
       label: "Name Placeholder",
       defaultValue: "Your name",
       group: "Form Settings",
-    },
-    emailPlaceholder: {
+    }),
+    emailPlaceholder: field({
       type: "singleLine",
       label: "Email Placeholder",
       defaultValue: "you@example.com",
       group: "Form Settings",
-    },
-    submitButtonText: {
+    }),
+    submitButtonText: field({
       type: "singleLine",
       label: "Submit Button Text",
       defaultValue: "Subscribe",
       group: "Form Settings",
-    },
-    submitLoadingText: {
+    }),
+    submitLoadingText: field({
       type: "singleLine",
       label: "Submit Loading Text",
       defaultValue: "Subscribing...",
       group: "Form Settings",
-    },
+    }),
 
     // Tags for segmentation
-    tags: {
+    tags: field({
       type: "repeater",
       label: "Subscriber Tags",
       group: "Marketing",
       schema: {
-        tag: {
+        tag: field({
           type: "singleLine",
           label: "Tag",
           placeholder: "e.g., newsletter, blog-updates",
-        },
+        }),
       },
-    },
+    }),
 
     // Messages
-    successHeading: {
+    successHeading: field({
       type: "singleLine",
       label: "Success Heading",
       defaultValue: "You're subscribed!",
       group: "Messages",
-    },
-    successMessage: {
+    }),
+    successMessage: field({
       type: "multiLine",
       label: "Success Message",
       defaultValue:
         "Thanks for subscribing! Check your inbox for a confirmation email.",
       group: "Messages",
-    },
-    errorMessage: {
+    }),
+    errorMessage: field({
       type: "multiLine",
       label: "Error Message",
       defaultValue: "Something went wrong. Please try again.",
       group: "Messages",
-    },
+    }),
 
     // Styling
-    variant: {
+    variant: field({
       type: "select",
       label: "Variant",
       options: [
@@ -98,18 +98,18 @@ export default defineBlock({
       ],
       defaultValue: "inline",
       group: "Styling",
-    },
-    showPrivacyNote: {
+    }),
+    showPrivacyNote: field({
       type: "boolean",
       label: "Show Privacy Note",
       defaultValue: true,
       group: "Styling",
-    },
-    privacyNote: {
+    }),
+    privacyNote: field({
       type: "singleLine",
       label: "Privacy Note Text",
       defaultValue: "We respect your privacy. Unsubscribe at any time.",
       group: "Styling",
-    },
+    }),
   },
 });

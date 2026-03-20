@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Hero Section",
@@ -7,83 +7,83 @@ export default defineBlock({
   tags: ["hero", "landing", "cta"],
 
   schema: {
-    badgeText: {
+    badgeText: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "AI-Powered Page Builder",
       placeholder: "Badge Text",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Main Heading",
       defaultValue: "Build reusable UI blocks with any framework",
       required: true,
       placeholder: "Build websites",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "without limits",
-    },
-    subheading: {
+    }),
+    subheading: field({
       type: "multiLine",
       label: "Subheading",
       placeholder: "The modern CMS that makes website creation effortless...",
-    },
-    primaryButtonText: {
+    }),
+    primaryButtonText: field({
       type: "singleLine",
       label: "Primary Button Text",
       defaultValue: "Start Building Free",
-    },
-    primaryButtonUrl: {
+    }),
+    primaryButtonUrl: field({
       type: "link",
       label: "Primary Button URL",
       defaultValue: "/signup",
-    },
-    secondaryButtonText: {
+    }),
+    secondaryButtonText: field({
       type: "singleLine",
       label: "Secondary Button Text",
       defaultValue: "Watch Demo",
-    },
-    secondaryButtonUrl: {
+    }),
+    secondaryButtonUrl: field({
       type: "link",
       label: "Secondary Button URL",
       defaultValue: "#demo",
-    },
-    socialProofPrefix: {
+    }),
+    socialProofPrefix: field({
       type: "singleLine",
       label: "Social Proof Prefix",
       defaultValue: "Join",
-    },
-    socialProofCount: {
+    }),
+    socialProofCount: field({
       type: "singleLine",
       label: "Social Proof Count",
       defaultValue: "2,000+",
-    },
-    socialProofText: {
+    }),
+    socialProofText: field({
       type: "singleLine",
       label: "Social Proof Text",
       defaultValue: "creators already building with cmssy",
-    },
-    media: {
+    }),
+    media: field({
       type: "media",
       label: "Media (Image or Video)",
       placeholder: "Upload an image or video for the hero section",
-    },
-    mediaPlaceholderHeading: {
+    }),
+    mediaPlaceholderHeading: field({
       type: "singleLine",
       label: "Media Placeholder Heading",
       defaultValue: "Page Builder Preview",
-    },
-    mediaPlaceholderText: {
+    }),
+    mediaPlaceholderText: field({
       type: "singleLine",
       label: "Media Placeholder Text",
       defaultValue: "Drag & drop interface with real-time preview",
-    },
-    test: {
+    }),
+    test: field({
       type: "singleLine",
       label: "Test Field",
       placeholder: "This is a test field",
-    },
+    }),
   },
 });

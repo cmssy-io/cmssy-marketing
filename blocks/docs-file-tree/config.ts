@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs File Tree",
@@ -6,13 +6,13 @@ export default defineBlock({
   category: "documentation",
   tags: ["docs", "file", "tree", "folder", "structure", "project"],
   schema: {
-    title: {
+    title: field({
       type: "singleLine",
       label: "Title",
       placeholder: "Project Structure",
       group: "content",
-    },
-    tree: {
+    }),
+    tree: field({
       type: "multiLine",
       label: "Tree",
       required: true,
@@ -20,19 +20,19 @@ export default defineBlock({
         "src/\n├── index.ts\n├── components/\n│   └── App.tsx\n└── styles/\n    └── main.css",
       helpText: "Paste a plaintext tree using ├── └── │ characters",
       group: "content",
-    },
-    highlights: {
+    }),
+    highlights: field({
       type: "singleLine",
       label: "Highlighted Files",
       placeholder: "src/index.ts,config.ts",
       helpText: "Comma-separated file names to highlight",
       group: "content",
-    },
-    showIcons: {
+    }),
+    showIcons: field({
       type: "boolean",
       label: "Show File Icons",
       defaultValue: true,
       group: "style",
-    },
+    }),
   },
 });

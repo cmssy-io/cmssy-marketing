@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Image",
@@ -7,25 +7,25 @@ export default defineBlock({
   tags: ["docs", "image", "screenshot", "figure", "caption"],
 
   schema: {
-    src: {
+    src: field({
       type: "media",
       label: "Image",
       required: true,
       group: "image",
-    },
-    alt: {
+    }),
+    alt: field({
       type: "singleLine",
       label: "Alt Text",
       required: true,
       group: "image",
-    },
-    caption: {
+    }),
+    caption: field({
       type: "singleLine",
       label: "Caption",
       group: "image",
-    },
+    }),
 
-    width: {
+    width: field({
       type: "select",
       label: "Width",
       options: [
@@ -36,30 +36,30 @@ export default defineBlock({
       ],
       defaultValue: "large",
       group: "style",
-    },
-    border: {
+    }),
+    border: field({
       type: "boolean",
       label: "Show Border",
       defaultValue: true,
       group: "style",
-    },
-    rounded: {
+    }),
+    rounded: field({
       type: "boolean",
       label: "Rounded Corners",
       defaultValue: true,
       group: "style",
-    },
-    shadow: {
+    }),
+    shadow: field({
       type: "boolean",
       label: "Shadow",
       defaultValue: true,
       group: "style",
-    },
-    zoomable: {
+    }),
+    zoomable: field({
       type: "boolean",
       label: "Click to Zoom",
       defaultValue: true,
       group: "style",
-    },
+    }),
   },
 });

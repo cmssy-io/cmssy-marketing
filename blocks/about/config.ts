@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "About",
@@ -8,57 +8,57 @@ export default defineBlock({
 
   schema: {
     // Header
-    badgeText: {
+    badgeText: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "About",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       required: true,
       defaultValue: "Building the Future of",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "CMS",
-    },
-    subtitle: {
+    }),
+    subtitle: field({
       type: "multiLine",
       label: "Subtitle",
       defaultValue:
         "We're on a mission to make professional website creation accessible to everyone, powered by AI and modern technology.",
-    },
+    }),
 
     // Mission
-    missionHeading: {
+    missionHeading: field({
       type: "singleLine",
       label: "Mission Heading",
       defaultValue: "Our Mission",
       group: "Mission",
-    },
-    missionText: {
+    }),
+    missionText: field({
       type: "multiLine",
       label: "Mission Text",
       defaultValue:
         "We believe that creating beautiful, professional websites shouldn't require a team of developers or expensive agencies. Cmssy empowers creators, businesses, and developers to build stunning websites with AI-powered tools, intuitive drag-and-drop editing, and enterprise-grade performance.",
       group: "Mission",
-    },
+    }),
 
     // Values
-    valuesHeading: {
+    valuesHeading: field({
       type: "singleLine",
       label: "Values Heading",
       defaultValue: "Our Values",
       group: "Values",
-    },
-    values: {
+    }),
+    values: field({
       type: "repeater",
       label: "Values",
       group: "Values",
       schema: {
-        icon: {
+        icon: field({
           type: "select",
           label: "Icon",
           options: [
@@ -72,47 +72,47 @@ export default defineBlock({
             { label: "Rocket", value: "rocket" },
           ],
           defaultValue: "sparkles",
-        },
-        title: {
+        }),
+        title: field({
           type: "singleLine",
           label: "Title",
           required: true,
-        },
-        description: {
+        }),
+        description: field({
           type: "multiLine",
           label: "Description",
-        },
+        }),
       },
-    },
+    }),
 
     // Tech Stack
-    techStackHeading: {
+    techStackHeading: field({
       type: "singleLine",
       label: "Tech Stack Heading",
       defaultValue: "Built With Modern Tech",
       group: "Tech Stack",
-    },
-    showTechStack: {
+    }),
+    showTechStack: field({
       type: "boolean",
       label: "Show Tech Stack",
       defaultValue: true,
       group: "Tech Stack",
-    },
-    techStack: {
+    }),
+    techStack: field({
       type: "repeater",
       label: "Technologies",
       group: "Tech Stack",
       schema: {
-        name: {
+        name: field({
           type: "singleLine",
           label: "Name",
           required: true,
-        },
-        category: {
+        }),
+        category: field({
           type: "singleLine",
           label: "Category",
-        },
+        }),
       },
-    },
+    }),
   },
 });

@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Blog Post Hero",
@@ -8,54 +8,54 @@ export default defineBlock({
   tags: ["blog", "post", "hero", "article", "cover"],
 
   schema: {
-    coverImage: {
+    coverImage: field({
       type: "media",
       label: "Cover Image",
       helpText: "Recommended: 1200x630px for optimal social sharing",
-    },
-    title: {
+    }),
+    title: field({
       type: "singleLine",
       label: "Title",
       required: true,
       placeholder: "Your blog post title",
-    },
-    excerpt: {
+    }),
+    excerpt: field({
       type: "multiLine",
       label: "Excerpt",
       placeholder: "A short summary of the post",
-    },
-    category: {
+    }),
+    category: field({
       type: "singleLine",
       label: "Category",
       placeholder: "e.g. Engineering, Design, Product",
-    },
-    author: {
+    }),
+    author: field({
       type: "singleLine",
       label: "Author",
       placeholder: "Author name",
-    },
-    authorAvatar: {
+    }),
+    authorAvatar: field({
       type: "media",
       label: "Author Avatar",
-    },
-    date: {
+    }),
+    date: field({
       type: "date",
       label: "Publish Date",
-    },
-    readingTime: {
+    }),
+    readingTime: field({
       type: "numeric",
       label: "Reading Time (minutes)",
       defaultValue: 5,
-    },
-    breadcrumbLabel: {
+    }),
+    breadcrumbLabel: field({
       type: "singleLine",
       label: "Breadcrumb Label",
       defaultValue: "Blog",
-    },
-    breadcrumbUrl: {
+    }),
+    breadcrumbUrl: field({
       type: "link",
       label: "Breadcrumb URL",
       defaultValue: "/blog",
-    },
+    }),
   },
 });

@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Card Grid",
@@ -7,18 +7,18 @@ export default defineBlock({
   tags: ["docs", "cards", "grid", "navigation", "links"],
 
   schema: {
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Section Heading",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Section Description",
       group: "header",
-    },
+    }),
 
-    columns: {
+    columns: field({
       type: "select",
       label: "Columns",
       options: [
@@ -28,34 +28,34 @@ export default defineBlock({
       ],
       defaultValue: "3",
       group: "layout",
-    },
+    }),
 
-    cards: {
+    cards: field({
       type: "repeater",
       label: "Cards",
       group: "cards",
       schema: {
-        icon: {
+        icon: field({
           type: "singleLine",
           label: "Icon Name",
           placeholder: "e.g., Rocket, Code, Book",
           helpText: "Lucide icon name",
-        },
-        title: {
+        }),
+        title: field({
           type: "singleLine",
           label: "Title",
           required: true,
-        },
-        description: {
+        }),
+        description: field({
           type: "multiLine",
           label: "Description",
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
           required: true,
-        },
+        }),
       },
-    },
+    }),
   },
 });
