@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Image",
@@ -7,21 +7,21 @@ export default defineBlock({
   tags: ["image", "photo", "screenshot", "media"],
 
   schema: {
-    src: {
+    src: field({
       type: "media",
       label: "Image",
       required: true,
-    },
-    alt: {
+    }),
+    alt: field({
       type: "singleLine",
       label: "Alt Text",
       helperText: "Describe the image for accessibility",
-    },
-    caption: {
+    }),
+    caption: field({
       type: "singleLine",
       label: "Caption",
-    },
-    width: {
+    }),
+    width: field({
       type: "select",
       label: "Width",
       options: [
@@ -31,11 +31,11 @@ export default defineBlock({
         { value: "full", label: "Full Width" },
       ],
       defaultValue: "full",
-    },
-    rounded: {
+    }),
+    rounded: field({
       type: "boolean",
       label: "Rounded Corners",
       defaultValue: true,
-    },
+    }),
   },
 });

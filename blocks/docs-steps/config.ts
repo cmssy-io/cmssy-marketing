@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Steps",
@@ -7,41 +7,41 @@ export default defineBlock({
   tags: ["docs", "steps", "guide", "tutorial", "stepper"],
 
   schema: {
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       group: "header",
-    },
+    }),
 
-    steps: {
+    steps: field({
       type: "repeater",
       label: "Steps",
       group: "steps",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Step Title",
           required: true,
-        },
-        content: {
+        }),
+        content: field({
           type: "richText",
           label: "Step Content",
-        },
+        }),
       },
-    },
+    }),
 
-    showNumbers: {
+    showNumbers: field({
       type: "boolean",
       label: "Show Step Numbers",
       defaultValue: true,
       group: "style",
-    },
-    connectorStyle: {
+    }),
+    connectorStyle: field({
       type: "select",
       label: "Connector Style",
       options: [
@@ -51,6 +51,6 @@ export default defineBlock({
       ],
       defaultValue: "line",
       group: "style",
-    },
+    }),
   },
 });

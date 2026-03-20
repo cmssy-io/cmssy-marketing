@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Footer",
@@ -8,90 +8,90 @@ export default defineBlock({
   tags: ["footer", "navigation", "links"],
 
   schema: {
-    logo: {
+    logo: field({
       type: "media",
       label: "Logo",
       group: "brand",
-    },
-    logoText: {
+    }),
+    logoText: field({
       type: "singleLine",
       label: "Logo Text",
       defaultValue: "cmssy",
       group: "brand",
-    },
-    tagline: {
+    }),
+    tagline: field({
       type: "multiLine",
       label: "Tagline",
       defaultValue:
         "The modern CMS that makes website creation effortless. Build beautiful websites with AI-powered tools.",
       group: "brand",
-    },
+    }),
 
-    linkColumns: {
+    linkColumns: field({
       type: "repeater",
       label: "Link Columns",
       group: "columns",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Column Title",
           required: true,
-        },
-        links: {
+        }),
+        links: field({
           type: "repeater",
           label: "Links",
           schema: {
-            name: {
+            name: field({
               type: "singleLine",
               label: "Link Text",
               required: true,
-            },
-            href: {
+            }),
+            href: field({
               type: "link",
               label: "URL",
               required: true,
-            },
+            }),
           },
-        },
+        }),
       },
-    },
+    }),
 
-    showSocial: {
+    showSocial: field({
       type: "boolean",
       label: "Show Social Links",
       defaultValue: true,
       group: "social",
-    },
-    twitterUrl: {
+    }),
+    twitterUrl: field({
       type: "link",
       label: "Twitter/X URL",
       group: "social",
       showWhen: { field: "showSocial", equals: true },
-    },
-    githubUrl: {
+    }),
+    githubUrl: field({
       type: "link",
       label: "GitHub URL",
       group: "social",
       showWhen: { field: "showSocial", equals: true },
-    },
-    linkedinUrl: {
+    }),
+    linkedinUrl: field({
       type: "link",
       label: "LinkedIn URL",
       group: "social",
       showWhen: { field: "showSocial", equals: true },
-    },
+    }),
 
-    copyrightText: {
+    copyrightText: field({
       type: "singleLine",
       label: "Copyright Text",
       defaultValue: "cmssy. All rights reserved.",
       group: "legal",
-    },
-    showLanguageSwitcher: {
+    }),
+    showLanguageSwitcher: field({
       type: "boolean",
       label: "Show Language Switcher",
       defaultValue: false,
       group: "legal",
-    },
+    }),
   },
 });

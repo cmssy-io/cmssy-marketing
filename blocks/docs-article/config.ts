@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Article",
@@ -7,100 +7,100 @@ export default defineBlock({
   tags: ["docs", "article", "content", "documentation", "richtext"],
 
   schema: {
-    title: {
+    title: field({
       type: "singleLine",
       label: "Title",
       required: true,
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       group: "header",
-    },
-    lastUpdated: {
+    }),
+    lastUpdated: field({
       type: "date",
       label: "Last Updated",
       group: "header",
-    },
+    }),
 
-    content: {
+    content: field({
       type: "richText",
       label: "Content",
       required: true,
       group: "content",
-    },
+    }),
 
-    showToc: {
+    showToc: field({
       type: "boolean",
       label: "Show Table of Contents",
       defaultValue: true,
       group: "features",
-    },
-    tocTitle: {
+    }),
+    tocTitle: field({
       type: "singleLine",
       label: "TOC Title",
       defaultValue: "On this page",
       group: "features",
       showWhen: { field: "showToc", equals: true },
-    },
+    }),
 
-    showPrevNext: {
+    showPrevNext: field({
       type: "boolean",
       label: "Show Prev/Next Navigation",
       defaultValue: true,
       group: "navigation",
-    },
-    prevPage: {
+    }),
+    prevPage: field({
       type: "repeater",
       label: "Previous Page",
       maxItems: 1,
       group: "navigation",
       showWhen: { field: "showPrevNext", equals: true },
       schema: {
-        label: {
+        label: field({
           type: "singleLine",
           label: "Label",
           required: true,
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
           required: true,
-        },
+        }),
       },
-    },
-    nextPage: {
+    }),
+    nextPage: field({
       type: "repeater",
       label: "Next Page",
       maxItems: 1,
       group: "navigation",
       showWhen: { field: "showPrevNext", equals: true },
       schema: {
-        label: {
+        label: field({
           type: "singleLine",
           label: "Label",
           required: true,
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
           required: true,
-        },
+        }),
       },
-    },
+    }),
 
-    showEditLink: {
+    showEditLink: field({
       type: "boolean",
       label: "Show 'Edit on GitHub' Link",
       defaultValue: true,
       group: "footer",
-    },
-    editUrl: {
+    }),
+    editUrl: field({
       type: "link",
       label: "Edit URL",
       group: "footer",
       showWhen: { field: "showEditLink", equals: true },
-    },
+    }),
   },
 });

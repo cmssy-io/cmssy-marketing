@@ -43,11 +43,11 @@ importers:
         version: 3.4.0
     devDependencies:
       '@cmssy/cli':
-        specifier: ^0.6.11
-        version: 0.6.11(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 0.9.0
+        version: 0.9.0(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@cmssy/types':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.8.0
+        version: 0.8.0
       '@eslint/js':
         specifier: ^9.39.3
         version: 9.39.3
@@ -155,8 +155,8 @@ packages:
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
-  '@cmssy/cli@0.6.11':
-    resolution: {integrity: sha512-iU6OYsIAw9rc2IC67S/Iu/eRLdaBInIVE+sIlioPEDEH2/8h7L2YPtSNdqeHSKPn0qhclcW1gLyF8UKzZPbROQ==}
+  '@cmssy/cli@0.9.0':
+    resolution: {integrity: sha512-N5AE6gxnwNKPjNuJH9eMYQQWh6xfIS3f36KkMvA3zJN5GITPm0W8ZkMLSitRjW5DxeFF+BRrgqaj3+DSE4nW/Q==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -167,8 +167,8 @@ packages:
       next:
         optional: true
 
-  '@cmssy/types@0.6.0':
-    resolution: {integrity: sha512-P5Cl1m0CM+peyPe0/22J7uIsFfIjgtedTV6zK7Y58nG/9CvOy3lhqMpYqV3+FaOXlZvZcV1FLLZzK2wd2raeLw==}
+  '@cmssy/types@0.8.0':
+    resolution: {integrity: sha512-IWyZql3fVcYUSf7N7innXxsBN8yib5n2+WXCJVhQGrh5/PA989V8dr4wvYI/LwlfFemuvn/XWtNZU6ggOp9k0A==}
 
   '@emnapi/runtime@1.8.1':
     resolution: {integrity: sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg==}
@@ -2635,9 +2635,9 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@cmssy/cli@0.6.11(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@cmssy/cli@0.9.0(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@cmssy/types': 0.6.0
+      '@cmssy/types': 0.8.0
       '@tailwindcss/postcss': 4.1.18
       archiver: 7.0.1
       chalk: 5.6.2
@@ -2666,7 +2666,7 @@ snapshots:
       - bare-buffer
       - react-native-b4a
 
-  '@cmssy/types@0.6.0': {}
+  '@cmssy/types@0.8.0': {}
 
   '@emnapi/runtime@1.8.1':
     dependencies:

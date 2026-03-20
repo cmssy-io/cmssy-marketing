@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs API Reference",
@@ -7,18 +7,18 @@ export default defineBlock({
   category: "documentation",
   tags: ["docs", "api", "reference", "endpoint", "graphql", "rest"],
   schema: {
-    title: {
+    title: field({
       type: "singleLine",
       label: "Title",
       placeholder: "getPages",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "richText",
       label: "Description",
       group: "header",
-    },
-    method: {
+    }),
+    method: field({
       type: "select",
       label: "Method",
       required: true,
@@ -33,14 +33,14 @@ export default defineBlock({
       ],
       defaultValue: "query",
       group: "header",
-    },
-    endpoint: {
+    }),
+    endpoint: field({
       type: "singleLine",
       label: "Endpoint / Operation Name",
       placeholder: "/api/graphql or getPages",
       group: "header",
-    },
-    auth: {
+    }),
+    auth: field({
       type: "select",
       label: "Authentication",
       options: [
@@ -50,40 +50,40 @@ export default defineBlock({
       ],
       defaultValue: "required",
       group: "header",
-    },
-    parameters: {
+    }),
+    parameters: field({
       type: "repeater",
       label: "Parameters",
       group: "parameters",
       schema: {
-        name: {
+        name: field({
           type: "singleLine",
           label: "Name",
           required: true,
-        },
-        type: {
+        }),
+        type: field({
           type: "singleLine",
           label: "Type",
           required: true,
-        },
-        required: {
+        }),
+        required: field({
           type: "boolean",
           label: "Required",
           defaultValue: false,
-        },
-        description: {
+        }),
+        description: field({
           type: "singleLine",
           label: "Description",
-        },
+        }),
       },
-    },
-    requestExample: {
+    }),
+    requestExample: field({
       type: "multiLine",
       label: "Request Example",
       placeholder: "query GetPages {\n  pages {\n    id\n    title\n  }\n}",
       group: "examples",
-    },
-    requestLanguage: {
+    }),
+    requestLanguage: field({
       type: "select",
       label: "Request Language",
       options: [
@@ -95,14 +95,14 @@ export default defineBlock({
       ],
       defaultValue: "graphql",
       group: "examples",
-    },
-    responseExample: {
+    }),
+    responseExample: field({
       type: "multiLine",
       label: "Response Example",
       placeholder: '{\n  "data": {\n    "pages": []\n  }\n}',
       group: "examples",
-    },
-    responseLanguage: {
+    }),
+    responseLanguage: field({
       type: "select",
       label: "Response Language",
       options: [
@@ -112,6 +112,6 @@ export default defineBlock({
       ],
       defaultValue: "json",
       group: "examples",
-    },
+    }),
   },
 });

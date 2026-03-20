@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Changelog",
@@ -7,53 +7,53 @@ export default defineBlock({
   tags: ["changelog", "updates", "versions", "timeline", "releases"],
 
   schema: {
-    badge: {
+    badge: field({
       type: "singleLine",
       label: "Badge Text",
       defaultValue: "Changelog",
       group: "header",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "What's",
       group: "header",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "New",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "Stay up to date with the latest features, improvements, and fixes.",
       group: "header",
-    },
+    }),
 
-    entries: {
+    entries: field({
       type: "repeater",
       label: "Changelog Entries",
       group: "entries",
       schema: {
-        version: {
+        version: field({
           type: "singleLine",
           label: "Version",
           required: true,
-        },
-        date: {
+        }),
+        date: field({
           type: "singleLine",
           label: "Date",
           required: true,
-        },
-        title: {
+        }),
+        title: field({
           type: "singleLine",
           label: "Title",
           required: true,
-        },
-        type: {
+        }),
+        type: field({
           type: "select",
           label: "Type",
           options: [
@@ -62,47 +62,47 @@ export default defineBlock({
             { value: "bugfix", label: "Bug Fix" },
           ],
           defaultValue: "feature",
-        },
-        changes: {
+        }),
+        changes: field({
           type: "repeater",
           label: "Changes",
           schema: {
-            text: {
+            text: field({
               type: "singleLine",
               label: "Change Description",
               required: true,
-            },
+            }),
           },
-        },
+        }),
       },
-    },
+    }),
 
-    showSubscribe: {
+    showSubscribe: field({
       type: "boolean",
       label: "Show Subscribe CTA",
       defaultValue: true,
       group: "subscribe",
-    },
-    subscribeText: {
+    }),
+    subscribeText: field({
       type: "singleLine",
       label: "Subscribe Text",
       defaultValue: "Subscribe to get notified about new releases",
       group: "subscribe",
       showWhen: { field: "showSubscribe", equals: true },
-    },
-    subscribeButtonText: {
+    }),
+    subscribeButtonText: field({
       type: "singleLine",
       label: "Subscribe Button Text",
       defaultValue: "Subscribe",
       group: "subscribe",
       showWhen: { field: "showSubscribe", equals: true },
-    },
-    subscribeButtonUrl: {
+    }),
+    subscribeButtonUrl: field({
       type: "link",
       label: "Subscribe Button URL",
       defaultValue: "/blog",
       group: "subscribe",
       showWhen: { field: "showSubscribe", equals: true },
-    },
+    }),
   },
 });

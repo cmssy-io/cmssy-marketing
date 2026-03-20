@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Tabs",
@@ -7,37 +7,37 @@ export default defineBlock({
   tags: ["docs", "tabs", "code", "variants", "npm", "yarn"],
 
   schema: {
-    tabs: {
+    tabs: field({
       type: "repeater",
       label: "Tabs",
       group: "tabs",
       schema: {
-        label: {
+        label: field({
           type: "singleLine",
           label: "Tab Label",
           required: true,
-        },
-        icon: {
+        }),
+        icon: field({
           type: "singleLine",
           label: "Icon Name",
           placeholder: "e.g., Terminal, Package",
           helpText: "Lucide icon name (optional)",
-        },
-        content: {
+        }),
+        content: field({
           type: "richText",
           label: "Tab Content",
           required: true,
-        },
+        }),
       },
-    },
+    }),
 
-    defaultTab: {
+    defaultTab: field({
       type: "numeric",
       label: "Default Tab Index",
       defaultValue: 0,
       group: "settings",
-    },
-    variant: {
+    }),
+    variant: field({
       type: "select",
       label: "Tab Style",
       options: [
@@ -47,6 +47,6 @@ export default defineBlock({
       ],
       defaultValue: "underline",
       group: "settings",
-    },
+    }),
   },
 });

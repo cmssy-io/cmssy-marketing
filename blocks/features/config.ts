@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Features",
@@ -7,48 +7,48 @@ export default defineBlock({
   tags: ["marketing", "features"],
 
   schema: {
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       required: true,
       defaultValue: "Heading",
-    },
-    headingHighlight: {
+    }),
+    headingHighlight: field({
       type: "singleLine",
       label: "Heading Highlight",
       defaultValue: "Highlight",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       placeholder: "Enter description",
       defaultValue: "Description",
-    },
-    features: {
+    }),
+    features: field({
       type: "repeater",
       label: "Features",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Title",
           required: true,
           defaultValue: "Feature Title",
-        },
-        description: {
+        }),
+        description: field({
           type: "multiLine",
           label: "Description",
           defaultValue: "Feature description goes here.",
           required: true,
-        },
-        color: {
+        }),
+        color: field({
           type: "color",
           label: "Color",
-        },
-        hoverColor: {
+        }),
+        hoverColor: field({
           type: "color",
           label: "Hover Color",
-        },
-        icon: {
+        }),
+        icon: field({
           type: "select",
           label: "Icon",
           options: [
@@ -67,8 +67,8 @@ export default defineBlock({
             { label: "Shield Check", value: "ShieldCheckIcon" },
             { label: "Blocks", value: "BlocksIcon" },
           ],
-        },
+        }),
       },
-    },
+    }),
   },
 });

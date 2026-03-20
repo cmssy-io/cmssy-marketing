@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Sidebar",
@@ -10,84 +10,84 @@ export default defineBlock({
   layoutPosition: "sidebar_left",
 
   schema: {
-    logo: {
+    logo: field({
       type: "media",
       label: "Logo",
       group: "branding",
-    },
-    logoText: {
+    }),
+    logoText: field({
       type: "singleLine",
       label: "Logo Text",
       defaultValue: "Docs",
       group: "branding",
-    },
-    logoUrl: {
+    }),
+    logoUrl: field({
       type: "link",
       label: "Logo Link",
       defaultValue: "/",
       group: "branding",
-    },
+    }),
 
-    sections: {
+    sections: field({
       type: "repeater",
       label: "Navigation Sections",
       group: "navigation",
       schema: {
-        title: {
+        title: field({
           type: "singleLine",
           label: "Section Title",
           required: true,
-        },
-        pages: {
+        }),
+        pages: field({
           type: "pageSelector",
           label: "Pages",
-        },
+        }),
       },
-    },
+    }),
 
-    showSearch: {
+    showSearch: field({
       type: "boolean",
       label: "Show Search",
       defaultValue: true,
       group: "features",
-    },
-    searchPlaceholder: {
+    }),
+    searchPlaceholder: field({
       type: "singleLine",
       label: "Search Placeholder",
       defaultValue: "Search docs...",
       group: "features",
       showWhen: { field: "showSearch", equals: true },
-    },
+    }),
 
-    showVersionSelector: {
+    showVersionSelector: field({
       type: "boolean",
       label: "Show Version Selector",
       defaultValue: false,
       group: "features",
-    },
-    currentVersion: {
+    }),
+    currentVersion: field({
       type: "singleLine",
       label: "Current Version",
       defaultValue: "v1.0",
       group: "features",
       showWhen: { field: "showVersionSelector", equals: true },
-    },
+    }),
 
-    githubUrl: {
+    githubUrl: field({
       type: "link",
       label: "GitHub URL",
       group: "links",
-    },
-    slackUrl: {
+    }),
+    slackUrl: field({
       type: "link",
       label: "Slack URL",
       group: "links",
-    },
-    showLanguageSwitcher: {
+    }),
+    showLanguageSwitcher: field({
       type: "boolean",
       label: "Show Language Switcher",
       defaultValue: false,
       group: "features",
-    },
+    }),
   },
 });

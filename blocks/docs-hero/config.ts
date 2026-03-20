@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "Docs Hero",
@@ -7,26 +7,26 @@ export default defineBlock({
   tags: ["docs", "hero", "landing", "documentation", "search"],
 
   schema: {
-    badge: {
+    badge: field({
       type: "singleLine",
       label: "Badge Text",
       placeholder: "e.g., Documentation",
       group: "header",
-    },
-    heading: {
+    }),
+    heading: field({
       type: "singleLine",
       label: "Heading",
       required: true,
       defaultValue: "Documentation",
       group: "header",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       group: "header",
-    },
+    }),
 
-    variant: {
+    variant: field({
       type: "select",
       label: "Variant",
       options: [
@@ -36,48 +36,48 @@ export default defineBlock({
       ],
       defaultValue: "default",
       group: "style",
-    },
+    }),
 
-    showSearch: {
+    showSearch: field({
       type: "boolean",
       label: "Show Search Bar",
       defaultValue: true,
       group: "search",
-    },
-    searchPlaceholder: {
+    }),
+    searchPlaceholder: field({
       type: "singleLine",
       label: "Search Placeholder",
       defaultValue: "Search documentation...",
       group: "search",
       showWhen: { field: "showSearch", equals: true },
-    },
+    }),
 
-    quickLinks: {
+    quickLinks: field({
       type: "repeater",
       label: "Quick Links",
       group: "links",
       schema: {
-        icon: {
+        icon: field({
           type: "singleLine",
           label: "Icon Name",
           placeholder: "e.g., Rocket, Book, Code",
           helpText: "Lucide icon name",
-        },
-        title: {
+        }),
+        title: field({
           type: "singleLine",
           label: "Title",
           required: true,
-        },
-        description: {
+        }),
+        description: field({
           type: "singleLine",
           label: "Description",
-        },
-        url: {
+        }),
+        url: field({
           type: "link",
           label: "URL",
           required: true,
-        },
+        }),
       },
-    },
+    }),
   },
 });
