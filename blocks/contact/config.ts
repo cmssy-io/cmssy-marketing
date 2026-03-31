@@ -115,7 +115,7 @@ export default defineBlock({
       defaultValue: "Message",
       group: "Form Settings",
     }),
-    formSlug: field({
+    formId: field({
       type: "form",
       label: "Form",
       group: "Form Settings",

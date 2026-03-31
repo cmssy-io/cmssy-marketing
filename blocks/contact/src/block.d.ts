@@ -18,7 +18,7 @@ export interface BlockContent {
   emailLabel?: string;
   messageLabel?: string;
   /** Select which form definition to use for submissions and notifications */
-  formSlug?: string;
+  formId?: string;
   submitButtonText?: string;
   submitLoadingText?: string;
   successHeading?: string;

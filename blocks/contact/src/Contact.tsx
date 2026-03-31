@@ -40,7 +40,7 @@ export default function Contact({ content, context }: Props) {
     nameLabel = "Name",
     emailLabel = "Email",
     messageLabel = "Message",
-    formSlug,
+    formId,
     submitButtonText = "Send Message",
     submitLoadingText = "Sending...",
     successHeading = "Message Sent!",
@@ -48,10 +48,10 @@ export default function Contact({ content, context }: Props) {
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
   } = content;
 
-  const workspaceId = context?.workspace?.id;
+  
   const { isSubmitting, isSuccess, error, handleSubmit } = useContactForm(
-    workspaceId,
-    formSlug,
+    
+    formId,
     errorMessage,
   );
 

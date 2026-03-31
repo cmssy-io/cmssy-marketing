@@ -5,7 +5,7 @@ import { type GraphQLResponse, SUBMIT_FORM_MUTATION } from "./query";
 
 export function useContactForm(
   workspaceId: string | undefined,
-  formSlug: string | undefined,
+  formId: string | undefined,
   errorMessage: string,
 ) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +27,7 @@ export function useContactForm(
       const website = formData.get("website") as string;
 
       // If no workspace or form - demo mode
-      if (!workspaceId || !formSlug) {
+      if (!formId) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setIsSuccess(true);
         form.reset();
@@ -42,8 +42,8 @@ export function useContactForm(
           body: JSON.stringify({
             query: SUBMIT_FORM_MUTATION,
             variables: {
-              workspaceId,
-              formSlug,
+              
+              formId,
               input: {
                 data: { name, email, message },
                 website: website || null,
@@ -68,7 +68,7 @@ export function useContactForm(
 
       setIsSubmitting(false);
     },
-    [workspaceId, formSlug, errorMessage],
+    [ formId, errorMessage],
   );
 
   return { isSubmitting, isSuccess, error, handleSubmit };

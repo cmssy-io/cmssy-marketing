@@ -1,6 +1,6 @@
 export const SUBMIT_FORM_MUTATION = `
-  mutation SubmitForm($workspaceId: String!, $formSlug: String!, $input: SubmitFormInput!) {
-    submitForm(workspaceId: $workspaceId, formSlug: $formSlug, input: $input) {
+  mutation SubmitForm($formId: String!, $input: SubmitFormInput!) {
+    submitForm(formId: $formId, input: $input) {
       success
       message
     }
