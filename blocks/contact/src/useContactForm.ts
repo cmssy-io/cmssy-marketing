@@ -4,7 +4,6 @@ import { type FormEvent, useCallback, useState } from "react";
 import { type GraphQLResponse, SUBMIT_FORM_MUTATION } from "./query";
 
 export function useContactForm(
-  workspaceId: string | undefined,
   formId: string | undefined,
   errorMessage: string,
 ) {
@@ -42,7 +41,6 @@ export function useContactForm(
           body: JSON.stringify({
             query: SUBMIT_FORM_MUTATION,
             variables: {
-              
               formId,
               input: {
                 data: { name, email, message },
@@ -68,7 +66,7 @@ export function useContactForm(
 
       setIsSubmitting(false);
     },
-    [ formId, errorMessage],
+    [formId, errorMessage],
   );
 
   return { isSubmitting, isSuccess, error, handleSubmit };
