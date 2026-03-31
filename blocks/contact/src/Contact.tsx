@@ -12,7 +12,7 @@ interface Props {
   context?: PlatformContext;
 }
 
-export default function Contact({ content, context }: Props) {
+export default function Contact({ content }: Props) {
   const {
     badgeText = "Contact Us",
     heading = "Let's",
@@ -48,9 +48,7 @@ export default function Contact({ content, context }: Props) {
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
   } = content;
 
-  
   const { isSubmitting, isSuccess, error, handleSubmit } = useContactForm(
-    
     formId,
     errorMessage,
   );
