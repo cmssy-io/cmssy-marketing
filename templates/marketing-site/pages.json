@@ -853,7 +853,7 @@
                 "pages": ["/docs/api-overview", "/docs/api-authentication", "/docs/api-blocks", "/docs/api-pages"]
               }
             ],
-            "githubUrl": "https://github.com/cmssy/docs",
+            "githubUrl": "https://github.com/cmssy-io/docs",
             "discordUrl": "https://discord.gg/cmssy"
           }
         }
@@ -928,7 +928,7 @@
             "prevPage": [{ "label": "Documentation", "url": "/docs" }],
             "nextPage": [{ "label": "Quickstart", "url": "/docs/quickstart" }],
             "showEditLink": true,
-            "editUrl": "https://github.com/cmssy/docs/edit/main/docs/installation.md"
+            "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/installation.md"
           }
         },
         {
@@ -969,7 +969,7 @@
             "prevPage": [{ "label": "Installation", "url": "/docs/installation" }],
             "nextPage": [{ "label": "Project Structure", "url": "/docs/project-structure" }],
             "showEditLink": true,
-            "editUrl": "https://github.com/cmssy/docs/edit/main/docs/quickstart.md"
+            "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/quickstart.md"
           }
         },
         {
@@ -1029,7 +1029,7 @@
             "prevPage": [{ "label": "Project Structure", "url": "/docs/project-structure" }],
             "nextPage": [{ "label": "Templates", "url": "/docs/templates" }],
             "showEditLink": true,
-            "editUrl": "https://github.com/cmssy/docs/edit/main/docs/blocks.md"
+            "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/blocks.md"
           }
         },
         {
@@ -1080,7 +1080,7 @@
             "prevPage": [{ "label": "Blocks", "url": "/docs/blocks" }],
             "nextPage": [{ "label": "Theming", "url": "/docs/theming" }],
             "showEditLink": true,
-            "editUrl": "https://github.com/cmssy/docs/edit/main/docs/templates.md"
+            "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/templates.md"
           }
         },
         {
@@ -1123,7 +1123,7 @@
             "prevPage": [{ "label": "Templates", "url": "/docs/templates" }],
             "nextPage": [{ "label": "Content Schema", "url": "/docs/content-schema" }],
             "showEditLink": true,
-            "editUrl": "https://github.com/cmssy/docs/edit/main/docs/theming.md"
+            "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/theming.md"
           }
         },
         {

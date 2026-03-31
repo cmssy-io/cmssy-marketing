@@ -142,12 +142,12 @@ export default function BlogPosts({ content, context }: Props) {
       ? parentPage
       : undefined;
 
-  const language = context?.language ?? "en";
-  const pages = context?.pages;
+  const language = context?.locale?.current ?? "en";
+  const pagesCollection = context?.pages?._default;
   const isPreview = context?.isPreview ?? false;
 
-  const [items, setItems] = useState<PageItem[]>(pages?.items ?? []);
-  const [hasMore, setHasMore] = useState(pages?.hasMore ?? false);
+  const [items, setItems] = useState<PageItem[]>(pagesCollection?.items ?? []);
+  const [hasMore, setHasMore] = useState(pagesCollection?.hasMore ?? false);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -198,9 +198,9 @@ export default function BlogPosts({ content, context }: Props) {
   useEffect(() => {
     if (isPreview || !debouncedSearch) {
       // Reset to SSR data when search is cleared
-      if (!debouncedSearch && pages) {
-        setItems(pages.items ?? []);
-        setHasMore(pages.hasMore ?? false);
+      if (!debouncedSearch && pagesCollection) {
+        setItems(pagesCollection.items ?? []);
+        setHasMore(pagesCollection.hasMore ?? false);
       }
       return;
     }
@@ -215,7 +215,7 @@ export default function BlogPosts({ content, context }: Props) {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [debouncedSearch, isPreview, fetchPages, pages]);
+  }, [debouncedSearch, isPreview, fetchPages, pagesCollection]);
 
   // Editor preview: fetch real posts client-side (limited to 6)
   useEffect(() => {
@@ -388,7 +388,9 @@ export default function BlogPosts({ content, context }: Props) {
                   item={item}
                   language={language}
                   layout={layout}
-                  localizeHref={isPreview ? undefined : context?.localizeHref}
+                  localizeHref={
+                    isPreview ? undefined : context?.locale?.localizeHref
+                  }
                 />
               ))}
         </div>

@@ -1288,7 +1288,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
             discordUrl: "https://discord.gg/cmssy",
           },
         },
@@ -1398,7 +1398,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1416,7 +1416,7 @@ export default defineTemplate({
             nextPage: [{ label: "Quickstart", url: "/docs/quickstart" }],
             showEditLink: true,
             editUrl:
-              "https://github.com/cmssy/docs/edit/main/docs/installation.md",
+              "https://github.com/cmssy-io/docs/edit/main/docs/installation.md",
           },
         },
         {
@@ -1505,7 +1505,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1527,7 +1527,7 @@ export default defineTemplate({
             ],
             showEditLink: true,
             editUrl:
-              "https://github.com/cmssy/docs/edit/main/docs/quickstart.md",
+              "https://github.com/cmssy-io/docs/edit/main/docs/quickstart.md",
           },
         },
         {
@@ -1619,7 +1619,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1641,7 +1641,7 @@ export default defineTemplate({
             ],
             nextPage: [{ label: "Templates", url: "/docs/templates" }],
             showEditLink: true,
-            editUrl: "https://github.com/cmssy/docs/edit/main/docs/blocks.md",
+            editUrl: "https://github.com/cmssy-io/docs/edit/main/docs/blocks.md",
           },
         },
         {
@@ -1716,7 +1716,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1734,7 +1734,7 @@ export default defineTemplate({
             nextPage: [{ label: "Theming", url: "/docs/theming" }],
             showEditLink: true,
             editUrl:
-              "https://github.com/cmssy/docs/edit/main/docs/templates.md",
+              "https://github.com/cmssy-io/docs/edit/main/docs/templates.md",
           },
         },
         {
@@ -1819,7 +1819,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1838,7 +1838,7 @@ export default defineTemplate({
               { label: "Content Schema", url: "/docs/content-schema" },
             ],
             showEditLink: true,
-            editUrl: "https://github.com/cmssy/docs/edit/main/docs/theming.md",
+            editUrl: "https://github.com/cmssy-io/docs/edit/main/docs/theming.md",
           },
         },
         {
@@ -1922,7 +1922,7 @@ export default defineTemplate({
                 ],
               },
             ],
-            githubUrl: "https://github.com/cmssy/docs",
+            githubUrl: "https://github.com/cmssy-io/docs",
           },
         },
         {
@@ -1940,7 +1940,7 @@ export default defineTemplate({
             nextPage: [{ label: "Deployment", url: "/docs/deployment" }],
             showEditLink: true,
             editUrl:
-              "https://github.com/cmssy/docs/edit/main/docs/content-schema.md",
+              "https://github.com/cmssy-io/docs/edit/main/docs/content-schema.md",
           },
         },
         {
