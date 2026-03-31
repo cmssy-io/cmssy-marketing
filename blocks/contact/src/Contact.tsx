@@ -1,10 +1,12 @@
 "use client";
 
 import type { PlatformContext } from "@cmssy/cli/config";
+import { FormProvider } from "react-hook-form";
 import { Container } from "../../../components/container";
 import type { BlockContent } from "./block";
-import { SendIcon } from "./icons";
+import { ContactForm } from "./ContactForm";
 import { InfoCard } from "./InfoCard";
+import { SuccessMessage } from "./SuccessMessage";
 import { useContactForm } from "./useContactForm";
 
 interface Props {
@@ -48,7 +50,7 @@ export default function Contact({ content }: Props) {
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
   } = content;
 
-  const { isSubmitting, isSuccess, error, handleSubmit } = useContactForm(
+  const { form, onSubmit, isSuccess, error } = useContactForm(
     formId,
     errorMessage,
   );
