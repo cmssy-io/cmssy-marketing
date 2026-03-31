@@ -115,11 +115,12 @@ export default defineBlock({
       defaultValue: "Message",
       group: "Form Settings",
     }),
-    emailConfigurationId: field({
-      type: "emailConfiguration",
-      label: "Email Configuration",
+    formSlug: field({
+      type: "form",
+      label: "Form",
       group: "Form Settings",
-      helpText: "Select which email configuration to use for notifications",
+      helpText:
+        "Select which form definition to use for submissions and notifications",
     }),
     submitButtonText: field({
       type: "singleLine",
@@ -151,21 +152,6 @@ export default defineBlock({
       defaultValue:
         "Thank you for reaching out! We'll get back to you as soon as possible.",
       group: "Form Settings",
-    }),
-
-    // Auto-response settings
-    enableAutoResponse: field({
-      type: "boolean",
-      label: "Enable Auto-Response",
-      defaultValue: false,
-      group: "Auto-Response",
-    }),
-    autoResponseTemplateId: field({
-      type: "singleLine",
-      label: "Auto-Response Template ID",
-      helpText: "Enter the ID of a published email template for automatic responses",
-      group: "Auto-Response",
-      showWhen: { field: "enableAutoResponse", equals: true },
     }),
   },
 });

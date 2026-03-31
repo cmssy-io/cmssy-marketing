@@ -136,10 +136,10 @@ function SendIcon({ className }: { className?: string }) {
   );
 }
 
-// GraphQL mutation for contact form
-const SUBMIT_CONTACT_FORM_MUTATION = `
-  mutation SubmitContactForm($input: WorkspaceContactInput!, $workspaceId: ID!, $autoResponseTemplateId: ID) {
-    submitContactForm(input: $input, workspaceId: $workspaceId, autoResponseTemplateId: $autoResponseTemplateId) {
+// GraphQL mutation for form submission
+const SUBMIT_FORM_MUTATION = `
+  mutation SubmitForm($workspaceSlug: String!, $formSlug: String!, $input: SubmitFormInput!) {
+    submitForm(workspaceSlug: $workspaceSlug, formSlug: $formSlug, input: $input) {
       success
       message
     }
@@ -148,7 +148,7 @@ const SUBMIT_CONTACT_FORM_MUTATION = `
 
 interface GraphQLResponse {
   data?: {
-    submitContactForm?: {
+    submitForm?: {
       success: boolean;
       message: string;
     };
@@ -190,18 +190,15 @@ export default function Contact({
     nameLabel = "Name",
     emailLabel = "Email",
     messageLabel = "Message",
-    emailConfigurationId,
+    formSlug,
     submitButtonText = "Send Message",
     submitLoadingText = "Sending...",
     successHeading = "Message Sent!",
     errorMessage = "Something went wrong. Please try again.",
     successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
-    // Auto-response settings
-    enableAutoResponse = false,
-    autoResponseTemplateId,
   } = content;
 
-  const workspaceId = context?.workspace?.id;
+  const workspaceSlug = context?.workspace?.slug;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -221,8 +218,8 @@ export default function Contact({
       const message = formData.get("message") as string;
       const website = formData.get("website") as string;
 
-      // If no workspace or email configuration - demo mode
-      if (!workspaceId || !emailConfigurationId) {
+      // If no workspace or form - demo mode
+      if (!workspaceSlug || !formSlug) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setIsSuccess(true);
         form.reset();
@@ -231,26 +228,20 @@ export default function Contact({
       }
 
       try {
-        const response = await fetch("/api/graphql", {
+        const response = await fetch("/api/public-graphql", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query: SUBMIT_CONTACT_FORM_MUTATION,
+            query: SUBMIT_FORM_MUTATION,
             variables: {
-              workspaceId,
+              workspaceSlug,
+              formSlug,
               input: {
-                name,
-                email,
-                message,
-                emailConfigurationId,
+                data: { name, email, message },
                 website: website || null,
               },
-              autoResponseTemplateId:
-                enableAutoResponse && autoResponseTemplateId
-                  ? autoResponseTemplateId
-                  : null,
             },
           }),
         });
@@ -259,11 +250,11 @@ export default function Contact({
 
         if (result.errors && result.errors.length > 0) {
           setError(result.errors[0].message);
-        } else if (result.data?.submitContactForm?.success) {
+        } else if (result.data?.submitForm?.success) {
           setIsSuccess(true);
           form.reset();
         } else {
-          setError(result.data?.submitContactForm?.message || errorMessage);
+          setError(result.data?.submitForm?.message || errorMessage);
         }
       } catch {
         setError(errorMessage);
@@ -271,13 +262,7 @@ export default function Contact({
 
       setIsSubmitting(false);
     },
-    [
-      workspaceId,
-      emailConfigurationId,
-      enableAutoResponse,
-      autoResponseTemplateId,
-      errorMessage,
-    ],
+    [workspaceSlug, formSlug, errorMessage],
   );
 
   return (
