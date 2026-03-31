@@ -130,98 +130,22 @@ export default function Contact({ content }: Props) {
           <div className="lg:col-span-3">
             <div className="bg-card/50 backdrop-blur-sm rounded-2xl border shadow-xl shadow-violet-500/5 p-6 sm:p-8">
               {isSuccess ? (
-                <div className="rounded-lg border bg-card p-8 text-center">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                    <SendIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">
-                    {successHeading}
-                  </h3>
-                  <p className="text-muted-foreground">{successMessage}</p>
-                </div>
+                <SuccessMessage
+                  heading={successHeading}
+                  message={successMessage}
+                />
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Honeypot */}
-                  <input
-                    type="text"
-                    name="website"
-                    autoComplete="off"
-                    tabIndex={-1}
-                    className="absolute -left-2499.75 h-0 w-0 opacity-0"
-                    aria-hidden="true"
+                <FormProvider {...form}>
+                  <ContactForm
+                    onSubmit={onSubmit}
+                    error={error}
+                    nameLabel={nameLabel}
+                    emailLabel={emailLabel}
+                    messageLabel={messageLabel}
+                    submitButtonText={submitButtonText}
+                    submitLoadingText={submitLoadingText}
                   />
-
-                  {error && (
-                    <div className="rounded-md bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive">
-                      {error}
-                    </div>
-                  )}
-
-                  {/* Name */}
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-medium leading-none"
-                    >
-                      {nameLabel}
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      placeholder="Your name"
-                      autoComplete="name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium leading-none"
-                    >
-                      {emailLabel}
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="you@example.com"
-                      autoComplete="email"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium leading-none"
-                    >
-                      {messageLabel}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      placeholder="How can we help you?"
-                      className="flex min-h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
-                  >
-                    {isSubmitting ? submitLoadingText : submitButtonText}
-                  </button>
-                </form>
+                </FormProvider>
               )}
             </div>
           </div>

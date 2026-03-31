@@ -51,8 +51,8 @@ export function useContactForm(
       const result: GraphQLResponse = await response.json();
       const serverError =
         result.errors?.[0]?.message ??
-        (!result.data?.submitForm?.success && result.data?.submitForm?.message) ||
-        null;
+        ((!result.data?.submitForm?.success && result.data?.submitForm?.message) ||
+        null);
 
       if (serverError) {
         setError(serverError || errorMessage);
