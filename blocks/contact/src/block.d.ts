@@ -17,14 +17,11 @@ export interface BlockContent {
   nameLabel?: string;
   emailLabel?: string;
   messageLabel?: string;
-  /** Select which email configuration to use for notifications */
-  emailConfigurationId?: string;
+  /** Select which form definition to use for submissions and notifications */
+  formId?: string;
   submitButtonText?: string;
   submitLoadingText?: string;
   successHeading?: string;
   errorMessage?: string;
   successMessage?: string;
-  enableAutoResponse?: boolean;
-  /** Enter the ID of a published email template for automatic responses */
-  autoResponseTemplateId?: string;
 }
