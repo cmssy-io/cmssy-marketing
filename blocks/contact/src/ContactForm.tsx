@@ -1,39 +1,41 @@
-import { useFormContext } from "react-hook-form";
-import type { ContactFormData } from "./useContactForm";
+import type { FormField } from "./query";
 
 const inputClassName =
   "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 interface ContactFormProps {
-  onSubmit: (e: React.FormEvent) => void;
+  fields: FormField[];
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   error: string | null;
-  nameLabel: string;
-  emailLabel: string;
-  messageLabel: string;
+  isSubmitting: boolean;
   submitButtonText: string;
   submitLoadingText: string;
+  getLocalized: (
+    field: Record<string, string> | string | null | undefined,
+    fallback?: string,
+  ) => string;
 }
 
 export function ContactForm({
+  fields,
   onSubmit,
   error,
-  nameLabel,
-  emailLabel,
-  messageLabel,
+  isSubmitting,
   submitButtonText,
   submitLoadingText,
+  getLocalized,
 }: ContactFormProps) {
-  const { register, formState } = useFormContext<ContactFormData>();
+  const sortedFields = [...fields].sort((a, b) => a.order - b.order);
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       {/* Honeypot */}
       <input
-        {...register("website")}
         type="text"
+        name="website"
         autoComplete="off"
         tabIndex={-1}
-        className="absolute -left-2499.75 h-0 w-0 opacity-0"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
         aria-hidden="true"
       />
 
@@ -43,53 +45,80 @@ export function ContactForm({
         </div>
       )}
 
-      <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-medium leading-none">
-          {nameLabel}
-        </label>
-        <input
-          {...register("name", { required: true })}
-          id="name"
-          type="text"
-          placeholder="Your name"
-          autoComplete="name"
-          className={inputClassName}
-        />
-      </div>
+      {sortedFields.map((field) => {
+        const label = getLocalized(field.label, field.name);
+        const placeholder = getLocalized(field.placeholder);
+        const helpText = getLocalized(field.helpText);
+        const isRequired = field.validation?.required ?? false;
+        const isTextarea =
+          field.fieldType === "textarea" || field.fieldType === "multiLine";
+        const inputType =
+          field.fieldType === "email"
+            ? "email"
+            : field.fieldType === "phone"
+              ? "tel"
+              : field.fieldType === "url"
+                ? "url"
+                : field.fieldType === "number"
+                  ? "number"
+                  : "text";
 
-      <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-medium leading-none">
-          {emailLabel}
-        </label>
-        <input
-          {...register("email", { required: true })}
-          id="email"
-          type="email"
-          placeholder="you@example.com"
-          autoComplete="email"
-          className={inputClassName}
-        />
-      </div>
+        return (
+          <div
+            key={field.id}
+            className={
+              field.width === "half"
+                ? "inline-block w-[calc(50%-0.5rem)] align-top mr-4 last:mr-0"
+                : ""
+            }
+          >
+            <div className="space-y-2">
+              <label
+                htmlFor={field.name}
+                className="text-sm font-medium leading-none"
+              >
+                {label}
+                {isRequired && <span className="text-destructive ml-1">*</span>}
+              </label>
 
-      <div className="space-y-2">
-        <label htmlFor="message" className="text-sm font-medium leading-none">
-          {messageLabel}
-        </label>
-        <textarea
-          {...register("message", { required: true })}
-          id="message"
-          rows={5}
-          placeholder="How can we help you?"
-          className={`${inputClassName} min-h-20`}
-        />
-      </div>
+              {isTextarea ? (
+                <textarea
+                  id={field.name}
+                  name={field.name}
+                  required={isRequired}
+                  placeholder={placeholder}
+                  rows={5}
+                  minLength={field.validation?.minLength ?? undefined}
+                  maxLength={field.validation?.maxLength ?? undefined}
+                  className={`${inputClassName} min-h-20`}
+                />
+              ) : (
+                <input
+                  id={field.name}
+                  name={field.name}
+                  type={inputType}
+                  required={isRequired}
+                  placeholder={placeholder}
+                  minLength={field.validation?.minLength ?? undefined}
+                  maxLength={field.validation?.maxLength ?? undefined}
+                  className={inputClassName}
+                />
+              )}
+
+              {helpText && (
+                <p className="text-xs text-muted-foreground">{helpText}</p>
+              )}
+            </div>
+          </div>
+        );
+      })}
 
       <button
         type="submit"
-        disabled={formState.isSubmitting}
+        disabled={isSubmitting}
         className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50 transition-colors"
       >
-        {formState.isSubmitting ? submitLoadingText : submitButtonText}
+        {isSubmitting ? submitLoadingText : submitButtonText}
       </button>
     </form>
   );

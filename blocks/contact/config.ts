@@ -97,36 +97,12 @@ export default defineBlock({
     }),
 
     // Form settings
-    nameLabel: field({
-      type: "singleLine",
-      label: "Name Label",
-      defaultValue: "Name",
-      group: "Form Settings",
-    }),
-    emailLabel: field({
-      type: "singleLine",
-      label: "Email Label",
-      defaultValue: "Email",
-      group: "Form Settings",
-    }),
-    messageLabel: field({
-      type: "singleLine",
-      label: "Message Label",
-      defaultValue: "Message",
-      group: "Form Settings",
-    }),
     formId: field({
       type: "form",
       label: "Form",
       group: "Form Settings",
       helpText:
-        "Select which form definition to use for submissions and notifications",
-    }),
-    submitButtonText: field({
-      type: "singleLine",
-      label: "Submit Button Text",
-      defaultValue: "Send Message",
-      group: "Form Settings",
+        "Select a form from the form builder. Fields, messages, and email config come from the form definition.",
     }),
     submitLoadingText: field({
       type: "singleLine",
@@ -138,19 +114,6 @@ export default defineBlock({
       type: "singleLine",
       label: "Success Heading",
       defaultValue: "Message Sent!",
-      group: "Form Settings",
-    }),
-    errorMessage: field({
-      type: "singleLine",
-      label: "Error Message",
-      defaultValue: "Something went wrong. Please try again.",
-      group: "Form Settings",
-    }),
-    successMessage: field({
-      type: "multiLine",
-      label: "Success Message",
-      defaultValue:
-        "Thank you for reaching out! We'll get back to you as soon as possible.",
       group: "Form Settings",
     }),
   },
