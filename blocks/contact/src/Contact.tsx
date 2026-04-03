@@ -1,7 +1,6 @@
 "use client";
 
 import type { PlatformContext } from "@cmssy/cli/config";
-import { FormProvider } from "react-hook-form";
 import { Container } from "../../../components/container";
 import type { BlockContent } from "./block";
 import { ContactForm } from "./ContactForm";
@@ -39,23 +38,33 @@ export default function Contact({ content }: Props) {
     showQuote = true,
     quoteText = "Building the future of content management, one pixel at a time.",
     quoteAuthor = "The Cmssy Team",
-    nameLabel = "Name",
-    emailLabel = "Email",
-    messageLabel = "Message",
     formId,
-    submitButtonText = "Send Message",
     submitLoadingText = "Sending...",
     successHeading = "Message Sent!",
-    errorMessage = "Something went wrong. Please try again.",
-    successMessage = "Thank you for reaching out! We'll get back to you as soon as possible.",
   } = content;
 
-  const { form, onSubmit, isSuccess, error } = useContactForm(
-    formId,
-    errorMessage,
-  );
+  const {
+    formDef,
+    loading,
+    isSubmitting,
+    isSuccess,
+    error,
+    handleSubmit,
+    getLocalized,
+  } = useContactForm(formId);
 
   const hasQuote = showQuote && quoteText;
+
+  // Messages from form builder (fallback to config)
+  const submitButtonText = getLocalized(
+    formDef?.settings?.submitButtonLabel,
+    content.submitButtonText || "Send Message",
+  );
+  const successMessage = getLocalized(
+    formDef?.settings?.successMessage,
+    content.successMessage ||
+      "Thank you for reaching out! We'll get back to you as soon as possible.",
+  );
 
   return (
     <section className="relative min-h-screen py-24 lg:py-32">
@@ -134,18 +143,24 @@ export default function Contact({ content }: Props) {
                   heading={successHeading}
                   message={successMessage}
                 />
+              ) : loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                </div>
+              ) : formDef?.fields?.length ? (
+                <ContactForm
+                  fields={formDef.fields}
+                  onSubmit={handleSubmit}
+                  error={error}
+                  isSubmitting={isSubmitting}
+                  submitButtonText={submitButtonText}
+                  submitLoadingText={submitLoadingText}
+                  getLocalized={getLocalized}
+                />
               ) : (
-                <FormProvider {...form}>
-                  <ContactForm
-                    onSubmit={onSubmit}
-                    error={error}
-                    nameLabel={nameLabel}
-                    emailLabel={emailLabel}
-                    messageLabel={messageLabel}
-                    submitButtonText={submitButtonText}
-                    submitLoadingText={submitLoadingText}
-                  />
-                </FormProvider>
+                <p className="text-center text-muted-foreground py-8">
+                  No form configured. Select a form in block settings.
+                </p>
               )}
             </div>
           </div>
