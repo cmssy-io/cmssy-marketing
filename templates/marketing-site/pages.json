@@ -26,7 +26,7 @@
     "footer": {
       "type": "@cmssy-marketing/blocks.footer",
       "content": {
-        "logoText": "cmssy",
+        "logoText": "cmssy®",
         "tagline": "The modern CMS that makes website creation effortless.",
         "linkColumns": [
           {
@@ -67,7 +67,7 @@
           }
         ],
         "showSocial": true,
-        "copyrightText": "cmssy. All rights reserved."
+        "copyrightText": "cmssy®. All rights reserved."
       }
     }
   },
@@ -550,8 +550,14 @@
                 "title": "Completed",
                 "status": "completed",
                 "items": [
-                  { "title": "User authentication", "description": "Secure login and signup" },
-                  { "title": "Dashboard v1", "description": "Initial dashboard release" },
+                  {
+                    "title": "User authentication",
+                    "description": "Secure login and signup"
+                  },
+                  {
+                    "title": "Dashboard v1",
+                    "description": "Initial dashboard release"
+                  },
                   { "title": "API v1", "description": "RESTful API endpoints" }
                 ]
               },
@@ -559,17 +565,33 @@
                 "title": "In Progress",
                 "status": "in_progress",
                 "items": [
-                  { "title": "Mobile app", "description": "iOS and Android apps", "badge": "Q1 2025" },
-                  { "title": "Team collaboration", "description": "Real-time editing" }
+                  {
+                    "title": "Mobile app",
+                    "description": "iOS and Android apps",
+                    "badge": "Q1 2025"
+                  },
+                  {
+                    "title": "Team collaboration",
+                    "description": "Real-time editing"
+                  }
                 ]
               },
               {
                 "title": "Planned",
                 "status": "planned",
                 "items": [
-                  { "title": "AI features", "description": "Smart suggestions and automation" },
-                  { "title": "Integrations", "description": "Connect with popular tools" },
-                  { "title": "Advanced analytics", "description": "Deeper insights and reports" }
+                  {
+                    "title": "AI features",
+                    "description": "Smart suggestions and automation"
+                  },
+                  {
+                    "title": "Integrations",
+                    "description": "Connect with popular tools"
+                  },
+                  {
+                    "title": "Advanced analytics",
+                    "description": "Deeper insights and reports"
+                  }
                 ]
               }
             ],
@@ -838,19 +860,38 @@
             "sections": [
               {
                 "title": "Getting Started",
-                "pages": ["/docs", "/docs/installation", "/docs/quickstart", "/docs/project-structure"]
+                "pages": [
+                  "/docs",
+                  "/docs/installation",
+                  "/docs/quickstart",
+                  "/docs/project-structure"
+                ]
               },
               {
                 "title": "Core Concepts",
-                "pages": ["/docs/blocks", "/docs/templates", "/docs/theming", "/docs/content-schema"]
+                "pages": [
+                  "/docs/blocks",
+                  "/docs/templates",
+                  "/docs/theming",
+                  "/docs/content-schema"
+                ]
               },
               {
                 "title": "Guides",
-                "pages": ["/docs/deployment", "/docs/custom-domains", "/docs/analytics"]
+                "pages": [
+                  "/docs/deployment",
+                  "/docs/custom-domains",
+                  "/docs/analytics"
+                ]
               },
               {
                 "title": "API Reference",
-                "pages": ["/docs/api-overview", "/docs/api-authentication", "/docs/api-blocks", "/docs/api-pages"]
+                "pages": [
+                  "/docs/api-overview",
+                  "/docs/api-authentication",
+                  "/docs/api-blocks",
+                  "/docs/api-pages"
+                ]
               }
             ],
             "githubUrl": "https://github.com/cmssy-io/docs",
@@ -966,8 +1007,12 @@
             "content": "<h2 id=\"create-a-block\">Create a Block</h2><p>Use the <code>create</code> command to scaffold a new block. This generates the component, styles, schema, and preview data:</p><p>This creates the following structure:</p><h2 id=\"define-the-schema\">Define the Schema</h2><p>Open <code>block.config.ts</code> to define the content schema. The schema determines what fields appear in the CMS editor:</p><h2 id=\"build-the-component\">Build the Component</h2><p>Edit <code>src/MyBlock.tsx</code> to build your UI. The component receives a <code>content</code> prop with all schema fields:</p><h2 id=\"preview-locally\">Preview Locally</h2><p>Run <code>cmssy dev</code> and select your block from the sidebar. The preview updates in real-time as you edit the code. Use the editor panel on the right to modify content fields.</p><h2 id=\"publish\">Publish</h2><p>When you're happy with your block, publish it to the platform:</p><p>Your block is now available in the CMS for any page in your workspace.</p>",
             "showToc": true,
             "showPrevNext": true,
-            "prevPage": [{ "label": "Installation", "url": "/docs/installation" }],
-            "nextPage": [{ "label": "Project Structure", "url": "/docs/project-structure" }],
+            "prevPage": [
+              { "label": "Installation", "url": "/docs/installation" }
+            ],
+            "nextPage": [
+              { "label": "Project Structure", "url": "/docs/project-structure" }
+            ],
             "showEditLink": true,
             "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/quickstart.md"
           }
@@ -1026,7 +1071,9 @@
             "content": "<h2 id=\"what-is-a-block\">What is a Block?</h2><p>A block is a reusable UI component that can be placed on any page. Each block consists of:</p><ul><li><strong>Component</strong> (<code>src/index.tsx</code>) — the React component that renders the UI</li><li><strong>Schema</strong> (<code>block.config.ts</code>) — defines the content fields and their types</li><li><strong>Styles</strong> (<code>src/index.css</code>) — component-specific CSS (Tailwind classes work out of the box)</li><li><strong>Preview data</strong> (<code>preview.json</code>) — sample content for the dev preview</li></ul><h2 id=\"block-anatomy\">Block Anatomy</h2><p>Every block follows the same directory structure:</p><h2 id=\"schema-field-types\">Schema Field Types</h2><p>The schema defines what content editors can configure. Available field types:</p><ul><li><code>singleLine</code> — short text input</li><li><code>multiLine</code> — textarea for longer content</li><li><code>richText</code> — HTML content with formatting</li><li><code>boolean</code> — toggle switch</li><li><code>select</code> — dropdown with predefined options</li><li><code>media</code> — image/file upload</li><li><code>link</code> — URL input</li><li><code>repeater</code> — list of nested fields (arrays)</li><li><code>numeric</code> — number input with min/max</li><li><code>date</code> — date picker</li><li><code>color</code> — color picker</li></ul><h2 id=\"conditional-fields\">Conditional Fields</h2><p>Use <code>showWhen</code> to conditionally show fields based on other field values. This keeps the editor clean by hiding irrelevant options:</p><h2 id=\"layout-positions\">Layout Positions</h2><p>Blocks can declare a <code>layoutPosition</code> to indicate they belong in a specific area of the page layout:</p><ul><li><code>header</code> — rendered at the top of every page</li><li><code>footer</code> — rendered at the bottom of every page</li><li><code>sidebar_left</code> — rendered as a left sidebar</li></ul><p>Layout blocks are shared across all pages in a template and configured once in <code>pages.json</code> under <code>layoutPositions</code>.</p>",
             "showToc": true,
             "showPrevNext": true,
-            "prevPage": [{ "label": "Project Structure", "url": "/docs/project-structure" }],
+            "prevPage": [
+              { "label": "Project Structure", "url": "/docs/project-structure" }
+            ],
             "nextPage": [{ "label": "Templates", "url": "/docs/templates" }],
             "showEditLink": true,
             "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/blocks.md"
@@ -1121,7 +1168,9 @@
             "showToc": true,
             "showPrevNext": true,
             "prevPage": [{ "label": "Templates", "url": "/docs/templates" }],
-            "nextPage": [{ "label": "Content Schema", "url": "/docs/content-schema" }],
+            "nextPage": [
+              { "label": "Content Schema", "url": "/docs/content-schema" }
+            ],
             "showEditLink": true,
             "editUrl": "https://github.com/cmssy-io/docs/edit/main/docs/theming.md"
           }
