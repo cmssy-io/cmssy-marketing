@@ -206,7 +206,13 @@ export default function Header({ content, context }: HeaderProps) {
   const isAuthenticated = context?.auth?.isAuthenticated ?? false;
   const customer = context?.auth?.customer;
   const navItems = navigation as NavItem[];
-  const i18n = context?.i18n;
+  const i18n = context?.locale
+    ? {
+        enabledLanguages: context.locale.enabled,
+        defaultLanguage: context.locale.default,
+        currentLanguage: context.locale.current,
+      }
+    : undefined;
   const hasLanguageSwitcher =
     showLanguageSwitcher && i18n && i18n.enabledLanguages.length > 1;
   const homeHref =
@@ -451,7 +457,7 @@ export default function Header({ content, context }: HeaderProps) {
                     {/* Mega dropdown panel */}
                     {openDropdown === index && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50">
-                        <div className="rounded-xl border bg-background/95 p-5 shadow-lg backdrop-blur-lg min-w-[520px]">
+                        <div className="rounded-xl border bg-background/95 p-5 shadow-lg backdrop-blur-lg min-w-130">
                           <div
                             className={`grid gap-1 ${getColumnClass(item.columns)}`}
                           >

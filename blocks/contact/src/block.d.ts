@@ -14,14 +14,8 @@ export interface BlockContent {
   showQuote?: boolean;
   quoteText?: string;
   quoteAuthor?: string;
-  nameLabel?: string;
-  emailLabel?: string;
-  messageLabel?: string;
-  /** Select which form definition to use for submissions and notifications */
+  /** Select a form from the form builder. Fields, messages, and email config come from the form definition. */
   formId?: string;
-  submitButtonText?: string;
   submitLoadingText?: string;
   successHeading?: string;
-  errorMessage?: string;
-  successMessage?: string;
 }

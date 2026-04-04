@@ -311,7 +311,13 @@ export default function DocsSidebar({
     showLanguageSwitcher = false,
   } = content;
 
-  const i18n = context?.i18n;
+  const i18n = context?.locale
+    ? {
+        enabledLanguages: context.locale.enabled,
+        defaultLanguage: context.locale.default,
+        currentLanguage: context.locale.current,
+      }
+    : undefined;
   const language = i18n?.currentLanguage;
   const hasLanguageSwitcher =
     showLanguageSwitcher && !!i18n && i18n.enabledLanguages.length > 1;
