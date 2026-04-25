@@ -97,35 +97,12 @@ export default defineBlock({
     }),
 
     // Form settings
-    nameLabel: field({
-      type: "singleLine",
-      label: "Name Label",
-      defaultValue: "Name",
+    formId: field({
+      type: "form",
+      label: "Form",
       group: "Form Settings",
-    }),
-    emailLabel: field({
-      type: "singleLine",
-      label: "Email Label",
-      defaultValue: "Email",
-      group: "Form Settings",
-    }),
-    messageLabel: field({
-      type: "singleLine",
-      label: "Message Label",
-      defaultValue: "Message",
-      group: "Form Settings",
-    }),
-    emailConfigurationId: field({
-      type: "emailConfiguration",
-      label: "Email Configuration",
-      group: "Form Settings",
-      helpText: "Select which email configuration to use for notifications",
-    }),
-    submitButtonText: field({
-      type: "singleLine",
-      label: "Submit Button Text",
-      defaultValue: "Send Message",
-      group: "Form Settings",
+      helpText:
+        "Select a form from the form builder. Fields, messages, and email config come from the form definition.",
     }),
     submitLoadingText: field({
       type: "singleLine",
@@ -138,34 +115,6 @@ export default defineBlock({
       label: "Success Heading",
       defaultValue: "Message Sent!",
       group: "Form Settings",
-    }),
-    errorMessage: field({
-      type: "singleLine",
-      label: "Error Message",
-      defaultValue: "Something went wrong. Please try again.",
-      group: "Form Settings",
-    }),
-    successMessage: field({
-      type: "multiLine",
-      label: "Success Message",
-      defaultValue:
-        "Thank you for reaching out! We'll get back to you as soon as possible.",
-      group: "Form Settings",
-    }),
-
-    // Auto-response settings
-    enableAutoResponse: field({
-      type: "boolean",
-      label: "Enable Auto-Response",
-      defaultValue: false,
-      group: "Auto-Response",
-    }),
-    autoResponseTemplateId: field({
-      type: "singleLine",
-      label: "Auto-Response Template ID",
-      helpText: "Enter the ID of a published email template for automatic responses",
-      group: "Auto-Response",
-      showWhen: { field: "enableAutoResponse", equals: true },
     }),
   },
 });

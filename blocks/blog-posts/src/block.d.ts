@@ -5,7 +5,7 @@ export interface BlockContent {
   badge?: string;
   heading?: string;
   description?: string;
-  parentPage?: Array<{ slug: string; displayName: Record<string, string> }>;
+  parentPage?: PageRef[];
   postsPerPage?: "3" | "6" | "9" | "12";
   showSearch?: boolean;
   layout?: "grid" | "list";

@@ -7,7 +7,7 @@ export interface BlockContent {
   logoUrl?: string;
   sections?: Array<{
     title: string;
-    pages?: Array<{ slug: string; displayName: Record<string, string> }>;
+    pages?: PageRef[];
   }>;
   showSearch?: boolean;
   searchPlaceholder?: string;

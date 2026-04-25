@@ -16,10 +16,11 @@ type PageEntry =
   | { slug: string; displayName?: Record<string, string> };
 
 interface PlatformContext {
-  i18n?: {
-    enabledLanguages: string[];
-    defaultLanguage: string;
-    currentLanguage: string;
+  locale?: {
+    current: string;
+    default: string;
+    enabled: string[];
+    localizeHref?: (href: string) => string;
   };
 }
 
@@ -93,7 +94,11 @@ function SidebarContent({
   githubUrl?: string;
   slackUrl?: string;
   hasLanguageSwitcher: boolean;
-  i18n?: PlatformContext["i18n"];
+  i18n?: {
+    enabledLanguages: string[];
+    defaultLanguage: string;
+    currentLanguage: string;
+  };
   language?: string;
   currentPath: string;
   onNavigate?: () => void;
@@ -311,7 +316,13 @@ export default function DocsSidebar({
     showLanguageSwitcher = false,
   } = content;
 
-  const i18n = context?.i18n;
+  const i18n = context?.locale
+    ? {
+        enabledLanguages: context.locale.enabled,
+        defaultLanguage: context.locale.default,
+        currentLanguage: context.locale.current,
+      }
+    : undefined;
   const language = i18n?.currentLanguage;
   const hasLanguageSwitcher =
     showLanguageSwitcher && !!i18n && i18n.enabledLanguages.length > 1;

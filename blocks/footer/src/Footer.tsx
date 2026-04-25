@@ -6,10 +6,11 @@ import { LanguageSwitcher } from "../../../components/language-switcher";
 import { BlockContent } from "./block";
 
 interface PlatformContext {
-  i18n?: {
-    enabledLanguages: string[];
-    defaultLanguage: string;
-    currentLanguage: string;
+  locale?: {
+    current: string;
+    default: string;
+    enabled: string[];
+    localizeHref?: (href: string) => string;
   };
 }
 
@@ -33,7 +34,13 @@ export default function Footer({
     showLanguageSwitcher = false,
   } = content;
 
-  const i18n = context?.i18n;
+  const i18n = context?.locale
+    ? {
+        enabledLanguages: context.locale.enabled,
+        defaultLanguage: context.locale.default,
+        currentLanguage: context.locale.current,
+      }
+    : undefined;
   const hasLanguageSwitcher =
     showLanguageSwitcher && i18n && i18n.enabledLanguages.length > 1;
 
