@@ -16,10 +16,11 @@ type PageEntry =
   | { slug: string; displayName?: Record<string, string> };
 
 interface PlatformContext {
-  i18n?: {
-    enabledLanguages: string[];
-    defaultLanguage: string;
-    currentLanguage: string;
+  locale?: {
+    current: string;
+    default: string;
+    enabled: string[];
+    localizeHref?: (href: string) => string;
   };
 }
 
@@ -93,7 +94,11 @@ function SidebarContent({
   githubUrl?: string;
   slackUrl?: string;
   hasLanguageSwitcher: boolean;
-  i18n?: PlatformContext["i18n"];
+  i18n?: {
+    enabledLanguages: string[];
+    defaultLanguage: string;
+    currentLanguage: string;
+  };
   language?: string;
   currentPath: string;
   onNavigate?: () => void;

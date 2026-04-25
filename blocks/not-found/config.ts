@@ -1,4 +1,4 @@
-import { defineBlock } from "@cmssy/cli/config";
+import { defineBlock, field } from "@cmssy/cli/config";
 
 export default defineBlock({
   name: "404 Not Found",
@@ -8,42 +8,42 @@ export default defineBlock({
   tags: ["404", "error", "not-found", "marketing"],
 
   schema: {
-    heading: {
+    heading: field({
       type: "singleLine",
       label: "Heading",
       defaultValue: "404",
       placeholder: "e.g., 404, Oops!, Lost?",
-    },
-    title: {
+    }),
+    title: field({
       type: "singleLine",
       label: "Title",
       defaultValue: "Page not found",
-    },
-    description: {
+    }),
+    description: field({
       type: "multiLine",
       label: "Description",
       defaultValue:
         "The page you're looking for doesn't exist or has been moved. Let's get you back on track.",
-    },
-    primaryButtonText: {
+    }),
+    primaryButtonText: field({
       type: "singleLine",
       label: "Primary Button Text",
       defaultValue: "Back to Home",
-    },
-    primaryButtonUrl: {
+    }),
+    primaryButtonUrl: field({
       type: "link",
       label: "Primary Button URL",
       defaultValue: "/",
-    },
-    secondaryButtonText: {
+    }),
+    secondaryButtonText: field({
       type: "singleLine",
       label: "Secondary Button Text",
       defaultValue: "Contact Support",
-    },
-    secondaryButtonUrl: {
+    }),
+    secondaryButtonUrl: field({
       type: "link",
       label: "Secondary Button URL",
       defaultValue: "/contact",
-    },
+    }),
   },
 });

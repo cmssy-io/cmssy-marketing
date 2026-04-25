@@ -135,10 +135,11 @@ interface PlatformContext {
     } | null;
     logout: () => Promise<void>;
   };
-  i18n?: {
-    enabledLanguages: string[];
-    defaultLanguage: string;
-    currentLanguage: string;
+  locale?: {
+    current: string;
+    default: string;
+    enabled: string[];
+    localizeHref?: (href: string) => string;
   };
   language: string;
   isPreview?: boolean;

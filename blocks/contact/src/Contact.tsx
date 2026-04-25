@@ -55,15 +55,17 @@ export default function Contact({ content }: Props) {
 
   const hasQuote = showQuote && quoteText;
 
-  // Messages from form builder (fallback to config)
+  // Messages from form builder (with hard-coded fallbacks).
+  // Legacy content.submitButtonText / content.successMessage were removed
+  // from the schema when contact migrated to form builder (CMS-306) -
+  // form settings live in formDef.settings.* now.
   const submitButtonText = getLocalized(
     formDef?.settings?.submitButtonLabel,
-    content.submitButtonText || "Send Message",
+    "Send Message",
   );
   const successMessage = getLocalized(
     formDef?.settings?.successMessage,
-    content.successMessage ||
-      "Thank you for reaching out! We'll get back to you as soon as possible.",
+    "Thank you for reaching out! We'll get back to you as soon as possible.",
   );
 
   return (
