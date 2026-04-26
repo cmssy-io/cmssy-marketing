@@ -49,8 +49,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@cmssy/types':
-        specifier: ^0.11.0
-        version: 0.11.0
+        specifier: ^0.12.0
+        version: 0.12.0
       '@eslint/js':
         specifier: ^9.39.3
         version: 9.39.3
@@ -170,8 +170,8 @@ packages:
       next:
         optional: true
 
-  '@cmssy/types@0.11.0':
-    resolution: {integrity: sha512-ZrMq334J+OnKQn8zfXb/wFvYeqRMrwtzbD6lXF32KXUaqLxZ7GEE01UMX0QAGiXQ5xmNFVpd+KP9P5mjNb8OFw==}
+  '@cmssy/types@0.12.0':
+    resolution: {integrity: sha512-tRE9470cSct/+zS9Jnq9I/0KkYHXXgfJUQ7/o46DyIB9kA/g6wSQFsgAyZbOD350fj/7YZqjZyBdDqI68AzITg==}
 
   '@cmssy/types@0.9.5':
     resolution: {integrity: sha512-X6d09xBgvEVEfkNl/bSguJTCA/BZPQr07Zpo70SnuTaOyHAS01gDDPouSJf0adkGkwDl+7c+KX9ONASXbxzAvA==}
@@ -2661,7 +2661,7 @@ snapshots:
       - bare-buffer
       - react-native-b4a
 
-  '@cmssy/types@0.11.0': {}
+  '@cmssy/types@0.12.0': {}
 
   '@cmssy/types@0.9.5': {}
 
