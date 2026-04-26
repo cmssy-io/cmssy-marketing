@@ -64,11 +64,12 @@ export function useContactForm(formId: string | undefined) {
         return;
       }
 
-      // Demo mode
+      // Hard fail when no form is configured. Previously this branch
+      // faked success after a 1s setTimeout, which masked real bugs in
+      // production: a stale closure with formId=undefined would silently
+      // claim the message was sent without ever calling the API.
       if (!formId) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setIsSuccess(true);
-        form.reset();
+        setError("Form not configured");
         setIsSubmitting(false);
         return;
       }
