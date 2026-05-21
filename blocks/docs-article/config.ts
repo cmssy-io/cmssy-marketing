@@ -6,6 +6,7 @@ export default defineBlock({
   category: "documentation",
   tags: ["docs", "article", "content", "documentation", "richtext"],
 
+  useClient: true,
   schema: {
     breadcrumbs: field({
       type: "repeater",

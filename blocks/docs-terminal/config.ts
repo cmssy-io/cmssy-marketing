@@ -6,6 +6,7 @@ export default defineBlock({
   category: "documentation",
   tags: ["docs", "terminal", "cli", "command", "shell", "bash"],
 
+  useClient: true,
   schema: {
     title: field({
       type: "singleLine",
