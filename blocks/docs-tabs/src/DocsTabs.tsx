@@ -17,7 +17,13 @@ export default function DocsTabs({ content }: { content: BlockContent }) {
     Math.min(defaultTab, Math.max(0, tabs.length - 1)),
   );
 
-  if (tabs.length === 0) return null;
+  if (tabs.length === 0) {
+    return (
+      <Container className="py-6">
+        <div data-block="docs-tabs-empty" />
+      </Container>
+    );
+  }
 
   const activeContent = tabs[activeTab]?.content || "";
 

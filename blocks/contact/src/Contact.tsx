@@ -1,10 +1,11 @@
 "use client";
 
-import type { PlatformContext } from "@cmssy/cli/config";
+import type { PlatformContext } from "@cmssy/types";
 import { Container } from "../../../components/container";
 import type { BlockContent } from "./block";
 import { ContactForm } from "./ContactForm";
 import { InfoCard } from "./InfoCard";
+import type { FormDefinition } from "./query";
 import { SuccessMessage } from "./SuccessMessage";
 import { useContactForm } from "./useContactForm";
 
@@ -13,59 +14,45 @@ interface Props {
   context?: PlatformContext;
 }
 
-export default function Contact({ content }: Props) {
+export default function Contact({ content, context }: Props) {
   const {
-    badgeText = "Contact Us",
-    heading = "Let's",
-    headingHighlight = "talk",
-    description = "Have a question, feedback, or just want to say hello? We'd love to hear from you.",
-    infoCards = [
-      {
-        title: "Email Us",
-        description:
-          "Drop us a line anytime. We typically respond within 24 hours.",
-      },
-      {
-        title: "Response Time",
-        description:
-          "We aim to respond to all inquiries within 24-48 hours during business days.",
-      },
-      {
-        title: "Location",
-        description: "We're a remote-first team working across Europe.",
-      },
-    ],
-    showQuote = true,
-    quoteText = "Building the future of content management, one pixel at a time.",
-    quoteAuthor = "The Cmssy Team",
+    badgeText,
+    heading,
+    headingHighlight,
+    description,
+    infoCards,
+    showQuote,
+    quoteText,
+    quoteAuthor,
     formId,
-    submitLoadingText = "Sending...",
-    successHeading = "Message Sent!",
+    submitLoadingText,
+    successHeading,
   } = content;
 
-  const {
-    formDef,
-    loading,
-    isSubmitting,
-    isSuccess,
-    error,
-    handleSubmit,
-    getLocalized,
-  } = useContactForm(formId);
+  // Form schema is SSR-injected at context.formDefinitions[formId]
+  // by the platform pipeline (CMS-509). No CSR fetch, no loading state -
+  // schema is in the HTML by the time hydration runs.
+  const formDef = (
+    formId ? (context?.formDefinitions?.[formId] ?? null) : null
+  ) as FormDefinition | null;
+
+  const { isSubmitting, isSuccess, error, handleSubmit, getLocalized } =
+    useContactForm(formId, formDef);
 
   const hasQuote = showQuote && quoteText;
 
-  // Messages from form builder (with hard-coded fallbacks).
-  // Legacy content.submitButtonText / content.successMessage were removed
-  // from the schema when contact migrated to form builder (CMS-306) -
-  // form settings live in formDef.settings.* now.
+  // Messages from form builder, with hard-coded fallbacks.
+  // submitButtonText / successMessage were removed from the block
+  // schema when contact migrated to form builder (CMS-306) - form
+  // settings live in formDef.settings.* now, so there is no
+  // content.* field to fall back to.
   const submitButtonText = getLocalized(
     formDef?.settings?.submitButtonLabel,
     "Send Message",
   );
   const successMessage = getLocalized(
     formDef?.settings?.successMessage,
-    "Thank you for reaching out! We'll get back to you as soon as possible.",
+    "Thank you! Your message has been sent.",
   );
 
   return (
@@ -142,13 +129,9 @@ export default function Contact({ content }: Props) {
             <div className="bg-card/50 backdrop-blur-sm rounded-2xl border shadow-xl shadow-violet-500/5 p-6 sm:p-8">
               {isSuccess ? (
                 <SuccessMessage
-                  heading={successHeading}
+                  heading={successHeading ?? "Message Sent!"}
                   message={successMessage}
                 />
-              ) : loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                </div>
               ) : formDef?.fields?.length ? (
                 <ContactForm
                   fields={formDef.fields}
@@ -156,7 +139,7 @@ export default function Contact({ content }: Props) {
                   error={error}
                   isSubmitting={isSubmitting}
                   submitButtonText={submitButtonText}
-                  submitLoadingText={submitLoadingText}
+                  submitLoadingText={submitLoadingText ?? "Sending..."}
                   getLocalized={getLocalized}
                 />
               ) : (

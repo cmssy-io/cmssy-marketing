@@ -169,7 +169,7 @@ function SidebarContent({
 
       {/* Navigation */}
       <nav
-        className="flex-1 overflow-y-auto px-3 py-2 space-y-5 overscroll-contain"
+        className="flex-1 overflow-y-auto px-3 py-2 space-y-5"
         style={{
           maskImage:
             "linear-gradient(to bottom, transparent, black 8px, black calc(100% - 8px), transparent)",
@@ -328,7 +328,14 @@ export default function DocsSidebar({
     showLanguageSwitcher && !!i18n && i18n.enabledLanguages.length > 1;
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const rawPath = typeof window !== "undefined" ? window.location.pathname : "";
+  // Read pathname client-side after mount. Reading window.location during
+  // render produces SSR="" vs client=<pathname> -> different "active" item
+  // -> React #418 (hydration mismatch). Effect runs once after hydration
+  // and the highlight resolves on the second client render.
+  const [rawPath, setRawPath] = useState("");
+  useEffect(() => {
+    setRawPath(window.location.pathname);
+  }, []);
   // Strip language prefix so active state matches slugs (e.g. /pl/docs/x → /docs/x)
   let currentPath = rawPath;
   if (i18n) {
