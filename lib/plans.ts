@@ -11,7 +11,6 @@ export interface PlanLimits {
   maxPages: number | null;
   maxStorageMb: number | null;
   maxUploadMb: number;
-  maxAiTokensMonth: number | null;
   maxApiRequestsMonth: number | null;
   maxBandwidthGbMonth: number | null;
   canRemoveBranding: boolean;

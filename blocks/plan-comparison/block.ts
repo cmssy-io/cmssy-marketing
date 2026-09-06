@@ -55,7 +55,7 @@ export const planComparisonProps = {
           "pages",
           "storage",
           "upload",
-          "aiCredits",
+          "byokAi",
           "apiRequests",
           "bandwidth",
           "removeBranding",
