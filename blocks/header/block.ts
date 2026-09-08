@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { defineBlock, fields } from "@cmssy/react";
 import type { BlockProps } from "@cmssy/react";
 import Header from "./Header";
+import { headerIconNames } from "./icons";
 
 export const headerProps = {
     logo: fields.media({
@@ -39,9 +40,9 @@ export const headerProps = {
             label: fields.text({ label: "Label", required: true }),
             description: fields.text({ label: "Description" }),
             url: fields.link({ label: "URL", required: true }),
-            icon: fields.text({
-              label: "Lucide Icon Name",
-              placeholder: "e.g. Zap, BookOpen, Code",
+            icon: fields.select({
+              label: "Icon",
+              options: headerIconNames,
             }),
             openInNewTab: fields.boolean({
               label: "Open in new tab",
