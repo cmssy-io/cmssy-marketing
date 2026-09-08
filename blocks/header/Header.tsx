@@ -55,6 +55,7 @@ import { ThemeToggle, useTheme } from "@/components/theme";
 import { mediaUrl } from "@cmssy/core";
 import type { BlockProps } from "@cmssy/react";
 import type { headerProps } from "./block";
+import type { HeaderIconName } from "./icons";
 
 interface BlockStyle {
   logoSize?: "sm" | "md" | "lg";
@@ -63,7 +64,7 @@ interface BlockStyle {
   announcementTextColor?: string;
 }
 
-const iconMap: Record<string, LucideIcon> = {
+const iconMap: Record<HeaderIconName, LucideIcon> = {
   ArrowRight,
   ChartColumn,
   Blocks,
@@ -110,11 +111,11 @@ function IconRenderer({
   name,
   className,
 }: {
-  name?: string;
+  name?: HeaderIconName;
   className?: string;
 }) {
-  if (!name || !iconMap[name]) return null;
-  const Icon = iconMap[name];
+  const Icon = name ? iconMap[name] : undefined;
+  if (!Icon) return null;
   return <Icon className={className} />;
 }
 
@@ -122,7 +123,7 @@ interface NavChild {
   label: string;
   description?: string;
   url: string;
-  icon?: string;
+  icon?: HeaderIconName;
   openInNewTab?: boolean;
 }
 
