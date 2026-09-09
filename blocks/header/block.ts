@@ -8,11 +8,13 @@ export const headerProps = {
     logo: fields.media({
       label: "Logo",
       placeholder: "Recommended: SVG or PNG with transparent background",
+      localized: false,
     }),
     logoText: fields.text({
       label: "Logo Text",
       defaultValue: "Brand",
       placeholder: "Shown next to logo or as fallback",
+      localized: false,
     }),
     logoSize: fields.select({
       label: "Logo Size",
@@ -52,20 +54,26 @@ export const headerProps = {
         }),
       },
     }),
-    showCta: fields.boolean({ label: "Show CTA Button", defaultValue: true }),
+    showCta: fields.boolean({
+      label: "Show CTA Button",
+      defaultValue: true,
+      localized: false,
+    }),
     ctaLabel: fields.text({
       label: "CTA Label",
       defaultValue: "Get Started",
     }),
-    ctaUrl: fields.link({ label: "CTA URL" }),
+    ctaUrl: fields.link({ label: "CTA URL", localized: false }),
     ctaStyle: fields.select({
       label: "CTA Style",
       defaultValue: "primary",
       options: ["primary", "secondary", "outline"],
+      localized: false,
     }),
     showSecondaryCta: fields.boolean({
       label: "Show Secondary CTA",
       defaultValue: false,
+      localized: false,
     }),
     secondaryCtaLabel: fields.text({
       label: "Secondary CTA Label",
@@ -73,13 +81,19 @@ export const headerProps = {
     }),
     secondaryCtaUrl: fields.link({
       label: "Secondary CTA URL",
+      localized: false,
     }),
     secondaryCtaStyle: fields.select({
       label: "Secondary CTA Style",
       defaultValue: "ghost",
       options: ["ghost", "outline", "link"],
+      localized: false,
     }),
-    sticky: fields.boolean({ label: "Sticky Header", defaultValue: true }),
+    sticky: fields.boolean({
+      label: "Sticky Header",
+      defaultValue: true,
+      localized: false,
+    }),
     transparent: fields.boolean({
       label: "Transparent Background",
       defaultValue: false,
@@ -92,16 +106,21 @@ export const headerProps = {
     showLanguageSwitcher: fields.boolean({
       label: "Show Language Switcher",
       defaultValue: true,
+      localized: false,
     }),
     showAnnouncement: fields.boolean({
       label: "Show Announcement Bar",
       defaultValue: false,
+      localized: false,
     }),
     announcementText: fields.text({
       label: "Announcement Text",
       placeholder: "New feature available!",
     }),
-    announcementLink: fields.link({ label: "Announcement Link" }),
+    announcementLink: fields.link({
+      label: "Announcement Link",
+      localized: false,
+    }),
     announcementBg: fields.color({
       label: "Announcement Background",
       defaultValue: "#00A8F0",
@@ -119,6 +138,7 @@ export const headerProps = {
     announcementDismissible: fields.boolean({
       label: "Dismissible",
       defaultValue: true,
+      localized: false,
     }),
 };
 
