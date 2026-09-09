@@ -26,29 +26,33 @@ export const headerProps = {
       label: "Navigation Items",
       itemSchema: {
         label: fields.text({ label: "Label", required: true }),
-        url: fields.link({ label: "URL" }),
+        url: fields.link({ label: "URL", localized: false }),
         openInNewTab: fields.boolean({
           label: "Open in new tab",
           defaultValue: false,
+          localized: false,
         }),
         columns: fields.select({
           label: "Dropdown Columns",
           defaultValue: "none",
           options: ["none", "1", "2", "3"],
+          localized: false,
         }),
         children: fields.repeater({
           label: "Dropdown Links",
           itemSchema: {
             label: fields.text({ label: "Label", required: true }),
             description: fields.text({ label: "Description" }),
-            url: fields.link({ label: "URL", required: true }),
+            url: fields.link({ label: "URL", required: true, localized: false }),
             icon: fields.select({
               label: "Icon",
               options: headerIconNames,
+              localized: false,
             }),
             openInNewTab: fields.boolean({
               label: "Open in new tab",
               defaultValue: false,
+              localized: false,
             }),
           },
         }),
