@@ -1,10 +1,12 @@
 import { draftMode } from "next/headers";
-import { CmssyServerLayout } from "@cmssy/react";
+import { CmssyLayoutSlot } from "@cmssy/next/server";
+import type { CmssyRegion } from "@cmssy/next";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { blocks } from "@/cmssy/blocks";
-import { cmssy } from "@/cmssy/config";
+import { cmssy, type layout } from "@/cmssy/config";
+import { EditableLayout } from "@/cmssy/editable-layout";
 import { splitLocaleFromPath } from "@/lib/locale-path";
-import { fetchChromeLayouts } from "@/services/layout";
+import { CONTENT_CACHE } from "@/services/pages";
 import { fetchSiteConfig, resolveSiteLocales } from "@/services/site";
 import { CmssyLocaleProvider, LocaleSync } from "@/components/cmssy-locale";
 import { DraftPreviewBanner } from "@/components/draft-preview-banner";
@@ -27,23 +29,27 @@ export default async function SiteLayout({
 }) {
   const { path } = await params;
   const { isEnabled: draft } = await draftMode();
-  const [locales, groups, siteConfig] = await Promise.all([
+  const [locales, siteConfig] = await Promise.all([
     resolveSiteLocales(),
-    fetchChromeLayouts("/", draft ? cmssy.draftSecret : undefined),
     fetchSiteConfig(),
   ]);
   const { locale } = splitLocaleFromPath(path, locales);
   const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim();
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
 
-  const slot = (position: "header" | "footer") => (
-    <CmssyServerLayout
-      groups={groups}
+  // Site chrome comes from the root page's layouts, whatever route is open;
+  // `path` only says which language to render it in.
+  const slot = (region: CmssyRegion<typeof layout>) => (
+    <CmssyLayoutSlot
+      config={cmssy}
       blocks={blocks}
-      position={position}
-      locale={locale}
-      defaultLocale={locales.defaultLocale}
-      enabledLocales={locales.locales}
+      region={region}
+      page="/"
+      path={path ?? []}
+      editMode={false}
+      preview={draft}
+      editable={EditableLayout}
+      cache={CONTENT_CACHE}
       // The header picks its mark by theme, and only the workspace knows
       // whether it has a dark one.
       appContext={{ branding: siteConfig?.branding ?? null }}

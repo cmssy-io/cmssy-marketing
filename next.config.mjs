@@ -1,16 +1,14 @@
+import { CMSSY_RETRY_MODES } from "@cmssy/core";
+
+const DELIVERY_BUDGET_S = CMSSY_RETRY_MODES.build.maxTotalWaitMs / 1000;
+const RENDER_HEADROOM_S = 30;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
-  /* The delivery API allows 100 requests a minute per IP and a cold build of
-     91 pages wants more than that, so the fetch guard in lib/cmssy-fetch-guard
-     paces them. Pacing means waiting, and a page that waits its turn can pass
-     the default 60s: eight of them did, and each timeout is re-rendered from
-     scratch, which spends the budget the wait was protecting. Measured cold,
-     the whole build takes under three minutes - so the per-page ceiling only
-     has to be generous enough not to fire. */
-  staticPageGenerationTimeout: 240,
+  staticPageGenerationTimeout: DELIVERY_BUDGET_S + RENDER_HEADROOM_S,
 };
 
 export default nextConfig;

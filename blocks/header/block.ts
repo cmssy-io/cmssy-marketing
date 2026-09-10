@@ -2,16 +2,19 @@ import type { ComponentType } from "react";
 import { defineBlock, fields } from "@cmssy/react";
 import type { BlockProps } from "@cmssy/react";
 import Header from "./Header";
+import { headerIconNames } from "./icons";
 
 export const headerProps = {
     logo: fields.media({
       label: "Logo",
       placeholder: "Recommended: SVG or PNG with transparent background",
+      localized: false,
     }),
     logoText: fields.text({
       label: "Logo Text",
       defaultValue: "Brand",
       placeholder: "Shown next to logo or as fallback",
+      localized: false,
     }),
     logoSize: fields.select({
       label: "Logo Size",
@@ -23,48 +26,58 @@ export const headerProps = {
       label: "Navigation Items",
       itemSchema: {
         label: fields.text({ label: "Label", required: true }),
-        url: fields.link({ label: "URL" }),
+        url: fields.link({ label: "URL", localized: false }),
         openInNewTab: fields.boolean({
           label: "Open in new tab",
           defaultValue: false,
+          localized: false,
         }),
         columns: fields.select({
           label: "Dropdown Columns",
           defaultValue: "none",
           options: ["none", "1", "2", "3"],
+          localized: false,
         }),
         children: fields.repeater({
           label: "Dropdown Links",
           itemSchema: {
             label: fields.text({ label: "Label", required: true }),
             description: fields.text({ label: "Description" }),
-            url: fields.link({ label: "URL", required: true }),
-            icon: fields.text({
-              label: "Lucide Icon Name",
-              placeholder: "e.g. Zap, BookOpen, Code",
+            url: fields.link({ label: "URL", required: true, localized: false }),
+            icon: fields.select({
+              label: "Icon",
+              options: headerIconNames,
+              localized: false,
             }),
             openInNewTab: fields.boolean({
               label: "Open in new tab",
               defaultValue: false,
+              localized: false,
             }),
           },
         }),
       },
     }),
-    showCta: fields.boolean({ label: "Show CTA Button", defaultValue: true }),
+    showCta: fields.boolean({
+      label: "Show CTA Button",
+      defaultValue: true,
+      localized: false,
+    }),
     ctaLabel: fields.text({
       label: "CTA Label",
       defaultValue: "Get Started",
     }),
-    ctaUrl: fields.link({ label: "CTA URL" }),
+    ctaUrl: fields.link({ label: "CTA URL", localized: false }),
     ctaStyle: fields.select({
       label: "CTA Style",
       defaultValue: "primary",
       options: ["primary", "secondary", "outline"],
+      localized: false,
     }),
     showSecondaryCta: fields.boolean({
       label: "Show Secondary CTA",
       defaultValue: false,
+      localized: false,
     }),
     secondaryCtaLabel: fields.text({
       label: "Secondary CTA Label",
@@ -72,13 +85,19 @@ export const headerProps = {
     }),
     secondaryCtaUrl: fields.link({
       label: "Secondary CTA URL",
+      localized: false,
     }),
     secondaryCtaStyle: fields.select({
       label: "Secondary CTA Style",
       defaultValue: "ghost",
       options: ["ghost", "outline", "link"],
+      localized: false,
     }),
-    sticky: fields.boolean({ label: "Sticky Header", defaultValue: true }),
+    sticky: fields.boolean({
+      label: "Sticky Header",
+      defaultValue: true,
+      localized: false,
+    }),
     transparent: fields.boolean({
       label: "Transparent Background",
       defaultValue: false,
@@ -91,16 +110,21 @@ export const headerProps = {
     showLanguageSwitcher: fields.boolean({
       label: "Show Language Switcher",
       defaultValue: true,
+      localized: false,
     }),
     showAnnouncement: fields.boolean({
       label: "Show Announcement Bar",
       defaultValue: false,
+      localized: false,
     }),
     announcementText: fields.text({
       label: "Announcement Text",
       placeholder: "New feature available!",
     }),
-    announcementLink: fields.link({ label: "Announcement Link" }),
+    announcementLink: fields.link({
+      label: "Announcement Link",
+      localized: false,
+    }),
     announcementBg: fields.color({
       label: "Announcement Background",
       defaultValue: "#00A8F0",
@@ -118,6 +142,7 @@ export const headerProps = {
     announcementDismissible: fields.boolean({
       label: "Dismissible",
       defaultValue: true,
+      localized: false,
     }),
 };
 
@@ -127,7 +152,7 @@ export const headerBlock = defineBlock({
   label: "Header Navigation",
   description:
     "Site header and navigation bar (layout block); top of every page.",
-  layoutPositions: ["header"],
+  layoutRegions: ["header"],
   // The header is a layout block whose component reads a custom platform
   // context (auth/customer/logout) that differs from the SDK's block context,
   // so the component is cast; its content shape is still derived from the

@@ -86,14 +86,14 @@ query PublicPageMeta($workspaceSlug: String!, $slug: String!) {
   }
 }
 
-# Header, footer and the other layout positions for a page.
+# Header, footer and the other layout regions for a page.
 query PublicPageLayouts($workspaceSlug: String!, $pageSlug: String!, $previewSecret: String) {
   public {
     page {
       layouts(workspaceSlug: $workspaceSlug, pageSlug: $pageSlug, previewSecret: $previewSecret) {
-        position
+        region
         blocks { id type content style advanced order isActive }
-        settings { desktopWidth mobileBehavior }
+        settings
       }
     }
   }
@@ -140,7 +140,7 @@ query PublicForm($formId: ID!) {
         }
         settings {
           actionType submitButtonLabel successMessage errorMessage
-          redirectUrl requireLogin enableCaptcha
+          redirectUrl requireLogin
         }
       }
     }
