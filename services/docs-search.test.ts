@@ -60,7 +60,7 @@ describe("buildDocsSearchBodies", () => {
           },
     );
 
-    expect(await buildDocsSearchBodies("en")).toEqual([
+    expect(await buildDocsSearchBodies("en", "en")).toEqual([
       { slug: "/docs/api", body: "API Section intro" },
       { slug: "/docs/api/webhooks", body: "Webhooks Honour Retry-After" },
     ]);
@@ -84,8 +84,45 @@ describe("buildDocsSearchBodies", () => {
       ],
     });
 
-    expect(await buildDocsSearchBodies("pl")).toEqual([
+    expect(await buildDocsSearchBodies("pl", "en")).toEqual([
       { slug: "/docs/api", body: "Limity zapytań" },
+    ]);
+  });
+
+  it("indexes what the page renders, falling back the way the renderer does", async () => {
+    listChildPages.mockImplementation(async (parent: string) =>
+      parent === "/docs" ? [page("p1", "/docs/rendering/layout-regions")] : [],
+    );
+    getPageById.mockResolvedValue({
+      id: "p1",
+      blocks: [article("Layout regions", "<p>Declare your regions</p>", "en")],
+    });
+
+    expect(await buildDocsSearchBodies("de", "en")).toEqual([
+      { slug: "/docs/rendering/layout-regions", body: "Layout regions Declare your regions" },
+    ]);
+  });
+
+  it("prefers the asked-for locale over the fallback when both exist", async () => {
+    listChildPages.mockImplementation(async (parent: string) =>
+      parent === "/docs" ? [page("p1", "/docs/api")] : [],
+    );
+    getPageById.mockResolvedValue({
+      id: "p1",
+      blocks: [
+        {
+          id: "b1",
+          type: "docs-article",
+          content: {
+            en: { title: "Rate limits", content: "" },
+            de: { title: "Ratenbegrenzungen", content: "" },
+          },
+        },
+      ],
+    });
+
+    expect(await buildDocsSearchBodies("de", "en")).toEqual([
+      { slug: "/docs/api", body: "Ratenbegrenzungen" },
     ]);
   });
 
@@ -99,7 +136,7 @@ describe("buildDocsSearchBodies", () => {
       id === "ok" ? { id, blocks: [article("API", "")] } : null,
     );
 
-    expect(await buildDocsSearchBodies("en")).toEqual([
+    expect(await buildDocsSearchBodies("en", "en")).toEqual([
       { slug: "/docs/api", body: "API" },
     ]);
   });
@@ -112,7 +149,7 @@ describe("buildDocsSearchBodies", () => {
     });
     getPageById.mockResolvedValue({ id: "s1", blocks: [article("API", "")] });
 
-    const entries = await buildDocsSearchBodies("en");
+    const entries = await buildDocsSearchBodies("en", "en");
     expect(entries).toHaveLength(1);
     expect(getPageById).toHaveBeenCalledTimes(1);
   });
@@ -135,7 +172,7 @@ describe("buildDocsSearchBodies", () => {
       return { id, blocks: [article("Page", "")] };
     });
 
-    await buildDocsSearchBodies("en");
+    await buildDocsSearchBodies("en", "en");
 
     expect(getPageById).toHaveBeenCalledTimes(40);
     expect(peak).toBeLessThanOrEqual(8);
@@ -151,7 +188,7 @@ describe("buildDocsSearchBodies", () => {
       blocks: [{ id: "b1", type: "docs-article", content: { en: {} } }],
     });
 
-    expect(await buildDocsSearchBodies("en")).toEqual([]);
+    expect(await buildDocsSearchBodies("en", "en")).toEqual([]);
   });
 });
 

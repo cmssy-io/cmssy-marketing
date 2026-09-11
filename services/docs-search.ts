@@ -64,11 +64,11 @@ export async function mapWithLimit<T, R>(
 function bodyOfPage(
   pageBlocks: { type: string; content?: unknown }[],
   locale: string,
+  fallbackLocale: string,
 ): string {
   const parts = pageBlocks.map((block) => {
-    const localized = (block.content as Record<string, unknown> | undefined)?.[
-      locale
-    ];
+    const buckets = block.content as Record<string, unknown> | undefined;
+    const localized = buckets?.[locale] ?? buckets?.[fallbackLocale];
     return harvestBlockText(SCHEMA_BY_TYPE.get(block.type), localized);
   });
   return joinPageText(parts);
@@ -76,6 +76,7 @@ function bodyOfPage(
 
 export async function buildDocsSearchBodies(
   locale: string,
+  fallbackLocale: string,
 ): Promise<DocsSearchBodyEntry[]> {
   const pages = await docsPages();
   const entries = await mapWithLimit(pages, CONCURRENCY, async (page) => {
@@ -84,6 +85,7 @@ export async function buildDocsSearchBodies(
     const body = bodyOfPage(
       loaded.blocks as { type: string; content?: unknown }[],
       locale,
+      fallbackLocale,
     );
     return body ? { slug: page.fullSlug, body } : null;
   });
@@ -94,10 +96,11 @@ export async function buildDocsSearchBodies(
 
 export function loadDocsSearchBodies(
   locale: string,
+  fallbackLocale: string,
 ): Promise<DocsSearchBodyEntry[]> {
   return unstable_cache(
-    () => buildDocsSearchBodies(locale),
-    ["cmssy-docs-search-bodies", locale],
+    () => buildDocsSearchBodies(locale, fallbackLocale),
+    ["cmssy-docs-search-bodies", locale, fallbackLocale],
     { tags: [CONTENT_TAG], revalidate: 3600 },
   )();
 }
