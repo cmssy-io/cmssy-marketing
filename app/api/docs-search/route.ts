@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     requested && locales.includes(requested) ? requested : defaultLocale;
 
   try {
-    const entries = await loadDocsSearchBodies(locale);
+    const entries = await loadDocsSearchBodies(locale, defaultLocale);
     return NextResponse.json(
       { locale, entries },
       {
